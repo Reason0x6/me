@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';  // Import CommonModule for directives like *ngFor
+import { Card } from '../app.component';
 
 @Component({
   selector: 'app-cards',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';  // Import CommonModule for dire
 })
 export class CardsComponent{
 
-  cards = [
+  cards: Card[] = [
     { title: 'Graduated with Class 1 Honors', description: 'Graduated with a Class 1 Honors degree in Software Engineering, including three Faculty Commendation List honors in 2018, 2022, and 2023.' },
     { title: 'Programming Languages', description: 'Proficient in TypeScript, JavaScript, .NET, and Java, with expertise in developing dynamic and scalable applications.' },
     { title: 'Frontend Development', description: 'Experienced with Angular, Cordova, HTML, and CSS, building responsive and user-friendly interfaces for web and mobile apps.' },
