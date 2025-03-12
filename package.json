@@ -2,9 +2,8 @@
   "name": "g-austin",
   "version": "1.0.0",
   "engines": {
-  "node": "18.19.1"
-},
-
+    "node": "18.19.1"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -14,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^19.2.1",
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
     "@angular/core": "^19.2.0",

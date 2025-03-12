@@ -4,7 +4,7 @@
         Hello, I am <br /><span class="text-red-500">Gavin</span>
       </h2>
       <p class="text-gray-300 mt-4">
-        A passionate software engineer working with TypeScript, .NET, and DevOps.
+        A passionate software engineer working with <span  class="text-red-500" *ngIf="currentTechnology" [@fadeAnimation]>{{ currentTechnology }}</span>
       </p>
       <div class="mt-6 space-x-4 flex flex-wrap justify-center md:justify-start">
         <a href="https://bit.ly/43FSlOO" class="px-6 py-3 bg-red-500 text-white font-bold rounded-lg shadow-md hover:bg-red-600 mb-4">Hire Me</a>
