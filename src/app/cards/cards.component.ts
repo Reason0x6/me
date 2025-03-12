@@ -12,16 +12,15 @@ import { Card } from '../app.component';
 export class CardsComponent{
 
   cards: Card[] = [
-    { title: 'Graduated with Class 1 Honors', description: 'Graduated with a Class 1 Honors degree in Software Engineering, including three Faculty Commendation List honors in 2018, 2022, and 2023.' },
-    { title: 'Programming Languages', description: 'Proficient in TypeScript, JavaScript, .NET, and Java, with expertise in developing dynamic and scalable applications.' },
-    { title: 'Frontend Development', description: 'Experienced with Angular, Cordova, HTML, and CSS, building responsive and user-friendly interfaces for web and mobile apps.' },
-    { title: 'Backend Development', description: 'Skilled in .NET, REST APIs, and SQL, with a focus on creating robust, scalable, and efficient server-side applications.' },
-    { title: 'DevOps & Cloud', description: 'Proficient in Azure DevOps, CI/CD pipelines, and Infrastructure as Code (IaC) to automate and streamline development and deployment processes.' },
-    { title: 'Tools & Technologies', description: 'Experienced with Git, Cypress for testing, and both Unit & E2E Testing, ensuring high-quality code and continuous integration.' },
-    { title: 'Methodologies', description: 'Familiar with Agile, Scrum practices, conducting Code Reviews, and Debugging to deliver efficient, collaborative, and high-performing software.' },
-    { title: 'Mechanical Keyboards', description: 'A passionate designer of mechanical keyboards, focusing on custom layouts, switches, keycaps, and modifying QMK firmware to create a tailored typing experience.' },
-    { title: 'Gaming', description: 'I’m an avid gamer who enjoys discovering new and creative ways to play. Whether it’s experimenting with different strategies or finding unique team combinations, I love pushing the boundaries of what’s possible.' }
-  ];
+        { title: 'Design and Implementation', description: 'Led system upgrades and integrations, developed scalable code, and collaborated on architecture and technical specs.' },
+        { title: 'Backend Development', description: 'Skilled in .NET, REST APIs, and SQL, focusing on scalable, efficient server-side applications.' },
+        { title: 'DevOps & Cloud', description: 'Designed CI/CD pipelines in Azure DevOps and implemented IaC for scalable, consistent cloud deployments.' },
+        { title: 'Frontend Development', description: 'Experienced with Angular, Cordova, HTML, and CSS for responsive web and mobile apps.' },
+        { title: 'Methodologies', description: 'Familiar with Agile and Scrum practices, including Code Reviews and Debugging.' },
+        { title: 'Project Management & Collaboration', description: 'Collaborated with teams to deliver software solutions, participate in Agile processes, and provide technical leadership.' },
+        { title: 'Code Review & Debugging', description: 'Conducted code reviews, optimized performance, and resolved bottlenecks for efficient applications.' },
+        { title: 'Graduated with Class 1 Honors', description: 'Earned a Class 1 Honors degree in Software Engineering, with Faculty Commendation List honors in 2018, 2022, and 2023.' }
+      ];
 
   constructor() { }
 
