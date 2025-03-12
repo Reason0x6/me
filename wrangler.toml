@@ -1,0 +1,5 @@
+name = "me"
+type = "Typescript"
+
+[env.production]
+node_version = "18.19"
