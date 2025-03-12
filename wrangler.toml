@@ -3,3 +3,4 @@ type = "Typescript"
 
 [env.production]
 node_version = "18.19"
+pages_build_output_dir = "./dist/g-austin"
