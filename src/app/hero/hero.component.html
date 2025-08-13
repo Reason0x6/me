@@ -12,6 +12,17 @@
     /* overflow-x: hidden; */
     /* overflow-y: hidden; */
   }
+  .border-wrapper {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    border: 3vw solid #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    pointer-events: none;
+  }
   .ascii-art {
     width: 100%;
     min-height: 100vh;
@@ -34,12 +45,13 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.8);
     pointer-events: none;
     z-index: 2;
   }
 </style>
 
+<div class="border-wrapper"></div>
 <div class="soft-white-overlay"></div>
   <pre #asciiPre  style="cursor: help;">{{ asciiArt }}</pre>
 
@@ -88,6 +100,6 @@
         <line x1="240" x2="240" y1="10" y2="90" stroke-width="1"/>
       </g>
     </svg>
-    <div class="barcode-label" style="cursor:pointer;" onclick="window.open('https://github.com/Reason0x6','_blank')">Reason0x{{charsToReplace}}</div>
+    <div class="barcode-label" style="cursor:pointer;" onclick="window.open('https://github.com/Reason0x6','_blank')">Reason{{charsToReplace}}x6</div>
   </a>
 </div>
