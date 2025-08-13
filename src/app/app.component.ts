@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeroComponent } from "./hero/hero.component";
-import { CardsComponent } from "./cards/cards.component";
-import { ScriptsComponent } from './scripts/scripts.component';
 
 @Component({
   selector: 'app-root',
