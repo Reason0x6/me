@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
-import { NoiseScreenComponent } from './hero/hero.component';
+import { HeroComponent } from './hero/hero.component';
 
 export const routes: Routes = [
-  { path: '', component: NoiseScreenComponent },
+  { path: '', component: HeroComponent },
+  {
+    path: 'jazz-device',
+    loadComponent: () =>
+      import('./features/jazz-device/jazz-device.component').then((module) => module.JazzDeviceComponent),
+  },
 ];

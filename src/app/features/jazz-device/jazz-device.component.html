@@ -1,0 +1,332 @@
+<div class="min-h-screen bg-[#d9dde1] px-4 py-4 text-neutral-900 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-4 flex items-center justify-between gap-3">
+      <a
+        routerLink="/"
+        class="inline-flex items-center rounded-full border border-black/10 bg-white/55 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-black/65 transition hover:-translate-y-0.5"
+      >
+        Back
+      </a>
+      <div class="rounded-full border border-black/10 bg-white/55 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-black/55">
+        Jazz device
+      </div>
+    </div>
+
+    <section class="device-shell relative overflow-hidden rounded-[2.4rem] border border-white/70 p-4 shadow-[0_28px_90px_rgba(18,22,28,0.16)] sm:p-6 lg:p-8">
+      <div class="absolute inset-x-8 top-0 h-px bg-white/80"></div>
+      <div class="absolute inset-y-8 right-0 w-px bg-black/5"></div>
+
+      <header class="grid gap-4 border-b border-black/10 pb-5 lg:grid-cols-[1.2fr_0.8fr]">
+        <div>
+          <p class="text-[0.64rem] font-semibold uppercase tracking-[0.3em] text-black/50">Procedural lounge recorder</p>
+          <h1 class="mt-3 max-w-2xl text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
+            Smooth jazz / R&amp;B generator with tactile transport and seeded takes.
+          </h1>
+          <p class="mt-4 max-w-2xl text-sm leading-7 text-black/65 sm:text-base">
+            A browser-based music device tuned for late-night Rhodes, round bass, restrained leads,
+            and gradual arrangement movement. Power it on, set the feel, and generate a repeatable take.
+          </p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <app-device-display label="BPM" [value]="parameters().bpm.toString()" meta="tempo"></app-device-display>
+          <app-device-display label="Key" [value]="parameters().key" meta="tonality"></app-device-display>
+          <app-device-display label="Octave" [value]="parameters().octaveRange" meta="lead range"></app-device-display>
+          <app-device-display label="Seed" [value]="seedLabel()" meta="reproducible"></app-device-display>
+          <app-device-display
+            label="Section"
+            [value]="telemetry().sectionLabel"
+            [meta]="telemetry().enabled ? 'live' : 'idle'"
+            [inverse]="true"
+          ></app-device-display>
+        </div>
+      </header>
+
+      <div class="mt-5 grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
+        <div class="space-y-5">
+          <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+            <app-reel-control
+              [progress]="telemetry().progress"
+              [elapsed]="elapsedLabel()"
+              [section]="telemetry().sectionLabel"
+              [activeParts]="telemetry().activeParts"
+              [state]="transportState()"
+              (progressChange)="seek($event)"
+            ></app-reel-control>
+
+            <div class="space-y-5">
+              <app-transport-controls
+                [enabled]="telemetry().enabled"
+                [state]="transportState()"
+                (initialize)="initializeAudio()"
+                (play)="play()"
+                (pause)="pause()"
+                (stop)="stop()"
+                (generate)="generateNewTake()"
+              ></app-transport-controls>
+
+              <div class="rounded-[1.5rem] border border-black/10 bg-neutral-950 p-4 text-white">
+                <div class="flex items-center justify-between gap-3">
+                  <div>
+                    <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-white/45">Output</p>
+                    <p class="mt-1 text-sm text-white/70">Meters and active layers</p>
+                  </div>
+                  <div class="rounded-full border border-white/10 px-2 py-1 text-[0.62rem] uppercase tracking-[0.22em] text-white/45">
+                    {{ telemetry().enabled ? 'armed' : 'standby' }}
+                  </div>
+                </div>
+
+                <div class="mt-4 grid grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <p class="text-[0.62rem] uppercase tracking-[0.2em] text-white/45">L</p>
+                    <div class="meter-track">
+                      <span class="meter-fill" [style.height.%]="meterBars()[0]"></span>
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <p class="text-[0.62rem] uppercase tracking-[0.2em] text-white/45">R</p>
+                    <div class="meter-track">
+                      <span class="meter-fill" [style.height.%]="meterBars()[1]"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4 rounded-[1.2rem] border border-white/10 bg-white/5 px-3 py-3">
+                  <p class="text-[0.62rem] uppercase tracking-[0.2em] text-white/45">Now active</p>
+                  <p class="mt-2 text-sm text-white/80">{{ telemetry().activeParts.join(' · ') || 'No parts active' }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <app-device-dial
+              label="Warmth"
+              [value]="parameters().warmth"
+              [displayValue]="warmthLabel()"
+              (valueChange)="updateNumber('warmth', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Swing"
+              [value]="parameters().swing"
+              [displayValue]="swingLabel()"
+              (valueChange)="updateNumber('swing', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Pocket"
+              [value]="parameters().pocket"
+              [displayValue]="pocketLabel()"
+              (valueChange)="updateNumber('pocket', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Chord richness"
+              [value]="parameters().chordRichness"
+              [displayValue]="richnessLabel()"
+              (valueChange)="updateNumber('chordRichness', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Drum density"
+              [value]="parameters().drumDensity"
+              [displayValue]="densityLabel()"
+              (valueChange)="updateNumber('drumDensity', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Bass activity"
+              [value]="parameters().bassActivity"
+              [displayValue]="bassLabel()"
+              (valueChange)="updateNumber('bassActivity', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Lead amount"
+              [value]="parameters().leadAmount"
+              [displayValue]="leadLabel()"
+              (valueChange)="updateNumber('leadAmount', $event)"
+            ></app-device-dial>
+            <app-device-dial
+              label="Ambience"
+              [value]="parameters().ambience"
+              [displayValue]="ambienceLabel()"
+              (valueChange)="updateNumber('ambience', $event)"
+            ></app-device-dial>
+          </div>
+        </div>
+
+        <aside class="space-y-5">
+          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="control-field">
+                <span>Seed</span>
+                <input
+                  class="device-input"
+                  type="number"
+                  [ngModel]="parameters().seed"
+                  (ngModelChange)="updateSeed($event)"
+                />
+              </label>
+
+              <label class="control-field">
+                <span>BPM</span>
+                <input
+                  class="device-input"
+                  type="number"
+                  min="64"
+                  max="112"
+                  [ngModel]="parameters().bpm"
+                  (ngModelChange)="updateNumber('bpm', $event, false)"
+                />
+              </label>
+
+              <label class="control-field">
+                <span>Key</span>
+                <select
+                  class="device-input"
+                  [ngModel]="parameters().key"
+                  (ngModelChange)="updateNumber('key', $event)"
+                >
+                  <option *ngFor="let item of presets.keys" [ngValue]="item.value">{{ item.label }}</option>
+                </select>
+              </label>
+
+              <label class="control-field">
+                <span>Length</span>
+                <select
+                  class="device-input"
+                  [ngModel]="parameters().loopBars"
+                  (ngModelChange)="updateNumber('loopBars', $event)"
+                >
+                  <option *ngFor="let item of presets.loopLengths" [ngValue]="item.value">{{ item.label }}</option>
+                </select>
+              </label>
+            </div>
+
+            <label class="mt-4 flex items-center justify-between rounded-[1.2rem] border border-black/10 bg-[#ece7de] px-4 py-3">
+              <div>
+                <p class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-black/50">Freeze seed</p>
+                <p class="mt-1 text-sm text-black/65">Keep the same take identity when tweaking feel.</p>
+              </div>
+              <input
+                type="checkbox"
+                class="h-5 w-5 accent-neutral-900"
+                [ngModel]="parameters().freezeSeed"
+                (ngModelChange)="updateToggle('freezeSeed', $event)"
+              />
+            </label>
+          </div>
+
+          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Instrument focus</p>
+            <div class="mt-3 grid grid-cols-3 gap-2">
+              <button
+                *ngFor="let item of presets.focusOptions"
+                type="button"
+                class="segment-button"
+                [class.segment-button-active]="parameters().focus === item.value"
+                (click)="updateNumber('focus', item.value)"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+
+            <p class="mt-5 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Scene</p>
+            <div class="mt-3 grid grid-cols-3 gap-2">
+              <button
+                *ngFor="let item of presets.sceneOptions"
+                type="button"
+                class="segment-button"
+                [class.segment-button-active]="parameters().scene === item.value"
+                (click)="updateNumber('scene', item.value)"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+
+            <p class="mt-5 text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Octave range</p>
+            <div class="mt-3 grid grid-cols-3 gap-2">
+              <button
+                *ngFor="let item of presets.octaveOptions"
+                type="button"
+                class="segment-button"
+                [class.segment-button-active]="parameters().octaveRange === item.value"
+                (click)="updateNumber('octaveRange', item.value)"
+              >
+                {{ item.label }}
+              </button>
+            </div>
+          </div>
+
+          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Part levels</p>
+            <div class="mt-4 space-y-3">
+              <label
+                *ngFor="let item of partLevelControls"
+                class="flex items-center gap-3 rounded-[1.1rem] border border-black/10 bg-[#f1ede5] px-3 py-3"
+              >
+                <span class="w-16 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-black/55">
+                  {{ item.label }}
+                </span>
+                <input
+                  class="h-2 w-full cursor-pointer appearance-none rounded-full bg-black/10 accent-neutral-900"
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  [ngModel]="partLevels()[item.id]"
+                  (ngModelChange)="updatePartLevel(item.id, $event)"
+                />
+                <span class="w-11 text-right text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55">
+                  {{ partLevelLabel(item.id) }}
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+            <div class="flex items-center justify-between gap-3">
+              <div>
+                <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Arrangement</p>
+                <p class="mt-1 text-sm text-black/65">Choose which parts appear in each section.</p>
+              </div>
+            </div>
+
+            <div class="mt-4 space-y-3">
+              <div
+                *ngFor="let section of sectionControls"
+                class="rounded-[1.2rem] border border-black/10 bg-[#f1ede5] p-3"
+              >
+                <div class="flex items-center justify-between gap-3">
+                  <p class="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-black/55">
+                    {{ section.label }}
+                  </p>
+                  <p class="text-[0.62rem] uppercase tracking-[0.18em] text-black/45">
+                    {{ section.id }}
+                  </p>
+                </div>
+
+                <div class="mt-3 grid grid-cols-3 gap-2">
+                  <button
+                    *ngFor="let part of partLevelControls"
+                    type="button"
+                    class="segment-button"
+                    [class.segment-button-active]="isSectionPartEnabled(section.id, part.id)"
+                    (click)="toggleSectionPart(section.id, part.id)"
+                  >
+                    {{ part.label }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Generator notes</p>
+            <ul class="mt-3 space-y-3 text-sm leading-6 text-black/65">
+              <li>Same seed + same settings reproduces progression, phrasing, and arrangement timing.</li>
+              <li>BPM updates immediately; feel and arrangement controls regenerate the current take.</li>
+              <li>Use the reel to scrub the playhead through intro, groove, head, solo, and outro.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+</div>

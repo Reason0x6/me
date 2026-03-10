@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="shell" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F8FA"/>
+      <stop offset="0.48" stop-color="#DEE3E8"/>
+      <stop offset="1" stop-color="#C8D0D7"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="14" y1="14" x2="50" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111417"/>
+      <stop offset="1" stop-color="#242B31"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="4" y="4" width="56" height="56" rx="15" fill="url(#shell)" stroke="#FFFFFF" stroke-opacity=".7"/>
+  <rect x="12" y="12" width="40" height="14" rx="7" fill="url(#panel)"/>
+  <rect x="16" y="17" width="13" height="4" rx="2" fill="#F6F8FB" fill-opacity=".82"/>
+  <circle cx="46" cy="19" r="2.5" fill="#FF5C58"/>
+
+  <rect x="14" y="32" width="36" height="4" rx="2" fill="#B6BEC7"/>
+  <rect x="14" y="39" width="36" height="4" rx="2" fill="#B6BEC7"/>
+
+  <rect x="14" y="47" width="12" height="8" rx="4" fill="#EEF2F5" stroke="#97A0A9" stroke-opacity=".45"/>
+  <rect x="29" y="47" width="12" height="8" rx="4" fill="#EEF2F5" stroke="#97A0A9" stroke-opacity=".45"/>
+  <rect x="44" y="47" width="6" height="8" rx="3" fill="#161A1E"/>
+</svg>
