@@ -8,6 +8,7 @@ import {
   MusicalKey,
   OctaveRange,
   PartLevels,
+  PartSequencing,
   SceneIntensity,
 } from '../models/jazz-device.types';
 
@@ -63,6 +64,7 @@ export class JazzPresetsService {
       octaveRange: 'mid',
       scene: 'after-hours',
       arrangement: this.createDefaultArrangement(),
+      pianoSequencing: this.createDefaultPianoSequencing(),
     };
   }
 
@@ -119,6 +121,17 @@ export class JazzPresetsService {
         lead: false,
         drums: false,
       },
+    };
+  }
+
+  createDefaultPianoSequencing(): PartSequencing {
+    return {
+      rhodes: false,
+      pad: false,
+      comp: false,
+      bass: false,
+      lead: false,
+      drums: false,
     };
   }
 }

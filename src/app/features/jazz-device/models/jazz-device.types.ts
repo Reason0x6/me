@@ -33,6 +33,7 @@ export type DrumInstrument = 'kick' | 'snare' | 'hat' | 'open-hat';
 export type PartId = 'rhodes' | 'pad' | 'comp' | 'bass' | 'lead' | 'drums';
 export type SectionPartSelection = Record<PartId, boolean>;
 export type ArrangementSelection = Record<SectionId, SectionPartSelection>;
+export type PartSequencing = Record<PartId, boolean>;
 
 export interface GenerationParameters {
   readonly seed: number;
@@ -52,6 +53,7 @@ export interface GenerationParameters {
   readonly octaveRange: OctaveRange;
   readonly scene: SceneIntensity;
   readonly arrangement: ArrangementSelection;
+  readonly pianoSequencing: PartSequencing;
 }
 
 export interface ArrangementSection {

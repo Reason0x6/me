@@ -42,8 +42,9 @@
         </div>
       </header>
 
-      <div class="mt-5 grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
-        <div class="space-y-5">
+      <div class="mt-5 space-y-5">
+        <div class="grid gap-5 xl:grid-cols-[1.2fr_0.8fr]">
+        <div class="space-y-5 xl:contents">
           <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
             <app-reel-control
               [progress]="telemetry().progress"
@@ -59,6 +60,7 @@
                 [enabled]="telemetry().enabled"
                 [state]="transportState()"
                 (initialize)="initializeAudio()"
+                (powerOff)="powerOff()"
                 (play)="play()"
                 (pause)="pause()"
                 (stop)="stop()"
@@ -149,9 +151,336 @@
               (valueChange)="updateNumber('ambience', $event)"
             ></app-device-dial>
           </div>
+
+          <div class="grid gap-5 lg:grid-cols-2 xl:col-span-2">
+            <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+              <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Part levels</p>
+              <div class="mt-4 space-y-3">
+                <label
+                  *ngFor="let item of partLevelControls"
+                  class="flex items-center gap-3 rounded-[1.1rem] border border-black/10 bg-[#f1ede5] px-3 py-3"
+                >
+                  <span class="w-16 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-black/55">
+                    {{ item.label }}
+                  </span>
+                  <input
+                    class="h-2 w-full cursor-pointer appearance-none rounded-full bg-black/10 accent-neutral-900"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    [ngModel]="partLevels()[item.id]"
+                    (ngModelChange)="updatePartLevel(item.id, $event)"
+                  />
+                  <span class="w-11 text-right text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55">
+                    {{ partLevelLabel(item.id) }}
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Custom sequencing</p>
+                  <p class="mt-1 text-sm text-black/65">Choose which parts expose the custom sequencer and in-browser editor.</p>
+                </div>
+              </div>
+
+              <div class="mt-4 grid grid-cols-2 gap-2">
+                <button
+                  *ngFor="let part of partLevelControls"
+                  type="button"
+                  class="segment-button"
+                  [class.segment-button-active]="isPianoSequencingEnabled(part.id)"
+                  (click)="togglePianoSequencing(part.id)"
+                >
+                  {{ part.label }}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-[1.7rem] border border-black/10 bg-[#f6f2eb]/90 p-4 sm:p-5 xl:col-span-2">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Sequence view</p>
+                <p class="mt-1 max-w-2xl text-sm text-black/65">
+                  Generated parts laid out as a sequenced timeline. Click anywhere in the grid to move the playhead.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-black/45">
+                <span class="rounded-full border border-black/10 bg-white/60 px-3 py-1">
+                  {{ currentTake()?.totalBars || 0 }} bars
+                </span>
+                <span class="rounded-full border border-black/10 bg-white/60 px-3 py-1">
+                  Seed {{ seedLabel() }}
+                </span>
+              </div>
+            </div>
+
+            <div *ngIf="currentTake(); else sequenceEmpty" class="mt-4 space-y-3">
+              <div class="rounded-[1.25rem] border border-black/10 bg-white/70 p-3">
+                <div class="sequence-header">
+                  <div class="sequence-lane-label text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-black/45">
+                    Sections
+                  </div>
+                  <div class="sequence-track-shell">
+                    <div class="sequence-section-strip">
+                      <div
+                        *ngFor="let section of sequenceSections()"
+                        class="sequence-section-chip"
+                        [style.left]="section.startPercent + '%'"
+                        [style.width]="section.widthPercent + '%'"
+                      >
+                        <span>{{ section.label }}</span>
+                      </div>
+                    </div>
+                    <div class="sequence-bars">
+                      <span
+                        *ngFor="let marker of sequenceBarMarkers()"
+                        class="sequence-bar-label"
+                        [style.left]="marker.positionPercent + '%'"
+                      >
+                        {{ marker.label }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <ng-container *ngIf="sequenceLanes().length > 0; else sequencerFilterEmpty">
+              <div class="space-y-3">
+                <div *ngFor="let lane of sequenceLanes()" class="sequence-row">
+                  <div class="sequence-lane-label">
+                    <div class="flex items-center justify-between gap-2">
+                      <div class="flex items-center gap-2">
+                        <span class="sequence-lane-swatch" [style.background]="lane.color"></span>
+                        <span>{{ lane.label }}</span>
+                      </div>
+                      <button
+                        type="button"
+                        class="sequence-add-button"
+                        (click)="addSequenceEvent(lane.id)"
+                      >
+                        Add
+                      </button>
+                    </div>
+                    <div class="mt-1 flex flex-wrap gap-2 text-[0.6rem] uppercase tracking-[0.18em] text-black/40">
+                      <span>{{ lane.eventCount }} events</span>
+                      <span *ngIf="lane.isPiano">custom seq</span>
+                    </div>
+                  </div>
+
+                  <div class="sequence-track-shell">
+                    <button
+                      type="button"
+                      class="sequence-track-button"
+                      (click)="seekSequence($event)"
+                    >
+                      <span
+                        *ngFor="let marker of sequenceBarMarkers()"
+                        class="sequence-grid-line"
+                        [style.left]="marker.positionPercent + '%'"
+                      ></span>
+                      <span
+                        class="sequence-playhead"
+                        [style.left]="playheadPercent() + '%'"
+                      ></span>
+
+                      <ng-container *ngIf="lane.hasEvents; else emptyLane">
+                        <span
+                          *ngFor="let event of lane.events"
+                          class="sequence-event"
+                          [class.sequence-event-selected]="isSelectedSequenceEvent(lane.id, event.index)"
+                          [style.left]="sequenceEventLeft(event)"
+                          [style.width]="sequenceEventWidth(event)"
+                          [style.background]="lane.color"
+                          [style.opacity]="sequenceEventOpacity(event)"
+                          (click)="selectSequenceEvent($event, lane.id, event.index)"
+                          [attr.title]="event.label + ' · ' + event.detail"
+                        >
+                          <span class="sequence-event-label">{{ event.label }}</span>
+                        </span>
+                      </ng-container>
+
+                      <ng-template #emptyLane>
+                        <span class="sequence-empty">No events generated for this part.</span>
+                      </ng-template>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rounded-[1.25rem] border border-black/10 bg-white/72 p-4">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-black/50">Sequence editor</p>
+                    <p class="mt-1 text-sm text-black/65">Select an event block above to edit timing and content in browser.</p>
+                  </div>
+                  <div *ngIf="selectedSequenceEvent()" class="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      class="rounded-full border border-black/10 bg-white px-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-black/55"
+                      (click)="duplicateSelectedSequenceEvent()"
+                    >
+                      Duplicate
+                    </button>
+                    <button
+                      type="button"
+                      class="rounded-full border border-[#b64a38]/20 bg-[#f7e4df] px-3 py-2 text-[0.64rem] font-semibold uppercase tracking-[0.18em] text-[#9f3f31]"
+                      (click)="deleteSelectedSequenceEvent()"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+
+                <div *ngIf="selectedSequenceEvent() as selected; else editorEmpty" class="mt-4 grid gap-4 lg:grid-cols-2">
+                  <div class="rounded-[1.1rem] border border-black/10 bg-[#f6f1e8] p-4">
+                    <div class="flex items-center justify-between gap-3">
+                      <div>
+                        <p class="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-black/45">{{ selected.partLabel }}</p>
+                        <p class="mt-1 text-sm text-black/65">Event {{ selected.index + 1 }}</p>
+                      </div>
+                      <span
+                        class="rounded-full px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-white"
+                        [style.background]="selected.color"
+                      >
+                        {{ selected.kind }}
+                      </span>
+                    </div>
+
+                    <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                      <label class="control-field">
+                        <span>Beat</span>
+                        <input
+                          class="device-input"
+                          type="number"
+                          step="0.25"
+                          [ngModel]="selected.event.beat"
+                          (ngModelChange)="updateSelectedBeat($event)"
+                        />
+                      </label>
+                      <label class="control-field">
+                        <span>Length</span>
+                        <input
+                          class="device-input"
+                          type="number"
+                          step="0.25"
+                          min="0.25"
+                          [ngModel]="selected.event.durationBeats"
+                          (ngModelChange)="updateSelectedDuration($event)"
+                        />
+                      </label>
+                      <label class="control-field">
+                        <span>Velocity</span>
+                        <input
+                          class="device-input"
+                          type="number"
+                          step="0.01"
+                          min="0.05"
+                          max="1"
+                          [ngModel]="selected.event.velocity"
+                          (ngModelChange)="updateSelectedVelocity($event)"
+                        />
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="rounded-[1.1rem] border border-black/10 bg-[#f6f1e8] p-4">
+                    <ng-container [ngSwitch]="selected.kind">
+                      <div *ngSwitchCase="'chord'" class="grid gap-3">
+                        <label class="control-field">
+                          <span>Chord label</span>
+                          <input
+                            class="device-input"
+                            type="text"
+                            [ngModel]="$any(selected.event).symbol"
+                            (ngModelChange)="updateSelectedChordSymbol($event)"
+                          />
+                        </label>
+                        <label class="control-field">
+                          <span>MIDI notes</span>
+                          <input
+                            class="device-input"
+                            type="text"
+                            [ngModel]="selectedChordMidiValue()"
+                            (ngModelChange)="updateSelectedChordMidi($event)"
+                          />
+                        </label>
+                      </div>
+
+                      <div *ngSwitchCase="'note'" class="grid gap-3 sm:grid-cols-2">
+                        <label class="control-field">
+                          <span>MIDI note</span>
+                          <input
+                            class="device-input"
+                            type="number"
+                            min="24"
+                            max="96"
+                            [ngModel]="$any(selected.event).midi"
+                            (ngModelChange)="updateSelectedMidi($event)"
+                          />
+                        </label>
+                        <label class="control-field">
+                          <span>Slide</span>
+                          <input
+                            class="device-input"
+                            type="number"
+                            step="0.01"
+                            min="0"
+                            max="0.3"
+                            [ngModel]="$any(selected.event).slide"
+                            (ngModelChange)="updateSelectedSlide($event)"
+                          />
+                        </label>
+                      </div>
+
+                      <div *ngSwitchDefault class="grid gap-3">
+                        <label class="control-field">
+                          <span>Drum voice</span>
+                          <select
+                            class="device-input"
+                            [ngModel]="$any(selected.event).instrument"
+                            (ngModelChange)="updateSelectedInstrument($event)"
+                          >
+                            <option value="kick">Kick</option>
+                            <option value="snare">Snare</option>
+                            <option value="hat">Hat</option>
+                            <option value="open-hat">Open hat</option>
+                          </select>
+                        </label>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+
+                <ng-template #editorEmpty>
+                  <div class="mt-4 rounded-[1rem] border border-dashed border-black/10 bg-[#f6f1e8] px-4 py-5 text-sm text-black/55">
+                    Select an event block to edit it, or use an <span class="font-semibold text-black/70">Add</span> button on a lane to create one at the current playhead.
+                  </div>
+                </ng-template>
+              </div>
+              </ng-container>
+
+              <ng-template #sequencerFilterEmpty>
+                <div class="rounded-[1.25rem] border border-dashed border-black/10 bg-white/60 px-4 py-5 text-sm text-black/55">
+                  Enable custom sequencing for one or more parts to show their sequencer lanes here.
+                </div>
+              </ng-template>
+            </div>
+
+            <ng-template #sequenceEmpty>
+              <div class="mt-4 rounded-[1.2rem] border border-dashed border-black/10 bg-white/55 px-4 py-5 text-sm text-black/55">
+                Power on the device and generate a take to populate the sequencer.
+              </div>
+            </ng-template>
+          </div>
         </div>
 
-        <aside class="space-y-5">
+        <aside>
+          <div class="grid gap-5 lg:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
           <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
             <div class="grid gap-4 sm:grid-cols-2">
               <label class="control-field">
@@ -253,79 +582,55 @@
               </button>
             </div>
           </div>
-
-          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
-            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Part levels</p>
-            <div class="mt-4 space-y-3">
-              <label
-                *ngFor="let item of partLevelControls"
-                class="flex items-center gap-3 rounded-[1.1rem] border border-black/10 bg-[#f1ede5] px-3 py-3"
-              >
-                <span class="w-16 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-black/55">
-                  {{ item.label }}
-                </span>
-                <input
-                  class="h-2 w-full cursor-pointer appearance-none rounded-full bg-black/10 accent-neutral-900"
-                  type="range"
-                  min="0"
-                  max="1"
-                  step="0.01"
-                  [ngModel]="partLevels()[item.id]"
-                  (ngModelChange)="updatePartLevel(item.id, $event)"
-                />
-                <span class="w-11 text-right text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-black/55">
-                  {{ partLevelLabel(item.id) }}
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
-            <div class="flex items-center justify-between gap-3">
-              <div>
-                <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Arrangement</p>
-                <p class="mt-1 text-sm text-black/65">Choose which parts appear in each section.</p>
-              </div>
-            </div>
-
-            <div class="mt-4 space-y-3">
-              <div
-                *ngFor="let section of sectionControls"
-                class="rounded-[1.2rem] border border-black/10 bg-[#f1ede5] p-3"
-              >
-                <div class="flex items-center justify-between gap-3">
-                  <p class="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-black/55">
-                    {{ section.label }}
-                  </p>
-                  <p class="text-[0.62rem] uppercase tracking-[0.18em] text-black/45">
-                    {{ section.id }}
-                  </p>
-                </div>
-
-                <div class="mt-3 grid grid-cols-3 gap-2">
-                  <button
-                    *ngFor="let part of partLevelControls"
-                    type="button"
-                    class="segment-button"
-                    [class.segment-button-active]="isSectionPartEnabled(section.id, part.id)"
-                    (click)="toggleSectionPart(section.id, part.id)"
-                  >
-                    {{ part.label }}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
-            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Generator notes</p>
-            <ul class="mt-3 space-y-3 text-sm leading-6 text-black/65">
-              <li>Same seed + same settings reproduces progression, phrasing, and arrangement timing.</li>
-              <li>BPM updates immediately; feel and arrangement controls regenerate the current take.</li>
-              <li>Use the reel to scrub the playhead through intro, groove, head, solo, and outro.</li>
-            </ul>
           </div>
         </aside>
+      </div>
+
+        <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Arrangement</p>
+              <p class="mt-1 text-sm text-black/65">Choose which parts appear in each section.</p>
+            </div>
+          </div>
+
+          <div class="mt-4 space-y-3">
+            <div
+              *ngFor="let section of sectionControls"
+              class="rounded-[1.2rem] border border-black/10 bg-[#f1ede5] p-3"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <p class="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-black/55">
+                  {{ section.label }}
+                </p>
+                <p class="text-[0.62rem] uppercase tracking-[0.18em] text-black/45">
+                  {{ section.id }}
+                </p>
+              </div>
+
+              <div class="mt-3 grid grid-cols-3 gap-2">
+                <button
+                  *ngFor="let part of partLevelControls"
+                  type="button"
+                  class="segment-button"
+                  [class.segment-button-active]="isSectionPartEnabled(section.id, part.id)"
+                  (click)="toggleSectionPart(section.id, part.id)"
+                >
+                  {{ part.label }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[1.6rem] border border-black/10 bg-white/55 p-4">
+          <p class="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-black/50">Generator notes</p>
+          <ul class="mt-3 space-y-3 text-sm leading-6 text-black/65">
+            <li>Same seed + same settings reproduces progression, phrasing, and arrangement timing.</li>
+            <li>BPM updates immediately; feel and arrangement controls regenerate the current take.</li>
+            <li>Use the reel to scrub the playhead through intro, groove, head, solo, and outro.</li>
+          </ul>
+        </div>
       </div>
     </section>
   </div>

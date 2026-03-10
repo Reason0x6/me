@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import {
   DeviceTelemetry,
   DeviceTransportState,
+  DrumInstrument,
   DrumEvent,
   GeneratedTake,
   GenerationParameters,
@@ -43,6 +44,7 @@ export class JazzAudioEngineService implements OnDestroy {
 
   private tone: ToneModule | null = null;
   private initialized = false;
+  private poweredOn = false;
   private updateTimer: number | null = null;
   private lastParameters: GenerationParameters | null = null;
   private partLevels: PartLevels = {
@@ -89,7 +91,27 @@ export class JazzAudioEngineService implements OnDestroy {
   constructor(private readonly generator: JazzGeneratorService) {}
 
   async initializeAudio(): Promise<void> {
-    if (this.initialized) {
+    if (this.initialized && this.poweredOn) {
+      return;
+    }
+
+    if (this.initialized && !this.poweredOn) {
+      this.poweredOn = true;
+      this.masterBus?.gain?.setValueAtTime?.(0.92, this.tone?.now?.() ?? 0);
+      this.applyPartLevels();
+      this.setState('initialize');
+      this.patchTelemetry({
+        enabled: true,
+        sectionLabel: this.takeSubject.value?.sections[0]?.label ?? 'Ready',
+        activeParts: this.takeSubject.value?.sections[0]?.activeParts ?? [],
+        progress: 0,
+        elapsedSeconds: 0,
+      });
+
+      if (this.lastParameters && this.takeSubject.value) {
+        this.applyTake(this.takeSubject.value, this.lastParameters, false);
+      }
+
       return;
     }
 
@@ -99,6 +121,7 @@ export class JazzAudioEngineService implements OnDestroy {
       this.createAudioGraph();
       await this.upgradeSampledVoices();
       this.initialized = true;
+      this.poweredOn = true;
       this.applyPartLevels();
       this.setState('initialize');
       this.patchTelemetry({ enabled: true, sectionLabel: 'Ready' });
@@ -113,45 +136,52 @@ export class JazzAudioEngineService implements OnDestroy {
     }
   }
 
-  async generateTake(params: GenerationParameters, preservePlayback: boolean): Promise<void> {
-    this.lastParameters = params;
-    const resumeProgress = preservePlayback ? this.telemetrySubject.value.progress : 0;
-    const shouldResume = preservePlayback && this.stateSubject.value === 'playing';
-    this.setState('generate');
-
-    const take = this.generator.createTake(params);
-    this.takeSubject.next(take);
-
+  powerOff(): void {
     if (!this.initialized || !this.tone) {
-      this.setState('finish');
-      this.patchTelemetry({
-        sectionLabel: take.sections[0]?.label ?? 'Ready',
-        activeParts: take.sections[0]?.activeParts ?? [],
-        progress: 0,
-        elapsedSeconds: 0,
-      });
       return;
     }
 
+    this.poweredOn = false;
     this.disposeParts();
-    this.buildSequence(take, params);
-    this.seekToProgress(resumeProgress);
+    this.tone.Transport.stop();
+    this.tone.Transport.cancel(0);
+    this.tone.Transport.position = '0:0:0';
+    this.silenceVoices();
+    this.masterBus?.gain?.setValueAtTime?.(0, this.tone.now());
+    this.stateSubject.next('idle');
+    this.patchTelemetry({
+      enabled: false,
+      state: 'idle',
+      elapsedSeconds: 0,
+      progress: 0,
+      sectionLabel: 'Powered off',
+      activeParts: [],
+      meterLeft: 0,
+      meterRight: 0,
+    });
+  }
 
-    if (!shouldResume) {
-      this.tone.Transport.stop();
-      this.tone.Transport.position = '0:0:0';
-      this.patchTelemetry({ progress: 0, elapsedSeconds: 0 });
-    }
+  async generateTake(params: GenerationParameters, preservePlayback: boolean): Promise<void> {
+    this.lastParameters = params;
+    this.setState('generate');
 
+    const take = this.generator.createTake(params);
+    this.applyTake(take, params, preservePlayback);
     this.setState('finish');
+  }
 
-    if (shouldResume) {
-      this.play();
+  updateTake(take: GeneratedTake, preservePlayback: boolean): void {
+    const params = this.lastParameters;
+    if (!params) {
+      this.takeSubject.next(take);
+      return;
     }
+
+    this.applyTake(take, params, preservePlayback);
   }
 
   play(): void {
-    if (!this.tone || !this.takeSubject.value) {
+    if (!this.tone || !this.takeSubject.value || !this.poweredOn) {
       return;
     }
 
@@ -160,7 +190,7 @@ export class JazzAudioEngineService implements OnDestroy {
   }
 
   pause(): void {
-    if (!this.tone) {
+    if (!this.tone || !this.poweredOn) {
       return;
     }
 
@@ -169,7 +199,7 @@ export class JazzAudioEngineService implements OnDestroy {
   }
 
   stop(): void {
-    if (!this.tone) {
+    if (!this.tone || !this.poweredOn) {
       return;
     }
 
@@ -180,7 +210,7 @@ export class JazzAudioEngineService implements OnDestroy {
   }
 
   setBpm(bpm: number): void {
-    if (!this.tone) {
+    if (!this.tone || !this.poweredOn) {
       return;
     }
 
@@ -205,7 +235,7 @@ export class JazzAudioEngineService implements OnDestroy {
   }
 
   seekToProgress(progress: number): void {
-    if (!this.tone || !this.takeSubject.value) {
+    if (!this.tone || !this.takeSubject.value || !this.poweredOn) {
       return;
     }
 
@@ -334,6 +364,56 @@ export class JazzAudioEngineService implements OnDestroy {
     this.applyPartLevels();
   }
 
+  private applyTake(take: GeneratedTake, params: GenerationParameters, preservePlayback: boolean): void {
+    const resumeProgress = preservePlayback ? this.telemetrySubject.value.progress : 0;
+    const preservePosition = preservePlayback && (this.stateSubject.value === 'playing' || this.stateSubject.value === 'paused');
+    const shouldResume = preservePlayback && this.stateSubject.value === 'playing';
+
+    this.takeSubject.next(take);
+
+    if (!this.initialized || !this.tone || !this.poweredOn) {
+      this.patchTelemetry({
+        enabled: this.poweredOn,
+        sectionLabel: this.poweredOn ? take.sections[0]?.label ?? 'Ready' : 'Powered off',
+        activeParts: take.sections[0]?.activeParts ?? [],
+        progress: 0,
+        elapsedSeconds: 0,
+      });
+      return;
+    }
+
+    this.disposeParts();
+    this.buildSequence(take, params);
+    this.seekToProgress(resumeProgress);
+
+    if (!preservePosition) {
+      this.tone.Transport.stop();
+      this.tone.Transport.position = '0:0:0';
+      this.patchTelemetry({ progress: 0, elapsedSeconds: 0 });
+      return;
+    }
+
+    if (shouldResume) {
+      this.play();
+    }
+  }
+
+  private silenceVoices(): void {
+    this.rhodes?.releaseAll?.();
+    this.pad?.releaseAll?.();
+    this.comp?.releaseAll?.();
+    this.bass?.triggerRelease?.();
+    this.woodwindLead?.releaseAll?.();
+    this.woodwindLead?.triggerRelease?.();
+    this.trumpetLead?.triggerRelease?.();
+    this.guitarLead?.triggerRelease?.();
+    this.guitarComp?.releaseAll?.();
+    this.kick?.triggerRelease?.();
+    this.snare?.triggerRelease?.();
+    this.hats?.triggerRelease?.();
+    this.openHats?.triggerRelease?.();
+  }
+
   private buildSequence(take: GeneratedTake, params: GenerationParameters): void {
     if (!this.tone) {
       return;
@@ -351,7 +431,11 @@ export class JazzAudioEngineService implements OnDestroy {
     this.parts = [
       this.createChordPart(take.chords, this.rhodes),
       this.createChordPart(take.pad, this.pad),
-      this.createChordPart(take.comp, params.focus === 'guitar-led' ? this.guitarComp : this.comp, params.focus === 'guitar-led' ? 0.028 : 0),
+      this.createChordPart(
+        take.comp,
+        params.focus === 'guitar-led' ? this.guitarComp : this.comp,
+        params.focus === 'guitar-led' ? 0.028 : 0,
+      ),
       this.createBassPart(take.bass),
       this.createLeadPart(take.lead, params.focus),
       this.createDrumPart(take.drums),
@@ -383,6 +467,35 @@ export class JazzAudioEngineService implements OnDestroy {
     }, events.map((event) => [beatToTransportTime(event.beat), event]));
   }
 
+  private createPianoChordPart(events: readonly ChordEvent[], synth: any): any {
+    return new this.tone!.Part((time: number, event: any) => {
+      const chord = event as ChordEvent;
+      const notes = chord.midi.map((note) => midiToNoteName(note));
+      const durationSeconds = beatsToSeconds(this.tone!, chord.durationBeats);
+
+      buildPianoChordSequence(notes, durationSeconds).forEach((step, index) => {
+        synth.triggerAttackRelease(
+          step.note,
+          step.durationSeconds,
+          time + step.offsetSeconds,
+          Math.min(1, chord.velocity * (index === 0 ? 1 : 0.92)),
+        );
+      });
+    }, events.map((event) => [beatToTransportTime(event.beat), event]));
+  }
+
+  private createPianoNotePart(events: readonly NoteEvent[], synth: any, durationScale: number): any {
+    return new this.tone!.Part((time: number, event: any) => {
+      const note = event as NoteEvent;
+      synth.triggerAttackRelease(
+        midiToNoteName(note.midi),
+        Math.max(0.08, beatsToSeconds(this.tone!, note.durationBeats) * durationScale),
+        time,
+        Math.min(1, note.velocity * 0.94),
+      );
+    }, events.map((event) => [beatToTransportTime(event.beat), event]));
+  }
+
   private createBassPart(events: readonly NoteEvent[]): any {
     return new this.tone!.Part((time: number, event: any) => {
       const note = event as NoteEvent;
@@ -392,6 +505,18 @@ export class JazzAudioEngineService implements OnDestroy {
         beatsToSeconds(this.tone!, note.durationBeats),
         time,
         note.velocity,
+      );
+    }, events.map((event) => [beatToTransportTime(event.beat), event]));
+  }
+
+  private createPianoDrumPart(events: readonly DrumEvent[], synth: any): any {
+    return new this.tone!.Part((time: number, event: any) => {
+      const drum = event as DrumEvent;
+      synth.triggerAttackRelease(
+        midiToNoteName(drumInstrumentToPianoMidi(drum.instrument)),
+        Math.max(0.05, beatsToSeconds(this.tone!, drum.durationBeats) * 0.42),
+        time,
+        Math.min(1, drum.velocity * 0.86),
       );
     }, events.map((event) => [beatToTransportTime(event.beat), event]));
   }
@@ -526,7 +651,7 @@ export class JazzAudioEngineService implements OnDestroy {
   }
 
   private syncTelemetry(): void {
-    if (!this.tone || !this.takeSubject.value) {
+    if (!this.tone || !this.takeSubject.value || !this.poweredOn) {
       return;
     }
 
@@ -546,7 +671,7 @@ export class JazzAudioEngineService implements OnDestroy {
       : [normalizeDb(meterValue), normalizeDb(meterValue)];
 
     this.patchTelemetry({
-      enabled: this.initialized,
+      enabled: this.poweredOn,
       elapsedSeconds,
       progress,
       sectionLabel: section?.label ?? 'Ready',
@@ -575,6 +700,51 @@ export class JazzAudioEngineService implements OnDestroy {
     this.bassBus?.gain?.rampTo(this.partLevels.bass, 0.08);
     this.leadBus?.gain?.rampTo(this.partLevels.lead, 0.08);
     this.drumBus?.gain?.rampTo(this.partLevels.drums, 0.08);
+  }
+}
+
+interface PianoChordStep {
+  readonly note: string;
+  readonly offsetSeconds: number;
+  readonly durationSeconds: number;
+}
+
+export function buildPianoChordSequence(notes: readonly string[], durationSeconds: number): readonly PianoChordStep[] {
+  if (notes.length === 0) {
+    return [];
+  }
+
+  if (notes.length === 1) {
+    return [
+      {
+        note: notes[0],
+        offsetSeconds: 0,
+        durationSeconds: Math.max(0.12, durationSeconds * 0.86),
+      },
+    ];
+  }
+
+  const pattern = [...notes, ...notes.slice(1, -1).reverse()];
+  const safeDuration = Math.max(0.18, durationSeconds);
+  const stepSeconds = Math.min(0.16, Math.max(0.045, safeDuration / (pattern.length + 2)));
+
+  return pattern.map((note, index) => ({
+    note,
+    offsetSeconds: index * stepSeconds,
+    durationSeconds: Math.max(0.1, Math.min(safeDuration * 0.82, safeDuration - index * stepSeconds * 0.3)),
+  }));
+}
+
+export function drumInstrumentToPianoMidi(instrument: DrumInstrument): number {
+  switch (instrument) {
+    case 'kick':
+      return 36;
+    case 'snare':
+      return 50;
+    case 'open-hat':
+      return 57;
+    default:
+      return 54;
   }
 }
 

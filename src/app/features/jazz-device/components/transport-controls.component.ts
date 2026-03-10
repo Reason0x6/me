@@ -16,19 +16,41 @@ import { DeviceTransportState } from '../models/jazz-device.types';
         </span>
       </div>
 
-      <div class="mt-4 grid grid-cols-5 gap-2">
-        <button type="button" class="transport-button col-span-2" (click)="initialize.emit()">
-          {{ enabled() ? 'Power on' : 'Power' }}
+      <div class="mt-4 grid grid-cols-4 gap-2">
+        <button
+          type="button"
+          class="transport-button transport-button-power"
+          (click)="enabled() ? powerOff.emit() : initialize.emit()"
+          [attr.aria-label]="enabled() ? 'Power off' : 'Power on'"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v8"></path>
+            <path d="M7.05 5.05a9 9 0 1 0 9.9 0"></path>
+          </svg>
         </button>
-        <button type="button" class="transport-button" (click)="play.emit()" [disabled]="!enabled()">Play</button>
-        <button type="button" class="transport-button" (click)="pause.emit()" [disabled]="!enabled()">Pause</button>
-        <button type="button" class="transport-button" (click)="stop.emit()" [disabled]="!enabled()">Stop</button>
+        <button type="button" class="transport-button transport-button-icon" (click)="play.emit()" [disabled]="!enabled()" aria-label="Play">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 6l10 6-10 6z"></path>
+          </svg>
+        </button>
+        <button type="button" class="transport-button transport-button-icon" (click)="pause.emit()" [disabled]="!enabled()" aria-label="Pause">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 6h3v12H8z"></path>
+            <path d="M13 6h3v12h-3z"></path>
+          </svg>
+        </button>
+        <button type="button" class="transport-button transport-button-icon" (click)="stop.emit()" [disabled]="!enabled()" aria-label="Stop">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M8 8h8v8H8z"></path>
+          </svg>
+        </button>
       </div>
 
       <button
         type="button"
         class="transport-button mt-2 w-full"
         (click)="generate.emit()"
+        [disabled]="!enabled()"
       >
         Generate new take
       </button>
@@ -58,6 +80,24 @@ import { DeviceTransportState } from '../models/jazz-device.types';
       cursor: not-allowed;
       opacity: 0.45;
     }
+
+    .transport-button-icon,
+    .transport-button-power {
+      align-items: center;
+      display: inline-flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .transport-button svg {
+      fill: none;
+      height: 1rem;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+      width: 1rem;
+    }
   `],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -66,6 +106,7 @@ export class TransportControlsComponent {
   readonly enabled = input(false);
 
   readonly initialize = output<void>();
+  readonly powerOff = output<void>();
   readonly play = output<void>();
   readonly pause = output<void>();
   readonly stop = output<void>();
