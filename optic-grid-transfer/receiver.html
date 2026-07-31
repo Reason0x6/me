@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Receive · OpticGrid</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="receiver">
+    <header>
+      <strong>OpticGrid Receiver</strong>
+      <div id="rxStatus" class="small">Tap Start camera, then align the transmitted square inside the guide.</div>
+    </header>
+    <section class="camera-wrap">
+      <video id="video" autoplay playsinline muted></video>
+      <div class="guide"></div>
+      <canvas id="sampleCanvas" class="hidden" width="720" height="720"></canvas>
+    </section>
+    <footer>
+      <div class="receiver-controls">
+        <button id="camera">Start camera</button>
+        <button id="reset" class="secondary">Reset</button>
+        <button id="download" disabled>Download file</button>
+        <div class="progress">
+          <progress id="progress" max="1" value="0"></progress>
+          <div id="progressText" class="small">0 frames</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="protocol.js"></script>
+  <script src="receiver.js"></script>
+</body>
+</html>
