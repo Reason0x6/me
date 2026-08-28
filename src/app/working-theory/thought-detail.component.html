@@ -1,0 +1,92 @@
+<div class="theory-site article-site">
+  <header class="theory-header">
+    <a class="theory-wordmark" routerLink="/" aria-label="Working Theory home">
+      <span>WT</span>
+      <div><strong>Working Theory</strong><small>An evolving body of thought</small></div>
+    </a>
+    <a class="back-to-index" routerLink="/">← Back to index</a>
+    <button class="header-search" type="button" (click)="copyLink()">{{ copied() ? 'Copied' : 'Copy link' }}</button>
+  </header>
+
+  @if (thought(); as entry) {
+    <main class="article-main">
+      <header class="article-hero">
+        <div class="article-kicker">
+          <span>{{ entry.number }}</span>
+          <span>{{ entry.kind }}</span>
+          <span [attr.data-state]="entry.state">{{ entry.state }}</span>
+        </div>
+        <h1>{{ entry.title }}</h1>
+        <p>{{ entry.dek }}</p>
+        <div class="article-meta">
+          <div><span>Published</span><time [attr.datetime]="entry.publishedAt">{{ entry.publishedAt | date:'d MMMM y' }}</time></div>
+          <div><span>Last revisited</span><time [attr.datetime]="entry.updatedAt">{{ entry.updatedAt | date:'d MMMM y' }}</time></div>
+          <div><span>Reading time</span><strong>{{ entry.readingMinutes }} minutes</strong></div>
+          <div><span>Threads</span><strong>{{ entry.themes.join(' · ') }}</strong></div>
+        </div>
+      </header>
+
+      <div class="article-layout">
+        <aside class="article-margin">
+          <span>Working thesis</span>
+          <p>{{ entry.thesis }}</p>
+          <div class="revision-mark">
+            <i [attr.data-state]="entry.state"></i>
+            <div><strong>{{ entry.state }}</strong><small>This note may continue to change.</small></div>
+          </div>
+        </aside>
+
+        <article class="article-body">
+          @for (paragraph of entry.body; track $index; let first = $first) {
+            <p [class.opening-paragraph]="first">{{ paragraph }}</p>
+          }
+
+          @if (entry.references?.length) {
+            <section class="references">
+              <h2>References & further reading</h2>
+              @for (reference of entry.references; track reference.url; let index = $index) {
+                <a [href]="reference.url" target="_blank" rel="noreferrer"><span>{{ (index + 1).toString().padStart(2, '0') }}</span>{{ reference.label }} <b>↗</b></a>
+              }
+            </section>
+          }
+        </article>
+
+        <aside class="article-rail">
+          <span>In this note</span>
+          @for (theme of entry.themes; track theme) { <a routerLink="/" [fragment]="'index'">{{ theme }}</a> }
+          <button type="button" (click)="copyLink()">{{ copied() ? 'Link copied ✓' : 'Copy link' }}</button>
+        </aside>
+      </div>
+
+      <section class="related-notes" aria-labelledby="related-title">
+        <div>
+          <p class="section-label">Continue the thread</p>
+          <h2 id="related-title">Related notes</h2>
+        </div>
+        <div>
+          @for (related of relatedThoughts(); track related.slug) {
+            <a [routerLink]="['/notes', related.slug]">
+              <span>{{ related.number }} / {{ related.kind }}</span>
+              <h3>{{ related.title }}</h3>
+              <p>{{ related.dek }}</p>
+              <b>Read ↗</b>
+            </a>
+          }
+        </div>
+      </section>
+    </main>
+  } @else {
+    <main class="missing-thought">
+      <span>404 / Missing note</span>
+      <h1>This thought wandered off.</h1>
+      <p>The address may have changed, or the idea may have been folded into something else.</p>
+      <a routerLink="/">Return to the index →</a>
+    </main>
+  }
+
+  <footer class="theory-footer article-footer">
+    <div><strong>Working Theory</strong><span>Notes by Gavin Austin</span></div>
+    <p>Ideas may change without notice. That is the point.</p>
+    <div><a routerLink="/">Index</a><a href="https://github.com/Reason0x6/white-paper-archive" target="_blank" rel="noreferrer">Reading archive ↗</a></div>
+  </footer>
+</div>

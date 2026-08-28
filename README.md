@@ -1,59 +1,61 @@
-# GAustin
+# Working Theory
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+A personal publication for ideas in motion: notes, essays, models, and open questions about software, systems, institutions, and the connections between them.
 
-## Development server
+This is intentionally not a portfolio. The home page is an evolving index, themes form cross-cutting threads, and every piece carries a maturity state so unfinished thoughts can be published honestly.
 
-To start a local development server, run:
+## Publish a thought
 
-```bash
-ng serve
+Thoughts live in [`src/app/working-theory/thoughts.data.ts`](src/app/working-theory/thoughts.data.ts). Add one object to `THOUGHTS` using the shape in [`thought.ts`](src/app/working-theory/thought.ts):
+
+```ts
+{
+  number: '009',
+  slug: 'a-stable-url-for-the-idea',
+  title: 'The title',
+  dek: 'A one-sentence introduction.',
+  kind: 'Note',
+  state: 'Spark',
+  publishedAt: '2026-08-28',
+  updatedAt: '2026-08-28',
+  readingMinutes: 3,
+  themes: ['Systems', 'Design'],
+  thesis: 'The compact form of the argument.',
+  body: ['Each item is rendered as a paragraph.'],
+  related: ['another-thought-slug'],
+}
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The note is automatically searchable, appears in every matching thread, and gets a permalink at `/notes/<slug>`.
 
-## Code scaffolding
+Maturity states communicate editorial intent:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- `Spark` — an early idea with room to change.
+- `Working` — a live argument still being developed.
+- `Developed` — a formed position, open to revision.
+- `Revisited` — an idea returned to after further thought.
 
-```bash
-ng generate component component-name
-```
+The eight included pieces are seed drafts that establish the interface and editorial rhythm. Edit or replace them as the real body of writing grows.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Run locally
 
 ```bash
-ng build
+npm install
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Open `http://localhost:4200`.
 
 ```bash
-ng test
+npm run build
+npm test -- --watch=false
 ```
 
-## Running end-to-end tests
+The production build is written to `dist/g-austin/browser`.
 
-For end-to-end (e2e) testing, run:
+## Structure
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `src/app/working-theory/` — publication components, data, and content types
+- `src/working-theory.css` — shared editorial design system
+- `src/app/features/` — earlier experiments retained in source but no longer routed
+- `public/` — static assets

@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
-import { HeroComponent } from './hero/hero.component';
 
 export const routes: Routes = [
-  { path: '', component: HeroComponent },
   {
-    path: 'jazz-device',
+    path: '',
     loadComponent: () =>
-      import('./features/jazz-device/jazz-device.component').then((module) => module.JazzDeviceComponent),
+      import('./working-theory/working-theory.component').then((module) => module.WorkingTheoryComponent),
   },
   {
-    path: 'tp-7-youtube',
+    path: 'notes/:slug',
     loadComponent: () =>
-      import('./features/tp7-youtube/tp7-youtube.component').then((module) => module.Tp7YoutubeComponent),
+      import('./working-theory/thought-detail.component').then((module) => module.ThoughtDetailComponent),
   },
+  { path: '**', redirectTo: '' },
 ];
