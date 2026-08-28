@@ -1,53 +1,59 @@
-# Marginalia
+# GAustin
 
-Marginalia is a metadata-first index of overlooked white papers, field reports,
-technical notes, and institutional research. It is designed around a strict
-distinction between material that is publicly reachable and material that may
-legally be redistributed.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
 
-## What is implemented
+## Development server
 
-- Responsive Angular catalogue with full-text client-side search
-- Topic, source, and rights-status filters
-- Curated, date, title, and citation-count sorting
-- Persistent local bookmarks
-- Detailed record drawer with provenance and rights evidence
-- Seed catalogue of real research sources
-- Collection-method and rights-policy explanations in the public UI
-
-No third-party paper is currently copied into this repository. Every seed entry
-links to its original source. A `redistributable` status means a record appears
-eligible for mirroring; the actual file should still pass the review checklist
-before it is downloaded or published.
-
-## Development
+To start a local development server, run:
 
 ```bash
-npm ci
-npm start
+ng serve
 ```
 
-Open `http://localhost:4200/`.
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-npm test -- --watch=false
-npm run build
+ng generate component component-name
 ```
 
-The production build is written to `dist/g-austin/` for the existing Cloudflare
-configuration.
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-## Catalogue structure
+```bash
+ng generate --help
+```
 
-The initial catalogue lives in
-`src/app/library/research-papers.data.ts` and implements the record contract in
-`src/app/library/research-paper.ts`. Each record contains:
+## Building
 
-- Bibliographic metadata and canonical source URL
-- Source type, topics, and discovery date
-- Document format and optional DOI/citation signals
-- One of `redistributable`, `link-only`, or `review`
-- Human-readable evidence supporting that rights status
+To build the project run:
 
-See [docs/INGESTION.md](docs/INGESTION.md) for the planned discovery pipeline and
-[docs/RIGHTS-POLICY.md](docs/RIGHTS-POLICY.md) for the publication gate.
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

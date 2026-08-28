@@ -8,5 +8,11 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Marginalia';
+  title = 'g-austin';
+}
+
+export interface Card {
+  title: string;
+  description: string;
+  link?: string;
 }
