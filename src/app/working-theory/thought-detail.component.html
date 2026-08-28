@@ -65,7 +65,7 @@
         </div>
         <div>
           @for (related of relatedThoughts(); track related.slug) {
-            <a [routerLink]="['/notes', related.slug]">
+            <a [routerLink]="related.path ?? '/notes/' + related.slug">
               <span>{{ related.number }} / {{ related.kind }}</span>
               <h3>{{ related.title }}</h3>
               <p>{{ related.dek }}</p>

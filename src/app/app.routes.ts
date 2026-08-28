@@ -11,5 +11,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./working-theory/thought-detail.component').then((module) => module.ThoughtDetailComponent),
   },
+  {
+    path: 'papers/what-shape-is-the-internet',
+    loadComponent: () =>
+      import('./working-theory/internet-shape-paper.component').then((module) => module.InternetShapePaperComponent),
+  },
   { path: '**', redirectTo: '' },
 ];

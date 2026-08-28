@@ -28,7 +28,7 @@ Thoughts live in [`src/app/working-theory/thoughts.data.ts`](src/app/working-the
 
 The note is automatically searchable, appears in every matching thread, and gets a permalink at `/notes/<slug>`.
 
-Available formats are `Note`, `Essay`, `Model`, `Question`, and `Standard`.
+Available formats are `Note`, `Essay`, `Model`, `Question`, `Standard`, and `White paper`.
 
 Maturity states communicate editorial intent:
 

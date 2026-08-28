@@ -57,7 +57,7 @@ export class WorkingTheoryComponent {
   readonly query = signal('');
   readonly kindFilter = signal<KindFilter>('All');
   readonly themeFilter = signal('All');
-  readonly kindOptions: readonly KindFilter[] = ['All', 'Note', 'Essay', 'Model', 'Question', 'Standard'];
+  readonly kindOptions: readonly KindFilter[] = ['All', 'Note', 'Essay', 'Model', 'Question', 'Standard', 'White paper'];
 
   readonly themes = computed(() => [
     'All',

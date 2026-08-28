@@ -39,7 +39,7 @@
           <i></i>
           <span>Currently thinking about</span>
         </div>
-        <a [routerLink]="['/notes', featuredThought.slug]">
+        <a [routerLink]="featuredThought.path ?? '/notes/' + featuredThought.slug">
           <span class="current-number">{{ featuredThought.number }}</span>
           <div>
             <p>{{ featuredThought.kind }} · {{ featuredThought.state }}</p>
@@ -82,7 +82,7 @@
         <div class="thought-list">
           @for (thought of filteredThoughts(); track thought.slug) {
             <article class="thought-row">
-              <a [routerLink]="['/notes', thought.slug]">
+              <a [routerLink]="thought.path ?? '/notes/' + thought.slug">
                 <span class="thought-number">{{ thought.number }}</span>
                 <div class="thought-format">
                   <strong>{{ thought.kind }}</strong>
