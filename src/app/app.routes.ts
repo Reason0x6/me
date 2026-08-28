@@ -27,9 +27,19 @@ export const routes: Routes = [
       import('./working-theory/zero-trust-voice-paper.component').then((module) => module.ZeroTrustVoicePaperComponent),
   },
   {
-    path: 'editorials/:slug',
+    path: 'counter-strike',
+    loadComponent: () =>
+      import('./working-theory/counter-strike-hub.component').then((module) => module.CounterStrikeHubComponent),
+  },
+  {
+    path: 'counter-strike/editorials/:slug',
     loadComponent: () =>
       import('./working-theory/counter-strike-editorial.component').then((module) => module.CounterStrikeEditorialComponent),
+  },
+  {
+    path: 'editorials/:slug',
+    redirectTo: 'counter-strike/editorials/:slug',
+    pathMatch: 'full',
   },
   { path: '**', redirectTo: '' },
 ];

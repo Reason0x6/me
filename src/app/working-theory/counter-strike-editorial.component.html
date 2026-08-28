@@ -1,7 +1,7 @@
 @if (editorial; as piece) {
   <div class="cs-editorial">
     <header class="cs-nav">
-      <a routerLink="/" class="cs-wordmark" aria-label="Working Theory home">
+      <a routerLink="/counter-strike" class="cs-wordmark" aria-label="Counter-Strike analysis desk home">
         <span>WT</span>
         <div><strong>Working Theory</strong><small>Match analysis desk</small></div>
       </a>
@@ -12,7 +12,7 @@
     </header>
 
     <main>
-      <section class="cs-cover">
+      <section class="cs-cover" [class.cs-cover-long]="piece.number === '029'">
         <div class="cs-cover-grid" aria-hidden="true"></div>
         <div class="cs-cover-meta">
           <span>Counter-Strike editorial</span>
@@ -135,7 +135,7 @@
         <p>Continue the series</p>
         <div>
           @for (other of otherEditorials; track other.slug) {
-            <a [routerLink]="'/editorials/' + other.slug">
+            <a [routerLink]="'/counter-strike/editorials/' + other.slug">
               <span>No. {{ other.number }}</span>
               <strong>{{ other.shortTitle }}</strong>
               <b aria-hidden="true">↗</b>
@@ -146,7 +146,7 @@
     </main>
 
     <footer class="cs-footer">
-      <a routerLink="/">← Back to the index</a>
+      <a routerLink="/counter-strike">← Back to the Counter-Strike index</a>
       <span>Working Theory / Counter-Strike desk / {{ piece.dataCutoff }}</span>
     </footer>
   </div>

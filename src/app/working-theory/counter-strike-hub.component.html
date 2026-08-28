@@ -1,0 +1,87 @@
+<div class="cs-hub">
+  <header class="csh-nav">
+    <a routerLink="/" class="csh-parent"><span>WT</span><strong>Working Theory</strong></a>
+    <a routerLink="/counter-strike" class="csh-desk"><i></i> Counter-Strike analysis desk</a>
+    <a routerLink="/">Main publication ↗</a>
+  </header>
+
+  <main>
+    <section class="csh-hero">
+      <div class="csh-grid" aria-hidden="true"></div>
+      <div class="csh-issue">
+        <span>Desk 01</span><span>Current professional Counter-Strike</span><time datetime="2026-08-28">28 August 2026</time>
+      </div>
+      <div class="csh-title">
+        <p>Teams / tactics / form / history</p>
+        <h1>The server<br><em>room.</em></h1>
+        <div>
+          <p>Long-form Counter-Strike analysis that treats match results as evidence rather than conclusions.</p>
+          <span>Numbers with denominators. Claims with expiry dates.</span>
+        </div>
+      </div>
+      <div class="csh-ticker" aria-label="Desk summary">
+        <div><strong>{{ editorials.length }}</strong><span>Published analyses</span></div>
+        <div><strong>{{ totalMinutes }}</strong><span>Minutes of reading</span></div>
+        <div><strong>2026.08.28</strong><span>Latest data cut-off</span></div>
+        <div><strong>MR12</strong><span>Current ruleset</span></div>
+      </div>
+    </section>
+
+    @if (featured; as lead) {
+      <section class="csh-feature" aria-labelledby="csh-feature-title">
+        <div class="csh-feature-label"><span>Latest analysis</span><b>No. {{ lead.number }}</b></div>
+        <div class="csh-feature-copy">
+          <p>{{ lead.verdict }}</p>
+          <h2 id="csh-feature-title">{{ lead.title }}</h2>
+          <span>{{ lead.dek }}</span>
+          <a [routerLink]="'/counter-strike/editorials/' + lead.slug">Read the complete analysis <b>↗</b></a>
+        </div>
+        <div class="csh-feature-data">
+          @for (stat of lead.heroStats; track stat.label) {
+            <article><strong>{{ stat.value }}</strong><span>{{ stat.label }}</span><small>{{ stat.detail }}</small></article>
+          }
+        </div>
+      </section>
+    }
+
+    <section class="csh-index" aria-labelledby="csh-index-title">
+      <header>
+        <div><span>01 / Analysis index</span><h2 id="csh-index-title">The current file</h2></div>
+        <p>Each piece states its sample, data cut-off and decision rule. Results can change; the method should remain inspectable.</p>
+      </header>
+      <div class="csh-cards">
+        @for (editorial of archive; track editorial.slug) {
+          <article>
+            <a [routerLink]="'/counter-strike/editorials/' + editorial.slug">
+              <div class="csh-card-top"><span>No. {{ editorial.number }}</span><span>{{ editorial.readingMinutes }} min</span></div>
+              <p>{{ editorial.verdict }}</p>
+              <h3>{{ editorial.title }}</h3>
+              <div class="csh-card-stats">
+                @for (stat of editorial.heroStats.slice(0, 2); track stat.label) {
+                  <span><strong>{{ stat.value }}</strong>{{ stat.label }}</span>
+                }
+              </div>
+              <small>Data through {{ editorial.dataCutoff }}</small>
+              <b aria-hidden="true">↗</b>
+            </a>
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="csh-method" aria-labelledby="csh-method-title">
+      <div><span>02 / Desk rules</span><h2 id="csh-method-title">A result is where the analysis starts.</h2></div>
+      <ol>
+        <li><span>01</span><div><strong>Declare the window</strong><p>Every form claim names its dates, event set or roster boundary.</p></div></li>
+        <li><span>02</span><div><strong>Keep the denominator</strong><p>A 100% record over six maps is reported as six maps, not invincibility.</p></div></li>
+        <li><span>03</span><div><strong>Separate levels</strong><p>Rounds, maps, series and trophies answer different competitive questions.</p></div></li>
+        <li><span>04</span><div><strong>Leave a falsification test</strong><p>Strong conclusions state what future result would make them change.</p></div></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="csh-footer">
+    <div><strong>Counter-Strike analysis desk</strong><span>A separate publication area within Working Theory.</span></div>
+    <a routerLink="/">Return to Working Theory ↗</a>
+  </footer>
+</div>

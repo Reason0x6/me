@@ -37,7 +37,8 @@
               "src/internet-shape-paper.css",
               "src/world-rank-paper.css",
               "src/zero-trust-voice-paper.css",
-              "src/counter-strike-editorial.css"
+              "src/counter-strike-editorial.css",
+              "src/counter-strike-hub.css"
             ],
             "scripts": []
           },
@@ -105,7 +106,8 @@
               "src/internet-shape-paper.css",
               "src/world-rank-paper.css",
               "src/zero-trust-voice-paper.css",
-              "src/counter-strike-editorial.css"
+              "src/counter-strike-editorial.css",
+              "src/counter-strike-hub.css"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"

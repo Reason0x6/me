@@ -7,6 +7,7 @@
     <nav aria-label="Primary navigation">
       <button type="button" (click)="scrollTo('index')">Index</button>
       <button type="button" (click)="scrollTo('threads')">Threads</button>
+      <a routerLink="/counter-strike">Counter-Strike</a>
       <button type="button" (click)="scrollTo('about')">About</button>
     </nav>
     <button class="header-search" type="button" (click)="focusSearchInput()">
@@ -168,6 +169,6 @@
   <footer class="theory-footer">
     <div><strong>Working Theory</strong><span>Notes by Gavin Austin</span></div>
     <p>Ideas may change without notice. That is the point.</p>
-    <div><a routerLink="/">Index</a><a href="https://github.com/Reason0x6/white-paper-archive" target="_blank" rel="noreferrer">Reading archive ↗</a></div>
+    <div><a routerLink="/">Index</a><a routerLink="/counter-strike">Counter-Strike ↗</a><a href="https://github.com/Reason0x6/white-paper-archive" target="_blank" rel="noreferrer">Reading archive ↗</a></div>
   </footer>
 </div>

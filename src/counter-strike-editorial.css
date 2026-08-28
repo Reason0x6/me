@@ -51,6 +51,7 @@
 .cs-cover-copy { position: relative; z-index: 1; width: min(980px, 78vw); margin-top: clamp(90px, 14vh, 150px); }
 .cs-cover-copy > p:first-child { margin: 0 0 20px; color: var(--cs-orange); font: 600 11px/1 'IBM Plex Mono', monospace; letter-spacing: .18em; }
 .cs-cover h1 { max-width: 950px; margin: 0; font: 400 clamp(48px, 8.3vw, 118px)/.84 'Archivo Black', Impact, sans-serif; letter-spacing: -.065em; text-transform: uppercase; text-wrap: balance; }
+.cs-cover-long h1 { max-width: 1080px; font-size: clamp(48px, 6.8vw, 96px); }
 .cs-dek { max-width: 720px; margin: 30px 0 38px; color: #bdc2ba; font-size: clamp(16px, 1.7vw, 22px); line-height: 1.45; letter-spacing: -.02em; }
 .cs-scoreline { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(4, 1fr); width: calc(100% + clamp(40px, 10vw, 168px)); margin-left: calc(clamp(20px, 5vw, 84px) * -1); background: var(--cs-accent); color: var(--cs-ink); }
 .cs-scoreline article { min-height: 128px; padding: 22px clamp(18px, 2.4vw, 38px); display: grid; align-content: start; border-right: 1px solid #a7bd35; }
@@ -133,6 +134,7 @@
   .cs-cover { min-height: 600px; }
   .cs-cover-copy { width: 100%; margin-top: 90px; }
   .cs-cover h1 { font-size: clamp(45px, 14vw, 76px); }
+  .cs-cover-long h1 { font-size: clamp(42px, 11.5vw, 62px); }
   .cs-cover::before { opacity: .55; }
   .cs-scoreline { grid-template-columns: 1fr 1fr; }
   .cs-scoreline article { min-height: 120px; }
@@ -155,6 +157,7 @@
   .cs-cover { padding-top: 20px; }
   .cs-cover-copy { margin-top: 70px; }
   .cs-cover h1 { max-width: 100%; font-size: clamp(38px, 11vw, 54px); letter-spacing: -.075em; }
+  .cs-cover-long h1 { font-size: clamp(36px, 10vw, 48px); }
   .cs-dek { font-size: 15px; }
   .cs-scoreline article { padding: 18px; }
   .cs-scoreline small { display: none; }
