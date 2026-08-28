@@ -33,4 +33,11 @@ describe('THOUGHTS', () => {
     expect(paper?.kind).toBe('White paper');
     expect(paper?.path).toBe('/papers/zero-trust-voice-verification');
   });
+
+  it('publishes all three Counter-Strike editorials at dedicated routes', () => {
+    const editorials = THOUGHTS.filter((thought) => thought.themes.includes('Counter-Strike'));
+
+    expect(editorials.map((thought) => thought.number)).toEqual(['026', '027', '028']);
+    expect(editorials.every((thought) => thought.path?.startsWith('/editorials/'))).toBeTrue();
+  });
 });

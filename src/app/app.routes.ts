@@ -26,5 +26,10 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./working-theory/zero-trust-voice-paper.component').then((module) => module.ZeroTrustVoicePaperComponent),
   },
+  {
+    path: 'editorials/:slug',
+    loadComponent: () =>
+      import('./working-theory/counter-strike-editorial.component').then((module) => module.CounterStrikeEditorialComponent),
+  },
   { path: '**', redirectTo: '' },
 ];

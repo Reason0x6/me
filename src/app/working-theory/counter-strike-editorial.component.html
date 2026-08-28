@@ -1,0 +1,153 @@
+@if (editorial; as piece) {
+  <div class="cs-editorial">
+    <header class="cs-nav">
+      <a routerLink="/" class="cs-wordmark" aria-label="Working Theory home">
+        <span>WT</span>
+        <div><strong>Working Theory</strong><small>Match analysis desk</small></div>
+      </a>
+      <div class="cs-nav-actions">
+        <button type="button" (click)="copyLink()">{{ copied() ? 'Copied' : 'Copy link' }}</button>
+        <button type="button" (click)="printEditorial()">Print</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="cs-cover">
+        <div class="cs-cover-grid" aria-hidden="true"></div>
+        <div class="cs-cover-meta">
+          <span>Counter-Strike editorial</span>
+          <span>No. {{ piece.number }}</span>
+          <time [attr.datetime]="piece.publishedAt">28.08.26</time>
+        </div>
+        <div class="cs-cover-copy">
+          <p>DATA / TACTICS / FORM</p>
+          <h1>{{ piece.title }}</h1>
+          <p class="cs-dek">{{ piece.dek }}</p>
+        </div>
+        <div class="cs-scoreline" aria-label="Key statistical summary">
+          @for (stat of piece.heroStats; track stat.label) {
+            <article>
+              <strong>{{ stat.value }}</strong>
+              <span>{{ stat.label }}</span>
+              <small>{{ stat.detail }}</small>
+            </article>
+          }
+        </div>
+      </section>
+
+      <section class="cs-verdict" aria-labelledby="verdict-title">
+        <div>
+          <span>Verdict</span>
+          <h2 id="verdict-title">{{ piece.verdict }}</h2>
+        </div>
+        <p>{{ piece.verdictDetail }}</p>
+      </section>
+
+      <aside class="cs-method" aria-label="Method and sample">
+        <div><span>Data cut-off</span><strong>{{ piece.dataCutoff }}</strong></div>
+        <div><span>Sample</span><p>{{ piece.sample }}</p></div>
+        <div><span>Reading time</span><strong>{{ piece.readingMinutes }} minutes</strong></div>
+      </aside>
+
+      <article class="cs-body">
+        @for (section of piece.sections; track section.number) {
+          <section class="cs-section" [id]="'section-' + section.number">
+            <header class="cs-section-heading">
+              <span>{{ section.number }}</span>
+              <div>
+                <p>{{ section.eyebrow }}</p>
+                <h2>{{ section.title }}</h2>
+              </div>
+            </header>
+
+            <div class="cs-prose">
+              @for (paragraph of section.paragraphs; track $index) {
+                <p>{{ paragraph }}</p>
+              }
+            </div>
+
+            @if (section.stats; as stats) {
+              <div class="cs-inline-stats">
+                @for (stat of stats; track stat.label) {
+                  <article>
+                    <strong>{{ stat.value }}</strong>
+                    <span>{{ stat.label }}</span>
+                    <small>{{ stat.detail }}</small>
+                  </article>
+                }
+              </div>
+            }
+
+            @if (section.table; as table) {
+              <figure class="cs-table-wrap">
+                <figcaption>{{ table.caption }}</figcaption>
+                <div class="cs-table-scroll">
+                  <table>
+                    <thead><tr>@for (header of table.headers; track header) { <th scope="col">{{ header }}</th> }</tr></thead>
+                    <tbody>
+                      @for (row of table.rows; track $index) {
+                        <tr>@for (cell of row; track $index) { <td>{{ cell }}</td> }</tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+                @if (table.note) { <p>{{ table.note }}</p> }
+              </figure>
+            }
+
+            @if (section.bars; as bars) {
+              <figure class="cs-bars">
+                @for (bar of bars; track bar.label) {
+                  <div class="cs-bar-row">
+                    <span>{{ bar.label }}</span>
+                    <div><i [style.width.%]="bar.value"></i></div>
+                    <strong>{{ bar.display }}</strong>
+                    @if (bar.detail) { <small>{{ bar.detail }}</small> }
+                  </div>
+                }
+              </figure>
+            }
+
+            @if (section.callout) {
+              <blockquote>{{ section.callout }}</blockquote>
+            }
+          </section>
+        }
+      </article>
+
+      <section class="cs-notes" aria-labelledby="sources-title">
+        <div class="cs-notes-heading">
+          <span>Evidence ledger</span>
+          <h2 id="sources-title">Sources & calculation notes</h2>
+          <p>All calculations are arithmetic derived from the linked match scores unless otherwise stated. Ratings are HLTV Rating 3.0. Percentages are descriptive of the named sample; they are not betting probabilities.</p>
+        </div>
+        <ol>
+          @for (source of piece.sources; track source.url; let index = $index) {
+            <li>
+              <span>{{ (index + 1).toString().padStart(2, '0') }}</span>
+              <div><a [href]="source.url" target="_blank" rel="noreferrer">{{ source.label }} ↗</a><p>{{ source.use }}</p></div>
+            </li>
+          }
+        </ol>
+      </section>
+
+      <nav class="cs-related" aria-label="Other Counter-Strike editorials">
+        <p>Continue the series</p>
+        <div>
+          @for (other of otherEditorials; track other.slug) {
+            <a [routerLink]="'/editorials/' + other.slug">
+              <span>No. {{ other.number }}</span>
+              <strong>{{ other.shortTitle }}</strong>
+              <b aria-hidden="true">↗</b>
+            </a>
+          }
+        </div>
+      </nav>
+    </main>
+
+    <footer class="cs-footer">
+      <a routerLink="/">← Back to the index</a>
+      <span>Working Theory / Counter-Strike desk / {{ piece.dataCutoff }}</span>
+    </footer>
+  </div>
+}
