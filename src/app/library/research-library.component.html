@@ -1,0 +1,379 @@
+<div class="site-shell">
+  <header class="topbar">
+    <a class="wordmark" href="#top" aria-label="Marginalia home">
+      <span class="wordmark-mark" aria-hidden="true">M/</span>
+      <span>
+        <strong>Marginalia</strong>
+        <small>Open research index</small>
+      </span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Primary navigation">
+      <button type="button" (click)="scrollTo('catalogue')">Catalogue</button>
+      <button type="button" (click)="scrollTo('method')">Method</button>
+      <button type="button" (click)="scrollTo('rights')">Rights</button>
+    </nav>
+
+    <div class="topbar-actions">
+      <button
+        class="saved-button"
+        type="button"
+        [class.is-active]="showBookmarksOnly()"
+        (click)="toggleBookmarksOnly(); scrollTo('catalogue')"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h11v15l-5.5-3.2-5.5 3.2z"></path></svg>
+        Saved
+        <span>{{ bookmarkedIds().size }}</span>
+      </button>
+      <a class="submit-link" href="https://github.com/Reason0x6/me/issues/new?title=Paper%20submission" target="_blank" rel="noreferrer">Submit a paper ↗</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section" aria-labelledby="hero-title">
+      <div class="hero-kicker">
+        <span class="live-dot"></span>
+        Index build 0.1 · 28 Aug 2026
+      </div>
+
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <h1 id="hero-title">Important work rarely arrives with a press release.</h1>
+          <p>
+            An independent index of overlooked white papers, field reports, technical notes, and institutional research—collected with provenance and shared with respect for the people who made it.
+          </p>
+        </div>
+
+        <aside class="hero-note" aria-label="Archive statement">
+          <span class="note-number">01</span>
+          <p>We index broadly.<br />We mirror carefully.<br />We always point home.</p>
+          <button type="button" (click)="scrollTo('method')">Read the collection method ↓</button>
+        </aside>
+      </div>
+
+      <div class="hero-search" role="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4 4"></path></svg>
+        <label class="sr-only" for="paper-search">Search the archive</label>
+        <input
+          id="paper-search"
+          type="search"
+          autocomplete="off"
+          placeholder="Search an idea, author, institution, DOI…"
+          [value]="query()"
+          (input)="updateQuery($any($event.target).value)"
+        />
+        <span class="search-hint">/</span>
+      </div>
+
+      <div class="archive-stats" aria-label="Archive statistics">
+        <div><strong>{{ allPapers.length | number:'2.0' }}</strong><span>Seed records</span></div>
+        <div><strong>{{ topicCount | number:'2.0' }}</strong><span>Research topics</span></div>
+        <div><strong>{{ sourceFamilyCount | number:'2.0' }}</strong><span>Source families</span></div>
+        <div><strong>{{ redistributableCount | number:'2.0' }}</strong><span>Reusable records</span></div>
+        <p>Catalogue numbers describe this initial reviewed dataset—not the size of the eventual crawl.</p>
+      </div>
+    </section>
+
+    <section class="catalogue-section" id="catalogue" aria-labelledby="catalogue-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / The catalogue</p>
+          <h2 id="catalogue-title">Signals from the margins</h2>
+        </div>
+        <p class="section-intro">A small, honest seed set for the interface. Automated discoveries enter a review queue before joining this index.</p>
+      </div>
+
+      <div class="mobile-filter-row">
+        <button type="button" class="filter-toggle" (click)="showFilters.set(!showFilters())">
+          Filters <span>{{ activeFilterCount() }}</span>
+        </button>
+        <span>{{ filteredPapers().length }} results</span>
+      </div>
+
+      <div class="catalogue-layout">
+        <aside class="filter-panel" [class.is-open]="showFilters()" aria-label="Catalogue filters">
+          <div class="filter-header">
+            <span>Refine the index</span>
+            @if (activeFilterCount() > 0 || query()) {
+              <button type="button" (click)="clearFilters()">Clear all</button>
+            }
+          </div>
+
+          <fieldset>
+            <legend>Topic</legend>
+            <button
+              type="button"
+              class="filter-option"
+              [class.is-active]="activeTopic() === 'All topics'"
+              (click)="setTopic('All topics')"
+            >
+              <span>All topics</span><em>{{ allPapers.length }}</em>
+            </button>
+            @for (topic of topicCounts(); track topic[0]) {
+              <button
+                type="button"
+                class="filter-option"
+                [class.is-active]="activeTopic() === topic[0]"
+                (click)="setTopic(topic[0])"
+              >
+                <span>{{ topic[0] }}</span><em>{{ topic[1] }}</em>
+              </button>
+            }
+          </fieldset>
+
+          <fieldset>
+            <legend>Rights status</legend>
+            @for (option of rightsOptions; track option.value) {
+              <button
+                type="button"
+                class="filter-option"
+                [class.is-active]="rightsFilter() === option.value"
+                (click)="setRights(option.value)"
+              >
+                <span>{{ option.label }}</span>
+                <i class="rights-dot" [attr.data-status]="option.value"></i>
+              </button>
+            }
+          </fieldset>
+
+          <fieldset>
+            <legend>Source type</legend>
+            @for (source of sourceTypes(); track source) {
+              <button
+                type="button"
+                class="filter-option"
+                [class.is-active]="sourceFilter() === source"
+                (click)="setSource(source)"
+              >
+                <span>{{ source }}</span>
+              </button>
+            }
+          </fieldset>
+
+          <button
+            class="bookmark-filter"
+            type="button"
+            [class.is-active]="showBookmarksOnly()"
+            (click)="toggleBookmarksOnly()"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h11v15l-5.5-3.2-5.5 3.2z"></path></svg>
+            Saved records only
+          </button>
+        </aside>
+
+        <div class="results-panel">
+          <div class="results-toolbar">
+            <p><strong>{{ filteredPapers().length }}</strong> records shown</p>
+            <div class="toolbar-controls">
+              <label>
+                <span>Sort</span>
+                <select [value]="sortMode()" (change)="setSort($any($event.target).value)">
+                  <option value="curated">Curated order</option>
+                  <option value="newest">Newest published</option>
+                  <option value="oldest">Oldest published</option>
+                  <option value="least-cited">Least cited</option>
+                  <option value="title">Title A–Z</option>
+                </select>
+              </label>
+              <div class="view-switcher" aria-label="Result layout">
+                <button type="button" [class.is-active]="viewMode() === 'grid'" (click)="viewMode.set('grid')" aria-label="Grid view">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6"></rect><rect x="14" y="4" width="6" height="6"></rect><rect x="4" y="14" width="6" height="6"></rect><rect x="14" y="14" width="6" height="6"></rect></svg>
+                </button>
+                <button type="button" [class.is-active]="viewMode() === 'list'" (click)="viewMode.set('list')" aria-label="List view">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          @if (activeFilterCount() > 0 || query()) {
+            <div class="active-filters" aria-label="Active filters">
+              @if (query()) { <button type="button" (click)="query.set('')">“{{ query() }}” ×</button> }
+              @if (activeTopic() !== 'All topics') { <button type="button" (click)="setTopic('All topics')">{{ activeTopic() }} ×</button> }
+              @if (rightsFilter() !== 'all') { <button type="button" (click)="setRights('all')">{{ rightsLabel($any(rightsFilter())) }} ×</button> }
+              @if (sourceFilter() !== 'All sources') { <button type="button" (click)="setSource('All sources')">{{ sourceFilter() }} ×</button> }
+              @if (showBookmarksOnly()) { <button type="button" (click)="toggleBookmarksOnly()">Saved ×</button> }
+            </div>
+          }
+
+          @if (filteredPapers().length > 0) {
+            <div class="paper-grid" [class.is-list]="viewMode() === 'list'">
+              @for (paper of filteredPapers(); track paper.id; let index = $index) {
+                <article class="paper-card" [class.is-featured]="paper.featured" (click)="openPaper(paper)">
+                  <div class="paper-card-topline">
+                    <span class="record-number">{{ (index + 1).toString().padStart(2, '0') }}</span>
+                    <span class="rights-badge" [attr.data-status]="paper.rightsStatus">
+                      <i></i>{{ rightsLabel(paper.rightsStatus) }}
+                    </span>
+                    <button
+                      class="bookmark-button"
+                      type="button"
+                      [class.is-active]="isBookmarked(paper.id)"
+                      (click)="toggleBookmark(paper.id, $event)"
+                      [attr.aria-label]="isBookmarked(paper.id) ? 'Remove bookmark' : 'Bookmark paper'"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 4.5h11v15l-5.5-3.2-5.5 3.2z"></path></svg>
+                    </button>
+                  </div>
+
+                  <div class="paper-card-body">
+                    <p class="paper-provenance">{{ paper.sourceType }} / {{ paper.year }}</p>
+                    <h3>{{ paper.title }}</h3>
+                    <p class="paper-authors">{{ paper.authors.slice(0, 3).join(', ') }}@if (paper.authors.length > 3) { <span> +{{ paper.authors.length - 3 }}</span> }</p>
+                    <p class="paper-summary">{{ paper.summary }}</p>
+                  </div>
+
+                  <div class="paper-topics">
+                    @for (topic of paper.topics; track topic) {
+                      <button type="button" (click)="$event.stopPropagation(); setTopic(topic)">{{ topic }}</button>
+                    }
+                  </div>
+
+                  <footer class="paper-card-footer">
+                    <div>
+                      <span>{{ paper.sourceLabel }}</span>
+                      <small>{{ paper.format }}@if (paper.pages) { · {{ paper.pages }} pp } · {{ citationLabel(paper.citations) }}</small>
+                    </div>
+                    <button class="inspect-button" type="button" (click)="$event.stopPropagation(); openPaper(paper)">Inspect <span>↗</span></button>
+                  </footer>
+                </article>
+              }
+            </div>
+          } @else {
+            <div class="empty-state">
+              <span>Ø</span>
+              <h3>No records meet that brief.</h3>
+              <p>Try a broader phrase or remove one of the active filters.</p>
+              <button type="button" (click)="clearFilters()">Reset the catalogue</button>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="method-section" id="method" aria-labelledby="method-title">
+      <div class="section-heading method-heading">
+        <div>
+          <p class="eyebrow">03 / Collection method</p>
+          <h2 id="method-title">Discovery with a paper trail</h2>
+        </div>
+        <p class="section-intro">The system is designed to make uncertainty visible. Discovery is automated; publication and mirroring are deliberate.</p>
+      </div>
+
+      <div class="pipeline" aria-label="Collection workflow">
+        <article>
+          <span>01</span>
+          <div class="pipeline-icon">⌁</div>
+          <h3>Discover</h3>
+          <p>Harvest metadata from scholarly indexes, public repositories, government collections, and selected GitHub sources.</p>
+          <small>API + feed workers</small>
+        </article>
+        <article>
+          <span>02</span>
+          <div class="pipeline-icon">≋</div>
+          <h3>Normalize</h3>
+          <p>Resolve identifiers, authors, dates, versions, and canonical locations. Hash documents to expose duplicates.</p>
+          <small>Metadata pipeline</small>
+        </article>
+        <article>
+          <span>03</span>
+          <div class="pipeline-icon">◌</div>
+          <h3>Verify</h3>
+          <p>Capture license evidence at document level. Flag unclear ownership, sensitive material, and withdrawn work.</p>
+          <small>Human review gate</small>
+        </article>
+        <article>
+          <span>04</span>
+          <div class="pipeline-icon">↗</div>
+          <h3>Publish</h3>
+          <p>Index every valid record; mirror only files with clear redistribution rights. Preserve attribution and source links.</p>
+          <small>Static index + object store</small>
+        </article>
+      </div>
+
+      <div class="source-band">
+        <p>Planned discovery surfaces</p>
+        <div>
+          <span>OpenAlex</span><span>Crossref</span><span>CORE</span><span>Zenodo</span><span>arXiv</span><span>GovInfo</span><span>GitHub</span><span>Institutional repositories</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="rights-section" id="rights" aria-labelledby="rights-title">
+      <div class="rights-statement">
+        <p class="eyebrow">04 / Rights & stewardship</p>
+        <h2 id="rights-title">Publicly reachable is not the same as public domain.</h2>
+        <p>
+          Marginalia is an index first. A document is copied into archive storage only when its license, public-domain status, or author permission clearly allows redistribution. Everything else keeps its canonical source link.
+        </p>
+      </div>
+      <div class="rights-legend">
+        <article><i data-status="redistributable"></i><div><strong>Reusable</strong><span>License evidence recorded. Eligible for a faithful attributed mirror.</span></div></article>
+        <article><i data-status="link-only"></i><div><strong>Link only</strong><span>Discoverable here; the document remains with its original publisher.</span></div></article>
+        <article><i data-status="review"></i><div><strong>Rights review</strong><span>Useful metadata found, but ownership or reuse terms need a human decision.</span></div></article>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <p>Found something that deserves a longer life?</p>
+      <h2>Send us toward the quiet work.</h2>
+      <a href="https://github.com/Reason0x6/me/issues/new?title=Paper%20submission" target="_blank" rel="noreferrer">Submit a paper <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><span>M/</span><p><strong>Marginalia</strong><small>An open research index</small></p></div>
+    <p>Built for durable links, legible provenance, and curious people.</p>
+    <div><a href="#rights">Rights policy</a><a href="https://github.com/Reason0x6/me/issues/new?title=Rights%20or%20takedown%20request" target="_blank" rel="noreferrer">Takedown</a><a href="https://github.com/Reason0x6/me" target="_blank" rel="noreferrer">Source ↗</a></div>
+  </footer>
+</div>
+
+@if (selectedPaper(); as paper) {
+  <div class="detail-backdrop" (click)="closePaper()" role="presentation">
+    <article class="detail-panel" role="dialog" aria-modal="true" [attr.aria-labelledby]="'detail-' + paper.id" (click)="$event.stopPropagation()">
+      <header class="detail-header">
+        <span>Archive record / {{ paper.id }}</span>
+        <button type="button" (click)="closePaper()" aria-label="Close paper details">×</button>
+      </header>
+
+      <div class="detail-scroll">
+        <div class="detail-status-row">
+          <span class="rights-badge" [attr.data-status]="paper.rightsStatus"><i></i>{{ rightsLabel(paper.rightsStatus) }}</span>
+          <span>{{ paper.sourceType }} · Added {{ paper.addedAt | date:'d MMM y' }}</span>
+        </div>
+
+        <p class="paper-provenance">{{ paper.organization }} / {{ paper.year }}</p>
+        <h2 [id]="'detail-' + paper.id">{{ paper.title }}</h2>
+        <p class="detail-authors">{{ paper.authors.join(' · ') }}</p>
+        <p class="detail-summary">{{ paper.summary }}</p>
+
+        <div class="detail-metadata">
+          <div><span>Published</span><strong>{{ paper.publishedLabel }}</strong></div>
+          <div><span>Source</span><strong>{{ paper.sourceLabel }}</strong></div>
+          <div><span>Format</span><strong>{{ paper.format }}@if (paper.pages) { · {{ paper.pages }} pages }</strong></div>
+          <div><span>Signals</span><strong>{{ citationLabel(paper.citations) }}</strong></div>
+          @if (paper.doi) { <div class="wide"><span>DOI</span><strong>{{ paper.doi }}</strong></div> }
+        </div>
+
+        <section class="rights-card" [attr.data-status]="paper.rightsStatus">
+          <div class="rights-card-heading"><i></i><span>Rights record</span></div>
+          <h3>{{ paper.license }}</h3>
+          <p>{{ paper.rightsEvidence }}</p>
+          @if (paper.licenseUrl) { <a [href]="paper.licenseUrl" target="_blank" rel="noreferrer">Read license terms ↗</a> }
+        </section>
+
+        <div class="detail-topics">
+          @for (topic of paper.topics; track topic) { <span>{{ topic }}</span> }
+        </div>
+      </div>
+
+      <footer class="detail-actions">
+        <button type="button" class="secondary-action" (click)="toggleBookmark(paper.id)">
+          {{ isBookmarked(paper.id) ? 'Saved to library' : 'Save record' }}
+        </button>
+        <button type="button" class="secondary-action" (click)="copyCitation(paper)">{{ copied() ? 'Citation copied' : 'Copy citation' }}</button>
+        <a class="primary-action" [href]="paper.sourceUrl" target="_blank" rel="noreferrer">Open original source ↗</a>
+      </footer>
+    </article>
+  </div>
+}
