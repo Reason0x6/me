@@ -33,7 +33,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/working-theory.css"
+              "src/working-theory.css",
+              "src/internet-shape-paper.css"
             ],
             "scripts": []
           },
@@ -97,7 +98,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/working-theory.css"
+              "src/working-theory.css",
+              "src/internet-shape-paper.css"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"
