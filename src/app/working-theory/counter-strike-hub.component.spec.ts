@@ -12,7 +12,7 @@ describe('CounterStrikeHubComponent', () => {
     }).compileComponents();
   });
 
-  it('publishes the four editorials in a dedicated analysis index', () => {
+  it('publishes all six editorials in a dedicated analysis index', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
@@ -21,7 +21,7 @@ describe('CounterStrikeHubComponent', () => {
     expect(page.querySelector('h1')?.textContent).toContain('The server');
     expect(page.querySelector('h1')?.textContent).toContain('room.');
     expect(page.textContent).toContain('Vitality, Astralis, and the Greatest Team of All Time');
-    expect(editorialLinks.length).toBe(4);
+    expect(editorialLinks.length).toBe(6);
   });
 
   it('sets a descriptive document title', () => {

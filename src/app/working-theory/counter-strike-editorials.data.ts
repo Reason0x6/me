@@ -1,3 +1,5 @@
+import { COUNTER_STRIKE_META_EDITORIALS } from './counter-strike-meta-editorials.data';
+
 export interface EditorialStat {
   readonly value: string;
   readonly label: string;
@@ -633,6 +635,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       { label: 'HLTV — Astralis’ 58-week reign', url: 'https://www.hltv.org/news/34411/csgo10-liquid-challenge-astralis-reign-2019', use: 'Number-one longevity and historical framing.' },
     ],
   },
+  ...COUNTER_STRIKE_META_EDITORIALS,
 ];
 
 export function findCounterStrikeEditorial(slug: string): CounterStrikeEditorial | undefined {

@@ -34,7 +34,7 @@
 .csh-feature-copy a { display:inline-flex; gap:30px; margin-top:34px; padding:14px 18px; border:1px solid #111411; background:#111411; color:#fff; text-decoration:none; font:600 9px/1 'IBM Plex Mono',monospace; text-transform:uppercase; }
 .csh-feature-copy a b { color:var(--h-lime); }
 .csh-feature-data { align-self:start; border-top:2px solid #111411; }
-.csh-feature-data article { display:grid; grid-template-columns:105px 1fr; gap:10px; padding:18px 0; border-bottom:1px solid #a83820; }
+.csh-feature-data article { display:grid; grid-template-columns:minmax(155px,.7fr) 1fr; gap:10px; padding:18px 0; border-bottom:1px solid #a83820; }
 .csh-feature-data strong { grid-row:1/3; font:400 34px/1 'Archivo Black',sans-serif; letter-spacing:-.05em; }
 .csh-feature-data span { font:600 9px/1.3 'IBM Plex Mono',monospace; text-transform:uppercase; }
 .csh-feature-data small { color:#6d2a1b; font-size:10px; line-height:1.4; }

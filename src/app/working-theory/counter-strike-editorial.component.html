@@ -12,12 +12,12 @@
     </header>
 
     <main>
-      <section class="cs-cover" [class.cs-cover-long]="piece.number === '029'">
+      <section class="cs-cover" [class.cs-cover-long]="piece.title.length > 42">
         <div class="cs-cover-grid" aria-hidden="true"></div>
         <div class="cs-cover-meta">
           <span>Counter-Strike editorial</span>
           <span>No. {{ piece.number }}</span>
-          <time [attr.datetime]="piece.publishedAt">28.08.26</time>
+          <time [attr.datetime]="piece.publishedAt">{{ piece.publishedAt | date:'dd.MM.yy' }}</time>
         </div>
         <div class="cs-cover-copy">
           <p>DATA / TACTICS / FORM</p>
