@@ -23,6 +23,22 @@ const THREAD_DESCRIPTIONS: Readonly<Record<string, string>> = {
   Design: 'The deliberate removal of ambiguity, friction, and accidental choice.',
   AI: 'Probabilistic systems, visible uncertainty, and earned trust.',
   Organizations: 'The software hidden inside institutions and coordination.',
+  Archives: 'What collections preserve, omit, and teach their keepers to notice.',
+  Attention: 'Where focus goes, what interrupts it, and what earns its return.',
+  Books: 'Reading, collecting, and living among ideas that remain unopened.',
+  Chess: 'Judgment under constraint, visible consequences, and the dignity of a draw.',
+  Communities: 'Small rooms, shared practices, and knowledge made between people.',
+  Constraints: 'The productive pressure of limits, rules, and deliberately closed doors.',
+  Culture: 'The language and assumptions hiding inside ordinary habits.',
+  Hobbies: 'Things worth doing without converting them into output or advantage.',
+  Judgment: 'Taste, uncertainty, evaluation, and the discipline of not deciding too soon.',
+  Language: 'Words as infrastructure: what phrasing permits, prevents, and clarifies.',
+  Making: 'Objects and unfinished projects as records of learning through the hands.',
+  Media: 'How distinct forms become flattened into interchangeable material.',
+  Memory: 'The traces objects, archives, and abandoned work leave behind.',
+  Music: 'Listening as atmosphere, ritual, and a way of shaping attention.',
+  Standards: 'Shared constraints that make important work easier to understand.',
+  Taste: 'Preference as an instrument for navigating abundance.',
 };
 
 @Component({
@@ -41,7 +57,7 @@ export class WorkingTheoryComponent {
   readonly query = signal('');
   readonly kindFilter = signal<KindFilter>('All');
   readonly themeFilter = signal('All');
-  readonly kindOptions: readonly KindFilter[] = ['All', 'Note', 'Essay', 'Model', 'Question'];
+  readonly kindOptions: readonly KindFilter[] = ['All', 'Note', 'Essay', 'Model', 'Question', 'Standard'];
 
   readonly themes = computed(() => [
     'All',

@@ -28,6 +28,8 @@ Thoughts live in [`src/app/working-theory/thoughts.data.ts`](src/app/working-the
 
 The note is automatically searchable, appears in every matching thread, and gets a permalink at `/notes/<slug>`.
 
+Available formats are `Note`, `Essay`, `Model`, `Question`, and `Standard`.
+
 Maturity states communicate editorial intent:
 
 - `Spark` — an early idea with room to change.
@@ -35,7 +37,7 @@ Maturity states communicate editorial intent:
 - `Developed` — a formed position, open to revision.
 - `Revisited` — an idea returned to after further thought.
 
-The eight included pieces are seed drafts that establish the interface and editorial rhythm. Edit or replace them as the real body of writing grows.
+The included pieces are editable working drafts. Revise them as the real body of writing grows.
 
 ## Run locally
 

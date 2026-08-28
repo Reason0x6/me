@@ -1,4 +1,4 @@
-export type ThoughtKind = 'Note' | 'Essay' | 'Model' | 'Question';
+export type ThoughtKind = 'Note' | 'Essay' | 'Model' | 'Question' | 'Standard';
 export type ThoughtState = 'Spark' | 'Working' | 'Developed' | 'Revisited';
 
 export interface ThoughtReference {
@@ -23,4 +23,3 @@ export interface Thought {
   readonly related: readonly string[];
   readonly featured?: boolean;
 }
-

@@ -272,6 +272,7 @@ a { color: inherit; }
   .article-hero > p { margin: 30px 0 45px; font-size: 1.05rem; }
   .article-meta { grid-template-columns: repeat(2, 1fr); }
   .article-meta div { border-bottom: 1px solid var(--wt-line); }
+  .article-meta time, .article-meta strong { overflow: visible; white-space: normal; overflow-wrap: anywhere; }
   .article-layout { display: flex; flex-direction: column; padding: 65px 20px 80px; }
   .article-margin { order: 0; padding: 20px; border: 1px solid var(--wt-ink); background: var(--wt-white); box-shadow: 5px 5px 0 var(--wt-ink); }
   .article-body { order: 1; }
@@ -285,4 +286,3 @@ a { color: inherit; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
-

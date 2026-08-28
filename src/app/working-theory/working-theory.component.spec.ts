@@ -23,7 +23,7 @@ describe('WorkingTheoryComponent', () => {
 
     expect(page.textContent).toContain('Ideas should be allowed to remain unfinished.');
     expect(page.textContent).toContain('Observability is an editorial act');
-    expect(page.querySelectorAll('.thought-row').length).toBe(8);
+    expect(page.querySelectorAll('.thought-row').length).toBe(component.thoughts.length);
   });
 
   it('filters the index by format', () => {
@@ -53,6 +53,6 @@ describe('WorkingTheoryComponent', () => {
     expect(component.kindFilter()).toBe('All');
     expect(component.themeFilter()).toBe('All');
     expect(component.query()).toBe('');
-    expect(component.filteredThoughts().length).toBe(8);
+    expect(component.filteredThoughts().length).toBe(component.thoughts.length);
   });
 });
