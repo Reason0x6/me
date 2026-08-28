@@ -34,7 +34,9 @@
             "styles": [
               "src/styles.css",
               "src/working-theory.css",
-              "src/internet-shape-paper.css"
+              "src/internet-shape-paper.css",
+              "src/world-rank-paper.css",
+              "src/zero-trust-voice-paper.css"
             ],
             "scripts": []
           },
@@ -99,7 +101,9 @@
             "styles": [
               "src/styles.css",
               "src/working-theory.css",
-              "src/internet-shape-paper.css"
+              "src/internet-shape-paper.css",
+              "src/world-rank-paper.css",
+              "src/zero-trust-voice-paper.css"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"

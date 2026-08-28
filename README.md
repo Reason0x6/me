@@ -59,5 +59,10 @@ The production build is written to `dist/g-austin/browser`.
 
 - `src/app/working-theory/` — publication components, data, and content types
 - `src/working-theory.css` — shared editorial design system
+- `src/internet-shape-paper.css` — print-aware design for the Internet geometry white paper
+- `src/world-rank-paper.css` — print-aware design for the World Rank white paper
+- `src/zero-trust-voice-paper.css` — print-aware design for the voice-verification discussion paper
 - `src/app/features/` — earlier experiments retained in source but no longer routed
 - `public/` — static assets
+
+Dedicated papers are published at `/papers/what-shape-is-the-internet`, `/papers/how-many-facts-does-reality-contain`, and `/papers/zero-trust-voice-verification`. Each includes browser print styles for saving an A4 PDF.

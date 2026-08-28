@@ -1,0 +1,401 @@
+<div class="rank-paper-site">
+  <header class="rank-paper-bar">
+    <a class="theory-wordmark" routerLink="/" aria-label="Working Theory home">
+      <span>WT</span>
+      <div><strong>Working Theory</strong><small>White paper 02</small></div>
+    </a>
+    <a class="rank-back" routerLink="/">← Back to index</a>
+    <div class="rank-actions">
+      <button type="button" (click)="copyLink()">{{ copied() ? 'Copied ✓' : 'Copy link' }}</button>
+      <button type="button" (click)="printPaper()">Print / save PDF</button>
+    </div>
+  </header>
+
+  <main class="rank-paper">
+    <header class="rank-cover">
+      <div class="rank-cover-meta">
+        <span>WT–WP–002</span><span>Version 1.0</span><time datetime="2026-08-28">28 August 2026</time><span>Formal research note</span>
+      </div>
+      <div class="rank-cover-grid">
+        <div class="rank-cover-title">
+          <p>Factual independence / deterministic laws / explanation</p>
+          <h1>How Many Facts Does Reality Actually Contain?</h1>
+          <h2>World Rank, factual bases, and the geometry of explanation</h2>
+        </div>
+        <figure class="rank-frontier-mark" aria-label="A descending Law–Fact Frontier">
+          <svg viewBox="0 0 520 520" role="img">
+            <line x1="76" y1="50" x2="76" y2="438"></line><line x1="76" y1="438" x2="482" y2="438"></line>
+            <path d="M92 99 C149 100 153 165 207 170 S273 260 332 281 S383 370 469 373"></path>
+            <g><circle cx="92" cy="99" r="10"></circle><circle cx="207" cy="170" r="10"></circle><circle cx="332" cy="281" r="10"></circle><circle cx="469" cy="373" r="10"></circle></g>
+            <text x="33" y="303" transform="rotate(-90 33 303)">INDEPENDENT FACTS</text><text x="254" y="482">COMPLEXITY OF LAW</text>
+            <text class="mark-label" x="112" y="85">many facts / short law</text><text class="mark-label" x="290" y="404">few facts / longer law</text>
+          </svg>
+          <figcaption>Occam’s razor becomes a frontier rather than a scalar.</figcaption>
+        </figure>
+      </div>
+      <blockquote>A fact stops being independent when it becomes an unavoidable consequence of other facts and the laws connecting them.</blockquote>
+      <div class="rank-authorship">
+        <div><span>Author</span><strong>Gavin Austin</strong></div><div><span>Publication</span><strong>Working Theory</strong></div>
+        <div><span>Status</span><strong>Definition and theorem paper</strong></div><div><span>Rights</span><strong>All rights reserved</strong></div>
+      </div>
+    </header>
+
+    <section class="rank-abstract" id="abstract">
+      <span>00</span>
+      <div>
+        <p class="rank-label">Abstract</p>
+        <h2>A world may be easy to describe and hard to determine—or difficult to describe while almost entirely forced.</h2>
+        <div class="rank-abstract-columns">
+          <p>This paper formalises <em>World Rank</em>: relative to a fixed finite primitive schema and deterministic law, the minimum number of actual coordinate values required to distinguish one lawful world from every other lawful world. The definition separates descriptive compression from factual determination. A thousand independent zero-valued bits have low Kolmogorov complexity but World Rank one thousand; a visually irregular solution of a rank-990 linear constraint system has World Rank ten.</p>
+          <p>The central representation theorem identifies World Rank exactly with the minimum hitting-set number of the world’s disagreement hypergraph. From it follow a solver formulation and NP-hardness. Further results establish universal bounds, monotonicity under stronger laws, additivity for independent products, a finite-class counting bound, equality with nullity for affine linear systems, and a corrected inevitability bound for deterministic spacetime histories. A Law–Fact Frontier then compares the complexity of admissible laws with their residual World Rank, and Explanatory Leverage measures frontier descent per bit of additional law.</p>
+        </div>
+        <div class="rank-keywords"><b>Keywords</b> factual basis · teaching dimension · constraint systems · Kolmogorov complexity · algorithmic statistics · observability · cellular automata · explanation</div>
+      </div>
+    </section>
+
+    <aside class="rank-priority-note">
+      <strong>Priority and scope</strong>
+      <p>The finite invariant is not claimed as a new combinatorial object. Under the coordinate encoding below, target-specific World Rank is a teaching/specification number <a href="#ref-1">[1]</a>; its global counterpart is a relational key <a href="#ref-2">[2]</a>. The proposed contribution is the law-relative interpretation, theorem synthesis, inevitability analysis, Law–Fact Frontier, and factual-geography programme. Any priority claim beyond that requires a deeper review.</p>
+    </aside>
+
+    <nav class="rank-contents" aria-label="Paper contents">
+      <span>Contents</span>
+      <ol>
+        <li><a href="/papers/how-many-facts-does-reality-contain#rules">Primitive rules</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#definition">World Rank</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#representation">Representation theorem</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#bounds">Bounds and structural laws</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#special-cases">Linear systems and spacetime</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#complexity">Not Kolmogorov complexity</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#frontier">Law–Fact Frontier</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#fact-maps">Where the facts are</a></li>
+        <li><a href="/papers/how-many-facts-does-reality-contain#programme">Research programme and limits</a></li>
+      </ol>
+    </nav>
+
+    <article class="rank-body">
+      <section class="rank-section" id="rules">
+        <header><span>01</span><div><p>Before counting</p><h2>Primitive rules</h2></div></header>
+        <div class="rank-prose">
+          <p class="rank-lead">World Rank is relative, not absolute. It is meaningless until the variables, their domains, the law, and the admissible observations have been fixed.</p>
+          <p>Let the primitive schema be a finite indexed family <i>X=(X<sub>1</sub>,…,X<sub>n</sub>)</i>, with each variable taking values in a finite non-empty domain <i>A<sub>i</sub></i>. The ambient assignment space is <i>Ω=∏<sub>i=1</sub><sup>n</sup>A<sub>i</sub></i>. A deterministic law <i>ℒ</i> is represented extensionally by a non-empty solution set <i>S<sub>ℒ</sub>⊆Ω</i>. A complete actual world is one element <i>w∈S<sub>ℒ</sub></i>.</p>
+          <p>Calling <i>S<sub>ℒ</sub></i> deterministic does not mean that it contains one world. It means that the law is a fixed constraint on complete assignments. Residual degrees of freedom are represented by multiple lawful worlds. Initial conditions, boundary conditions, and exogenous inputs belong either in the law or among the primitive variables; they cannot hover ambiguously between the two.</p>
+        </div>
+
+        <div class="rank-rule-grid">
+          <article><span>R1</span><h3>Fix the schema</h3><p>Splitting one variable into ten or adding a variable that encodes the whole world can change an unweighted rank. Every comparison names one schema.</p></article>
+          <article><span>R2</span><h3>Separate primitive and derived</h3><p>A derived checksum may be a target fact, but it is not eligible as a basis fact unless the research design declares it primitive.</p></article>
+          <article><span>R3</span><h3>Use exact law semantics</h3><p>The law denotes all complete assignments it permits—not merely the equations as printed or one chosen simulation trace.</p></article>
+          <article><span>R4</span><h3>Identify, do not merely predict</h3><p>A basis must leave exactly one complete lawful world. High probability, local accuracy, and asymptotic recovery are different notions.</p></article>
+          <article><span>R5</span><h3>Count observation cost explicitly</h3><p>Cardinality is the baseline. Weighted rank uses declared costs such as log₂|Aᵢ|; exact real values require a separate continuous theory.</p></article>
+          <article><span>R6</span><h3>Do not smuggle in causality</h3><p>Logical determination within a solution set does not by itself establish temporal production, intervention response, or causal direction.</p></article>
+        </div>
+
+        <div class="rank-prose">
+          <h3>Admissible observations</h3>
+          <p>Sometimes only a subset <i>Q⊆[n]</i> may be specified: initial conditions but not future cells, sensors but not hidden state, or boundary variables but not interior variables. This paper therefore defines a query-relative rank <i>R<sub>ℒ,Q</sub></i>. The original World Rank is the full-coordinate case <i>Q=[n]</i>. If two lawful worlds agree on every coordinate in <i>Q</i>, no admissible basis can distinguish them and the query-relative rank is infinite.</p>
+        </div>
+      </section>
+
+      <section class="rank-section" id="definition">
+        <header><span>02</span><div><p>Definition</p><h2>World Rank</h2></div></header>
+        <div class="rank-prose">
+          <p>For <i>B⊆Q</i>, write <i>w<sub>B</sub></i> for the restriction of the actual world to those coordinates. Its lawful fibre is the set of worlds still possible after those values are specified:</p>
+        </div>
+        <div class="rank-equation"><div>Fib<sub>ℒ</sub>(w;B) = &#123;u∈S<sub>ℒ</sub> : u<sub>B</sub>=w<sub>B</sub>&#125;</div><span>Eq. 1</span><p>A specification removes alternatives by intersecting the lawful world-set with a coordinate cylinder through <i>w</i>.</p></div>
+        <div class="rank-definition-card">
+          <span>Definition 1 / World basis</span>
+          <p>A subset <i>B⊆Q</i> is a <strong>world basis</strong> for <i>w</i> under <i>ℒ</i> when <i>Fib<sub>ℒ</sub>(w;B)=&#123;w&#125;</i>. The query-relative World Rank is</p>
+          <div>R<sub>ℒ,Q</sub>(w) = min &#123; |B| : B⊆Q and Fib<sub>ℒ</sub>(w;B)=&#123;w&#125; &#125;,</div>
+          <p>with value <i>∞</i> if no such <i>B</i> exists. Write <i>R<sub>ℒ</sub>(w)</i> when <i>Q=[n]</i>.</p>
+        </div>
+        <div class="rank-prose">
+          <p>World Rank counts coordinate values, not their shortest description. The statement “all one thousand cells are zero” is short, but it supplies one thousand coordinate facts if the law permits every binary assignment. Conversely, a complicated-looking string can require few basis facts when constraints force the remaining coordinates.</p>
+          <h3>Weighted World Rank</h3>
+          <p>When variables have unequal domains or acquisition costs, assign <i>c<sub>i</sub>&gt;0</i> and replace cardinality by total cost. A representation-neutral theory does not emerge automatically—the costs are part of the model—but the choice <i>c<sub>i</sub>=log₂|A<sub>i</sub>|</i> makes a uniformly coded finite variable contribute its raw capacity in bits.</p>
+        </div>
+        <div class="rank-equation"><div>R<sup>c</sup><sub>ℒ,Q</sub>(w) = min<sub>B basis</sub> Σ<sub>i∈B</sub> c<sub>i</sub></div><span>Eq. 2</span><p>The cardinal rank is recovered with <i>c<sub>i</sub>=1</i>. No value-dependent compression is performed inside this definition.</p></div>
+
+        <div class="rank-prose">
+          <h3>Closure</h3>
+          <p>The facts forced by a partial specification form a world-relative closure:</p>
+        </div>
+        <div class="rank-equation"><div>cl<sup>w</sup><sub>ℒ</sub>(B)=&#123;i : ∀u∈Fib<sub>ℒ</sub>(w;B), u<sub>i</sub>=w<sub>i</sub>&#125;</div><span>Eq. 3</span><p>This closure is extensive, monotone, and idempotent. A basis closes to every coordinate. It need not satisfy the matroid exchange axiom, so “rank” is an analogy to degrees of freedom—not a claim that every law induces a matroid.</p></div>
+      </section>
+
+      <section class="rank-section rank-dark" id="representation">
+        <header><span>03</span><div><p>Central result</p><h2>The Representation Theorem</h2></div></header>
+        <div class="rank-prose">
+          <p class="rank-lead">To determine the actual world, a basis must rule out every lawful alternative at least once.</p>
+          <p>For each alternative world <i>u∈S<sub>ℒ</sub>\&#123;w&#125;</i>, define its admissible disagreement set</p>
+        </div>
+        <div class="rank-equation rank-equation-dark"><div>Δ<sub>Q</sub>(w,u)=&#123;i∈Q : w<sub>i</sub>≠u<sub>i</sub>&#125;.</div><span>Eq. 4</span><p>The disagreement hypergraph <i>H<sub>ℒ,Q</sub>(w)</i> has vertex set <i>Q</i> and one hyperedge <i>Δ<sub>Q</sub>(w,u)</i> for each alternative lawful world.</p></div>
+
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Theorem 1</span><strong>Hitting-set representation</strong></div>
+          <p>Let <i>S<sub>ℒ</sub></i> be finite and <i>w∈S<sub>ℒ</sub></i>. A set <i>B⊆Q</i> is a world basis if and only if it intersects every edge of <i>H<sub>ℒ,Q</sub>(w)</i>. Therefore</p>
+          <div>R<sub>ℒ,Q</sub>(w)=τ(H<sub>ℒ,Q</sub>(w)),</div>
+          <p>where <i>τ</i> is the transversal—or minimum hitting-set—number, with <i>τ=∞</i> when the hypergraph contains an empty edge.</p>
+          <details open><summary>Proof</summary><p>If <i>B</i> misses the edge generated by some <i>u≠w</i>, then <i>u<sub>B</sub>=w<sub>B</sub></i>, so the fibre contains at least <i>w</i> and <i>u</i>; <i>B</i> is not a basis. Conversely, if <i>B</i> hits every disagreement edge, every alternative <i>u</i> differs from <i>w</i> on at least one specified coordinate. No alternative remains in the fibre, hence the fibre is <i>&#123;w&#125;</i>. ∎</p></details>
+        </div>
+
+        <figure class="rank-hypergraph-figure">
+          <div class="rank-world-row actual"><span>w</span><b>0</b><b>0</b><b>0</b><b>0</b><i>actual world</i></div>
+          <div class="rank-world-row"><span>u¹</span><b>1</b><b>0</b><b>1</b><b>0</b><i>Δ₁ = &#123;1,3&#125;</i></div>
+          <div class="rank-world-row"><span>u²</span><b>0</b><b>1</b><b>1</b><b>0</b><i>Δ₂ = &#123;2,3&#125;</i></div>
+          <div class="rank-world-row"><span>u³</span><b>0</b><b>0</b><b>1</b><b>1</b><i>Δ₃ = &#123;3,4&#125;</i></div>
+          <div class="rank-hit"><span></span><i></i><i></i><i class="selected">B</i><i></i><em>Coordinate 3 hits every alternative: R=1.</em></div>
+          <figcaption><b>Figure 1.</b> A factual basis is a diagnostic set of coordinates. It is allowed to depend on the actual world.</figcaption>
+        </figure>
+
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Corollary 1</span><strong>Computational hardness</strong></div>
+          <p>Computing World Rank from an explicit finite binary world-set is NP-hard.</p>
+          <details open><summary>Proof</summary><p>Reduce Minimum Hitting Set <a href="#ref-11">[11]</a>. Given a hypergraph <i>H</i> on <i>[n]</i>, choose <i>w=0ⁿ</i>. For every edge <i>E</i>, add one lawful world <i>u<sup>E</sup></i> whose 1-coordinates are exactly <i>E</i>. The disagreement hypergraph at <i>w</i> is precisely <i>H</i>, so its minimum hitting-set size equals World Rank. ∎</p></details>
+        </div>
+
+        <div class="rank-prose">
+          <h3>SAT and constraint solving</h3>
+          <p>Hard does not mean unusable. If a Boolean law is represented by a formula <i>Φ<sub>ℒ</sub>(x)</i>, a proposed basis <i>B</i> is valid exactly when the following formula is unsatisfiable:</p>
+        </div>
+        <div class="rank-equation rank-equation-dark"><div>Φ<sub>ℒ</sub>(x) ∧ ⋀<sub>i∈B</sub>(x<sub>i</sub>=w<sub>i</sub>) ∧ (x≠w).</div><span>Eq. 5</span><p>A satisfying assignment is an explicit counter-world that the proposed facts failed to exclude. Counterexample-guided hitting set, MaxSAT, or mixed-integer optimisation can search for a minimum basis.</p></div>
+      </section>
+
+      <section class="rank-section" id="bounds">
+        <header><span>04</span><div><p>Consequences</p><h2>Bounds and structural laws</h2></div></header>
+
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Theorem 2</span><strong>Universal bounds and monotonicity</strong></div>
+          <p>For the full-coordinate rank of any finite schema:</p>
+          <ol>
+            <li><i>0≤R<sub>ℒ</sub>(w)≤n</i>.</li>
+            <li><i>R<sub>ℒ</sub>(w)=0</i> if and only if <i>S<sub>ℒ</sub>=&#123;w&#125;</i>.</li>
+            <li><i>R<sub>ℒ</sub>(w)=n</i> if and only if, for every coordinate <i>i</i>, some lawful world differs from <i>w</i> only at <i>i</i>.</li>
+            <li>If <i>S<sub>ℒ′</sub>⊆S<sub>ℒ</sub></i> and <i>w∈S<sub>ℒ′</sub></i>, then <i>R<sub>ℒ′</sub>(w)≤R<sub>ℒ</sub>(w)</i>.</li>
+          </ol>
+          <details><summary>Proof sketch</summary><p>The full coordinate set always identifies <i>w</i>; the empty set identifies it exactly when no alternative exists. Rank <i>n</i> means each set omitting one coordinate fails, which is equivalent to a counter-world differing only there. Strengthening a law removes alternatives and therefore removes hyperedges, never making a previous basis invalid. ∎</p></details>
+        </div>
+
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Theorem 3</span><strong>Additivity for independent products</strong></div>
+          <p>Let two laws live on disjoint schemas, with lawful sets <i>S₁</i> and <i>S₂</i>. For the product law <i>S=S₁×S₂</i> and world <i>w=(w₁,w₂)</i>,</p>
+          <div>R<sub>S</sub>(w)=R<sub>S₁</sub>(w₁)+R<sub>S₂</sub>(w₂).</div>
+          <details><summary>Proof</summary><p>The union of minimum bases for both components identifies the product world. Conversely, an alternative can change only the first component while holding the second fixed, so the first-coordinate portion of any product basis must identify <i>w₁</i>; symmetrically it must contain a basis for <i>w₂</i>. ∎</p></details>
+        </div>
+
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Theorem 4</span><strong>Counting bound for locally low-rank worlds</strong></div>
+          <p>Assume every variable has an alphabet of size <i>q</i>. Let <i>S<sub>≤r</sub>=&#123;w∈S<sub>ℒ</sub>:R<sub>ℒ</sub>(w)≤r&#125;</i>. Then</p>
+          <div>|S<sub>≤r</sub>| ≤ Σ<sub>k=0</sub><sup>r</sup> C(n,k)q<sup>k</sup>.</div>
+          <details><summary>Proof</summary><p>Assign each low-rank world a canonical minimum basis <i>B</i> and signature <i>w<sub>B</sub></i>. Two distinct worlds cannot receive the same pair: if they did, each would survive the other’s identifying specification. There are at most <i>C(n,k)qᵏ</i> basis-signature pairs of size <i>k</i>. Sum through <i>r</i>. ∎</p></details>
+        </div>
+
+        <div class="rank-prose">
+          <h3>Local rank versus a global key</h3>
+          <p>A global world basis is one coordinate set whose projection is injective on all of <i>S<sub>ℒ</sub></i>. Let its minimum size be <i>G(ℒ)</i>. This is the candidate-key or unique-column-combination problem of relational theory <a href="#ref-2">[2]</a>. It obeys</p>
+        </div>
+        <div class="rank-equation"><div>max<sub>w∈Sℒ</sub> R<sub>ℒ</sub>(w) ≤ G(ℒ), &nbsp;&nbsp; G(ℒ) ≥ ⌈log<sub>q</sub>|S<sub>ℒ</sub>|⌉.</div><span>Eq. 6</span><p>The first inequality can be strict because different worlds may have different short signatures even when no one short coordinate set identifies them all.</p></div>
+      </section>
+
+      <section class="rank-section" id="special-cases">
+        <header><span>05</span><div><p>Exact reductions</p><h2>Linear systems and spacetime</h2></div></header>
+        <div class="rank-prose">
+          <h3>5.1 Independent binary cells</h3>
+          <p>Let <i>S=&#123;0,1&#125;<sup>n</sup></i>. For every world and every coordinate <i>i</i>, flipping only <i>i</i> produces another lawful world. Theorem 2 gives <i>R(w)=n</i>. In particular, <i>0ⁿ</i> has World Rank <i>n</i> even though its Kolmogorov complexity is <i>O(log n)</i>.</p>
+        </div>
+
+        <div class="rank-theorem rank-theorem-feature">
+          <div class="rank-theorem-head"><span>Theorem 5</span><strong>Linear nullity theorem</strong></div>
+          <p>Let <i>A∈𝔽<sub>q</sub><sup>m×n</sup></i>, let <i>b</i> be consistent, and let <i>S=&#123;x∈𝔽<sub>q</sub><sup>n</sup>:Ax=b&#125;</i>. For every <i>w∈S</i>,</p>
+          <div>R<sub>A,b</sub>(w)=n−rank(A).</div>
+          <details open><summary>Proof</summary><p>The solution set is the affine space <i>w+ker A</i>, whose dimension is <i>d=n−rank(A)</i>. A coordinate set <i>B</i> identifies <i>w</i> exactly when the coordinate projection <i>P<sub>B</sub></i> is injective on <i>ker A</i>. An injective linear map from a <i>d</i>-dimensional space into <i>𝔽<sub>q</sub><sup>|B|</sup></i> requires <i>|B|≥d</i>. Conversely, among the coordinate functionals restricted to <i>ker A</i>, choose <i>d</i> that form a basis of its dual; their projection is injective. Thus the minimum is <i>d</i>. ∎</p></details>
+        </div>
+
+        <div class="rank-prose">
+          <p>This is the precise sense in which World Rank extends linear degrees of freedom. The equality depends on the solution set being affine. General nonlinear constraints do not satisfy exchange, do not have equally sized minimal bases, and require the hitting-set definition.</p>
+
+          <h3>5.2 Deterministic spacetime</h3>
+          <p>Let a finite system have <i>N</i> cells over alphabet <i>A</i> and deterministic global update <i>F:A<sup>N</sup>→A<sup>N</sup></i>. A history of <i>T</i> transitions contains <i>N(T+1)</i> cell-values:</p>
+        </div>
+        <div class="rank-equation"><div>h(s)= (s,F(s),F²(s),…,F<sup>T</sup>(s)).</div><span>Eq. 7</span><p>The lawful history set contains one trajectory for every initial state <i>s∈Aᴺ</i>.</p></div>
+
+        <div class="rank-theorem rank-theorem-feature">
+          <div class="rank-theorem-head"><span>Theorem 6</span><strong>Deterministic-history bound</strong></div>
+          <p>For every history <i>h(s)</i>, with all spacetime cells eligible as basis facts,</p>
+          <div>R(h(s))≤N &nbsp;&nbsp; and &nbsp;&nbsp; I(h(s))≥T/(T+1),</div>
+          <p>where <i>I=1−R/[N(T+1)]</i>. If admissible bases are restricted to the <i>N</i> initial-cell coordinates, then the query-relative rank is exactly <i>N</i> and <i>I=T/(T+1)</i>.</p>
+          <details open><summary>Proof</summary><p>The complete initial slice determines the trajectory, so unrestricted rank is at most <i>N</i>. If only initial coordinates may be queried, omitting any initial cell permits a different initial state—and hence a distinct complete history because the initial slice itself belongs to the history. Therefore all <i>N</i> are necessary. Substitute into the definition of <i>I</i>. ∎</p></details>
+        </div>
+
+        <aside class="rank-correction">
+          <span>Why this is an inequality</span>
+          <p>A later cell can sometimes uniquely identify one exceptional initial state, even though it cannot identify every initial state. For example, a deterministic update may send <i>00</i> to <i>00</i> and every other two-bit state to a state beginning with <i>1</i>. Observing the first future bit as <i>0</i> identifies the entire history of <i>00</i>; its unrestricted rank is one, not two. “The initial state determines the future” proves an upper bound unless the query rules require initial facts.</p>
+        </aside>
+
+        <div class="rank-prose">
+          <h3>5.3 Continuous systems</h3>
+          <p>An exact real-valued fact contains unbounded discrete information, so finite cardinal World Rank should not be transferred literally. The local analogue is differential. If regular constraints <i>g(x)=0</i> have Jacobian rank <i>r</i> at <i>w∈ℝⁿ</i>, the solution set is locally an <i>(n−r)</i>-dimensional manifold. A suitable subset of <i>n−r</i> ambient coordinates forms a local chart by the implicit-function theorem. This recovers local differential degrees of freedom, while global uniqueness may require more observations because disconnected solutions can share a chart value. Nonlinear observability rank conditions belong to this neighbouring theory <a href="#ref-7">[7]</a>.</p>
+        </div>
+      </section>
+
+      <section class="rank-section rank-complexity-section" id="complexity">
+        <header><span>06</span><div><p>Separation</p><h2>Not Kolmogorov complexity</h2></div></header>
+        <div class="rank-contrast">
+          <article class="rank-contrast-lowk"><span>World A</span><h3>0 0 0 0 0 0 … 0</h3><div><b>K(w)=O(log n)</b><b>R<sub>ℒ</sub>(w)=n</b></div><p>Every coordinate is free under the law. The world is easy to print but no coordinate value follows from the others.</p></article>
+          <article class="rank-contrast-lowr"><span>World B</span><h3>1 0 1 1 0 0 … 1</h3><div><b>K(w)≈n</b><b>R<sub>ℒ</sub>(w)=10</b></div><p>A ten-dimensional affine solution can look algorithmically irregular while all remaining coordinates are forced.</p></article>
+        </div>
+        <div class="rank-prose">
+          <p>Kolmogorov complexity asks for the shortest program that outputs an individual string. World Rank asks for the smallest coordinate evidence that singles the string out among alternatives admitted by a named law. One is description-relative; the other is law-and-schema-relative. Neither bounds the other in general.</p>
+          <h3>Difference from residual set size</h3>
+          <p>Algorithmic statistics studies the trade between model complexity and the logarithm of the size of a model containing the data <a href="#ref-3">[3]</a><a href="#ref-4">[4]</a>. World Rank replaces <i>log|S|</i> with the coordinate geometry around the actual world. The two residuals can diverge sharply.</p>
+        </div>
+        <div class="rank-example-pair">
+          <article><span>Large set / tiny rank</span><p>Let <i>S=&#123;0ⁿ&#125;∪&#123;x:x₁=1&#125;</i>. The set contains <i>1+2ⁿ⁻¹</i> worlds, but the fact <i>x₁=0</i> uniquely identifies <i>0ⁿ</i>. Thus <i>R(0ⁿ)=1</i>.</p></article>
+          <article><span>Small set / maximal rank</span><p>Let <i>S=&#123;0ⁿ,e₁,…,eₙ&#125;</i>. Only <i>n+1</i> worlds are lawful, yet each coordinate is needed to rule out its corresponding unit vector. Thus <i>R(0ⁿ)=n</i>.</p></article>
+        </div>
+        <div class="rank-prose">
+          <p>The difference is structural. Set size counts how many alternatives remain. World Rank asks how those alternatives overlap the coordinates of one actual world. The same number of alternatives can be easy or difficult to eliminate with primitive facts.</p>
+        </div>
+      </section>
+
+      <section class="rank-section" id="frontier">
+        <header><span>07</span><div><p>Model selection</p><h2>The Law–Fact Frontier</h2></div></header>
+        <div class="rank-prose">
+          <p class="rank-lead">A law can make facts disappear by encoding them. The honest object is therefore not one rank, but the trade between the cost of the law and the factual freedom left behind.</p>
+          <p>Fix the primitive schema, a prefix universal machine <i>U</i>, and an admissible family <i>ℋ</i> of computably represented laws. Every <i>ℒ∈ℋ</i> must denote a non-empty finite set <i>S<sub>ℒ</sub></i> containing the actual world <i>w</i>. Define the rank structure function</p>
+        </div>
+        <div class="rank-equation"><div>F<sup>U,ℋ</sup><sub>w</sub>(k)=min &#123;R<sub>ℒ</sub>(w): ℒ∈ℋ, w∈S<sub>ℒ</sub>, K<sub>U</sub>(ℒ)≤k&#125;.</div><span>Eq. 8</span><p>The Law–Fact Frontier is the lower Pareto boundary of achievable points <i>(K<sub>U</sub>(ℒ),R<sub>ℒ</sub>(w))</i>.</p></div>
+
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Theorem 7</span><strong>Frontier bounds</strong></div>
+          <p>Where finite, <i>F<sub>w</sub>(k)</i> is integer-valued, non-increasing, and lies in <i>[0,n]</i>. If <i>ℋ</i> contains the unconstrained law, the frontier reaches rank <i>n</i> at constant law complexity up to encoding overhead. If it contains singleton laws, it reaches rank <i>0</i> by complexity at most <i>K<sub>U</sub>(w)+O(1)</i>.</p>
+          <details><summary>Proof</summary><p>Increasing <i>k</i> enlarges the feasible law set, so the minimum cannot increase. Universal bounds come from Theorem 2. The unconstrained law admits the full product and has rank <i>n</i>. A program containing a shortest description of <i>w</i> can define the singleton set <i>&#123;w&#125;</i>, whose rank is zero. ∎</p></details>
+        </div>
+
+        <figure class="rank-frontier-figure">
+          <svg viewBox="0 0 1000 510" role="img" aria-label="Law–Fact Pareto frontier with dominated explanations">
+            <g class="frontier-grid"><line x1="90" y1="65" x2="90" y2="430"></line><line x1="90" y1="430" x2="935" y2="430"></line><line x1="90" y1="330" x2="935" y2="330"></line><line x1="90" y1="230" x2="935" y2="230"></line><line x1="90" y1="130" x2="935" y2="130"></line></g>
+            <g class="frontier-dominated"><circle cx="286" cy="112" r="7"></circle><circle cx="444" cy="185" r="7"></circle><circle cx="593" cy="244" r="7"></circle><circle cx="722" cy="299" r="7"></circle><circle cx="830" cy="374" r="7"></circle></g>
+            <path class="frontier-path" d="M130 105 H236 V169 H385 V252 H559 V323 H754 V382 H902"></path>
+            <g class="frontier-points"><circle cx="130" cy="105" r="11"></circle><circle cx="236" cy="169" r="11"></circle><circle cx="385" cy="252" r="11"></circle><circle cx="559" cy="323" r="11"></circle><circle cx="754" cy="382" r="11"></circle></g>
+            <text x="130" y="87">simple law</text><text x="733" y="365">strong law</text><text x="328" y="477">K(ℒ) / BITS OF ADMISSIBLE LAW</text><text x="37" y="315" transform="rotate(-90 37 315)">Rℒ(w) / INDEPENDENT FACTS</text>
+          </svg>
+          <figcaption><b>Figure 2.</b> Schematic only. Grey theories are dominated: another admissible law is no more complex and leaves no more independent facts.</figcaption>
+        </figure>
+
+        <div class="rank-prose">
+          <h3>Explanatory Leverage</h3>
+          <p>For two frontier budgets <i>k₂&gt;k₁</i>, define secant leverage as the number of rank units removed per additional bit of allowed law:</p>
+        </div>
+        <div class="rank-equation"><div>Λ(k₁,k₂)= [F<sub>w</sub>(k₁)−F<sub>w</sub>(k₂)] / (k₂−k₁).</div><span>Eq. 9</span><p>Because the frontier is non-increasing, <i>0≤Λ≤n/(k₂−k₁)</i>. Marginal leverage is <i>λ(k)=F(k−1)−F(k)</i>, and rank reductions telescope across a sequence of budgets.</p></div>
+        <div class="rank-prose">
+          <p>This formalises “facts explained per bit of theory” only after the law language and primitive schema are fixed. Kolmogorov complexity is uncomputable and changes by an additive constant with the universal machine. Practical work must publish a computable code length <i>ℓ(ℒ)</i>—for example a grammar, circuit, equation language, or solver encoding—and treat leverage as representation-relative.</p>
+          <p>A July 2026 paper on Representational Complexity similarly shows that arbitrary structure-plus-rule formalisms can shift information between components unless admissible representations are restricted <a href="#ref-5">[5]</a>. The Law–Fact Frontier adopts that restriction explicitly. Recent work on causal description gaps quantifies extra bits required between observational, interventional, and counterfactual answer oracles <a href="#ref-6">[6]</a>; World Rank addresses a different residual: which actual coordinate values still distinguish a complete lawful world.</p>
+        </div>
+      </section>
+
+      <section class="rank-section rank-map-section" id="fact-maps">
+        <header><span>08</span><div><p>Factual geography</p><h2>Where are the facts?</h2></div></header>
+        <div class="rank-prose">
+          <p class="rank-lead">A minimum basis need not be unique. Any spatial map of “the independent facts” must represent that ambiguity instead of selecting one convenient basis and calling it reality.</p>
+          <p>Let <i>ℬ<sub>min</sub>(w)</i> be the set of all minimum world bases. Define the minimum-basis participation of coordinate <i>i</i> and the factual backbone:</p>
+        </div>
+        <div class="rank-equation"><div>p<sub>i</sub>(w)= |&#123;B∈ℬ<sub>min</sub>(w):i∈B&#125;| / |ℬ<sub>min</sub>(w)|, &nbsp;&nbsp; C(w)=⋂<sub>B∈ℬmin</sub>B.</div><span>Eq. 10</span><p><i>pᵢ</i> measures participation under the uniform distribution over minimum bases; <i>C</i> contains facts required by every minimum explanation.</p></div>
+        <div class="rank-theorem">
+          <div class="rank-theorem-head"><span>Proposition 1</span><strong>Conservation of basis participation</strong></div>
+          <div>Σ<sub>i=1</sub><sup>n</sup> p<sub>i</sub>(w)=R<sub>ℒ</sub>(w).</div>
+          <details><summary>Proof</summary><p>Average the identity <i>Σᵢ1[i∈B]=|B|=R</i> over all minimum bases and interchange the two finite sums. ∎</p></details>
+        </div>
+
+        <figure class="rank-fact-map">
+          <div class="fact-map-grid">
+            @for (cell of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47]; track cell) {
+              <i [class]="cell === 10 || cell === 19 || cell === 28 ? 'fact-core' : cell % 7 === 0 || cell % 11 === 0 ? 'fact-high' : cell % 5 === 0 ? 'fact-mid' : 'fact-low'"></i>
+            }
+          </div>
+          <div class="fact-map-key"><span><i class="fact-core"></i>backbone</span><span><i class="fact-high"></i>high participation</span><span><i class="fact-mid"></i>basis-dependent</span><span><i class="fact-low"></i>derived here</span></div>
+          <figcaption><b>Figure 3.</b> Illustrative factual-density field, not empirical data. A spacetime map can aggregate <i>pᵢ</i> over regions, time slices, boundaries, or causal neighbourhoods.</figcaption>
+        </figure>
+
+        <div class="rank-question-grid">
+          <article><span>Q1</span><p>Do minimum bases concentrate in initial conditions, boundaries, defects, or interfaces?</p></article>
+          <article><span>Q2</span><p>Can a small spatial region participate in every basis for an arbitrarily large distant region?</p></article>
+          <article><span>Q3</span><p>Can minimum bases converge to fractal sets as spacetime resolution increases?</p></article>
+          <article><span>Q4</span><p>Does chaos change factual rank, or only the sensitivity and cost of recovering a fixed basis?</p></article>
+          <article><span>Q5</span><p>Which phase transitions appear as discontinuities in rank, backbone, or basis multiplicity?</p></article>
+          <article><span>Q6</span><p>Can equal-entropy systems have radically different disagreement hypergraphs and World Rank?</p></article>
+        </div>
+        <div class="rank-prose">
+          <p>These are questions, not consequences of the definition. In particular, emergence does not automatically “collapse rank,” and chaos does not create independent facts in a closed deterministic history. The framework becomes scientifically useful only when those claims are converted into families of laws, asymptotic limits, and measurable comparisons.</p>
+        </div>
+      </section>
+
+      <section class="rank-section" id="programme">
+        <header><span>09</span><div><p>From concept to research</p><h2>Programme and limits</h2></div></header>
+        <div class="rank-programme-grid">
+          <article><span>01</span><h3>Boolean constraints</h3><p>Encode laws in CNF or circuits. Use SAT counter-worlds and incremental hitting set to compute exact bases, backbones, and near-minimum bases.</p></article>
+          <article><span>02</span><h3>Linear and algebraic systems</h3><p>Use nullity in the affine case; Gröbner bases, elimination, and finite-field solvers for polynomial constraints. Compare algebraic dimension with coordinate World Rank.</p></article>
+          <article><span>03</span><h3>Cellular automata</h3><p>Compute rank by rule, history length, boundary condition, and admissible time slices. Distinguish initial-slice rank from unrestricted diagnostic rank.</p></article>
+          <article><span>04</span><h3>Graphs and networks</h3><p>Treat completions consistent with graph laws as possible worlds. Search for edge or vertex facts that identify one completion among alternatives.</p></article>
+          <article><span>05</span><h3>Structural causal models</h3><p>Define separate observational, interventional, and counterfactual world-sets. Never infer causal basis claims from observational equality alone <a href="#ref-12">[12]</a>.</p></article>
+          <article><span>06</span><h3>Continuous dynamics</h3><p>Use local observability and differential rank for exact-state reconstruction, then study global branch ambiguity separately.</p></article>
+        </div>
+
+        <div class="rank-prose">
+          <h3>What must remain fixed</h3>
+          <p>World Rank is not invariant under arbitrary re-encoding. A single new primitive variable whose value names the whole world collapses rank to one. Duplicating derived facts inflates the denominator of Inevitability. Grouping bits into one large-domain coordinate can reduce cardinal rank without reducing specification cost. These are not edge cases; they are the reason a published result must include the schema, domains, eligible basis coordinates, target facts, law semantics, and cost model.</p>
+          <h3>What the framework does not measure</h3>
+          <p>World Rank is not entropy, mutual information, logical depth, computational irreducibility, causal influence, stochastic complexity, or the runtime needed to derive consequences. Two worlds can have the same rank while one requires astronomical computation from its basis. A future theory can place derivation cost beside World Rank, but should not hide both inside one number.</p>
+          <h3>Relationship to neighbouring fields</h3>
+        </div>
+
+        <table class="rank-neighbour-table">
+          <thead><tr><th>Neighbour</th><th>Shared question</th><th>Difference in this paper</th></tr></thead>
+          <tbody>
+            <tr><th>Teaching dimension <a href="#ref-1">[1]</a></th><td>Which labelled coordinates uniquely identify a target concept?</td><td>Mathematically equivalent finite core; reinterpreted as law-relative factual determination.</td></tr>
+            <tr><th>Database keys <a href="#ref-2">[2]</a></th><td>Which columns identify tuples?</td><td>Global key identifies every world with one set; World Rank permits a basis tailored to the actual world.</td></tr>
+            <tr><th>Algorithmic statistics <a href="#ref-3">[3]</a></th><td>How should model complexity trade against residual data?</td><td>Residual is coordinate identification rank, not log model cardinality or two-part description length.</td></tr>
+            <tr><th>Observability <a href="#ref-7">[7]</a></th><td>Which measurements reconstruct state?</td><td>World Rank is static and exact over complete lawful assignments; observability adds dynamics, outputs, and often local differential structure.</td></tr>
+            <tr><th>Computational mechanics <a href="#ref-8">[8]</a></th><td>What minimal representation preserves prediction?</td><td>Causal states compress predictive equivalence classes; World Rank identifies one complete world within a fixed law.</td></tr>
+            <tr><th>Generating partitions <a href="#ref-10">[10]</a></th><td>Which symbolic observations retain dynamical state?</td><td>Partitions encode trajectories generally; a world basis is target-specific coordinate evidence.</td></tr>
+          </tbody>
+        </table>
+
+        <aside class="rank-publication-claim">
+          <span>Defensible publication claim</span>
+          <p><strong>World Rank is a domain interpretation and synthesis of an existing specification invariant, not a newly discovered invariant.</strong> The paper contributes explicit schema rules, the disagreement-hypergraph theorem in world language, structural results, the corrected spacetime bound, a rank-based Law–Fact Frontier, explanatory leverage, and minimum-basis factual maps.</p>
+        </aside>
+      </section>
+
+      <section class="rank-conclusion">
+        <span>10 / Conclusion</span>
+        <h2>An explanation is a mechanism that turns facts into consequences.</h2>
+        <div>
+          <p>World Rank asks how many actual values must survive that conversion. It does not reward a world for being easy to print, and it does not reward a law merely for being short. It asks which alternatives the law still permits and how much primitive evidence is required to eliminate them around this world.</p>
+          <p>The Law–Fact Frontier then asks the more scientific question: how many facts does a law buy? A powerful theory moves down the frontier efficiently. But the movement is meaningful only inside a declared language and schema. The discipline is the point. Without it, facts can be hidden inside laws, laws can be hidden inside variables, and inevitability can be manufactured by duplicating consequences.</p>
+          <p>With those rules fixed, “How many facts does reality contain?” becomes a family of exact finite problems, solvable special cases, hard optimisation problems, and careful continuous analogues. The answer is not a universal number. It is a geometry of determination.</p>
+        </div>
+      </section>
+
+      <section class="rank-references" id="references">
+        <header><span>11</span><div><p>Primary sources</p><h2>References</h2></div></header>
+        <ol>
+          @for (reference of references; track reference.id) {
+            <li [id]="'ref-' + reference.id"><span>{{ reference.id.toString().padStart(2, '0') }}</span><p>{{ reference.authors }}. “{{ reference.title }}.” <i>{{ reference.publication }}</i>, {{ reference.year }}.</p><a [href]="reference.url" target="_blank" rel="noreferrer">↗</a></li>
+          }
+        </ol>
+      </section>
+
+      <section class="rank-citation">
+        <span>Suggested citation</span>
+        <p>Austin, Gavin. “How Many Facts Does Reality Actually Contain? World Rank, Factual Bases, and the Geometry of Explanation.” <i>Working Theory</i>, white paper WT–WP–002, version 1.0, 28 August 2026.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="rank-footer">
+    <div><strong>Working Theory</strong><span>WT–WP–002 / Version 1.0</span></div>
+    <p>Formal research note · finite exact theory</p>
+    <div><button type="button" (click)="printPaper()">Print / save PDF</button><a routerLink="/">Return to index ↗</a></div>
+  </footer>
+</div>

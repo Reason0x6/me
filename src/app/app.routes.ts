@@ -16,5 +16,15 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./working-theory/internet-shape-paper.component').then((module) => module.InternetShapePaperComponent),
   },
+  {
+    path: 'papers/how-many-facts-does-reality-contain',
+    loadComponent: () =>
+      import('./working-theory/world-rank-paper.component').then((module) => module.WorldRankPaperComponent),
+  },
+  {
+    path: 'papers/zero-trust-voice-verification',
+    loadComponent: () =>
+      import('./working-theory/zero-trust-voice-paper.component').then((module) => module.ZeroTrustVoicePaperComponent),
+  },
   { path: '**', redirectTo: '' },
 ];

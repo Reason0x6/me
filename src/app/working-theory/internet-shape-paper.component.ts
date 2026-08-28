@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, inject, signal } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 
@@ -44,7 +44,14 @@ export class InternetShapePaperComponent {
 
   constructor() {
     this.title.setTitle('What Shape Is the Internet? — Working Theory');
-    this.document.defaultView?.scrollTo({ top: 0 });
+    afterNextRender(() => {
+      const sectionId = decodeURIComponent(this.document.location.hash.slice(1));
+      if (sectionId) {
+        this.document.getElementById(sectionId)?.scrollIntoView({ block: 'start' });
+      } else {
+        this.document.defaultView?.scrollTo({ top: 0 });
+      }
+    });
   }
 
   printPaper(): void {
