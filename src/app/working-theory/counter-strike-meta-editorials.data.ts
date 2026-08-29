@@ -158,9 +158,9 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
     ],
   },
   {
-    slug: 'how-post-ropz-vitality-rebuilt-the-superteam',
+    slug: 'how-ropz-era-vitality-rebuilt-the-superteam',
     number: '031',
-    title: 'How Post-ropz Vitality Rebuilt the Superteam',
+    title: 'How Vitality’s ropz Era Rebuilt the Superteam',
     shortTitle: 'Vitality’s modern superteam',
     dek: 'The roster did not dominate because it collected the five largest names. It dominated because one signing redistributed space, information and agency across every role.',
     verdict: 'Vitality’s innovation is architectural: stars without role collision.',
@@ -185,7 +185,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
           'ropz replaced Spinx in January 2025. On paper, it was a premium one-for-one lurker upgrade. In practice, the move changed the geometry of the whole five. ropz could absorb difficult CT anchors while actively taking information from them; mezii moved toward more comfortable and active positions; flameZ retained aggressive space-taking; ZywOo remained the universal tactical release valve; apEX gained a second veteran voice whose preferred lurks could be integrated into the call rather than merely permitted after it.',
           'That is why Vitality’s contribution should be described as roster and tactical architecture rather than a wholly new style of Counter-Strike. Entry–support–lurk structure is old. Active anchoring is not new. Shared mid-round calling is not new. The innovation is demonstrating, at record-setting scale, how those familiar parts can prevent a modern multi-star lineup from collapsing into role duplication.',
         ],
-        callout: 'The post-ropz lesson is not “sign more stars.” It is “make every star increase someone else’s playable map.”',
+        callout: 'The lesson of Vitality’s ropz era is not “sign more stars.” It is “make every star increase someone else’s playable map.”',
       },
       {
         number: '02',
@@ -197,7 +197,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
           'The cascade preserved distinct jobs. flameZ supplied pace and first contact. ZywOo could AWP, rifle, open or close without also having to manufacture every mid-round read. apEX remained the final caller but did not monopolise sensing. mezii became a flexible connector rather than a displaced anchor. ropz provided site stability, lurk initiative and late-round conversion. Five roles became clearer even as the team gained options.',
         ],
         table: {
-          caption: 'The post-ropz role network',
+          caption: 'Vitality’s ropz-era role network',
           headers: ['Player', 'Primary tactical responsibility', 'What the structure releases'],
           rows: [
             ['apEX', 'Tempo, first plan, final call', 'Can call around high-quality live information'],
@@ -295,7 +295,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
         title: 'Their decline and recovery are part of the tactical legacy, not an exception to it.',
         paragraphs: [
           'Vitality’s seven-title streak ended, MOUZ broke the 37-series run in Cologne, and four events passed without another trophy. Opponents gained a large shared demo set; repeated matchups exposed preferences; the same clear roles that accelerated integration supplied better anti-strat priors. Dominance creates its own data exhaust.',
-          'That period prevents an inflated innovation claim. Post-ropz Vitality did not discover an uncounterable formation. Their structure could become readable, and ropz himself acknowledged that fixed roles can make a team easier to prepare for. The answer was not to abandon the architecture. After meaningful practice time, Vitality won EPL Season 22 and then the Budapest Major, restoring confidence while keeping the same five.',
+          'That period prevents an inflated innovation claim. Vitality’s ropz-era roster did not discover an uncounterable formation. Their structure could become readable, and ropz himself acknowledged that fixed roles can make a team easier to prepare for. The answer was not to abandon the architecture. After meaningful practice time, Vitality won EPL Season 22 and then the Budapest Major, restoring confidence while keeping the same five.',
           'This is strategically important. A role system should be judged not only by the initial peak, but by whether it can absorb counter-preparation without requiring a roster change. Vitality’s later recovery showed that the stable baseline could host new variations. Structure and adaptation were not opposites; the former made it possible to diagnose what the latter needed to change.',
         ],
         callout: 'A tactical identity becomes historically serious when it can be countered, revised and made dangerous again without changing its five players.',
@@ -322,7 +322,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
           ],
           note: 'This is a roster-evaluation framework inferred from Vitality’s role changes, not a claim of a formally published team doctrine.',
         },
-        callout: 'The post-ropz superteam is not five players who can carry. It is five jobs arranged so that carrying one never prevents another from working.',
+        callout: 'Vitality’s ropz-era superteam is not five players who can carry. It is five jobs arranged so that carrying one never prevents another from working.',
       },
     ],
     sources: [

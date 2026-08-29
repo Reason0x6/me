@@ -32,7 +32,7 @@ describe('COUNTER_STRIKE_EDITORIALS', () => {
 
   it('publishes separate, evidence-led tactical legacies for Astralis and Vitality', () => {
     const astralis = findCounterStrikeEditorial('how-astralis-wrote-the-grammar-of-modern-counter-strike');
-    const vitality = findCounterStrikeEditorial('how-post-ropz-vitality-rebuilt-the-superteam');
+    const vitality = findCounterStrikeEditorial('how-ropz-era-vitality-rebuilt-the-superteam');
 
     expect(astralis?.sections.length).toBe(7);
     expect(astralis?.heroStats.some((stat) => stat.value === '29.0')).toBeTrue();

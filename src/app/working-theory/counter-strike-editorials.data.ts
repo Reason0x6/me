@@ -429,7 +429,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
     shortTitle: 'Vitality vs Astralis',
     dek: 'Vitality own the stronger peak and the finest single season. Astralis still own the longer reign, the deeper Major run and the game’s most consequential dynasty. Which evidence should decide “greatest”?',
     verdict: 'Astralis—by the narrowest defensible margin.',
-    verdictDetail: 'Post-ropz Vitality are the best peak team Counter-Strike has measured and produced the strongest single year. Astralis remain the greatest complete team because three consecutive Majors, 58 weeks at number one, greater same-roster volume and strategic influence still outweigh Vitality’s statistical peak.',
+    verdictDetail: 'Vitality’s ropz-era roster is the best peak team Counter-Strike has measured and produced the strongest single year. Astralis remain the greatest complete team because three consecutive Majors, 58 weeks at number one, greater same-roster volume and strategic influence still outweigh Vitality’s statistical peak.',
     readingMinutes: 19,
     publishedAt: '2026-08-28',
     dataCutoff: '28 August 2026',
@@ -504,7 +504,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
           ],
           note: 'Percentage points are not percentages of the opposing value. Challenger sets are era-relative and selected by contemporaneous competitive proximity.',
         },
-        callout: 'If “best ever” means the highest sustained level across one tournament season, the answer is post-ropz Vitality.',
+        callout: 'If “best ever” means the highest sustained level across one tournament season, the answer is Vitality’s ropz-era roster.',
       },
       {
         number: '04',
@@ -600,7 +600,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         paragraphs: [
           'Vitality win peak event conversion, peak map rate, long-form series streak, challenger control, Grand Slams and the single-season résumé. Astralis win total trophies in the comparable dynasty window, Major count, consecutive Major count, number-one longevity, full-roster sample, top-three volume, five-player ranking depth and strategic influence.',
           'Counting category wins would be arbitrary because one Major should not equal one percentage point of map rate, and “influence” has no natural unit. The better decision rule is lexicographic. First require an all-time peak: both qualify. Then require sustained championship dominance: both qualify. Then use repeated performance at the highest-stakes common event and duration at number one as tie-breakers. Astralis win both.',
-          'That produces a narrow but clear answer. Astralis’ Magisk roster remains the greatest team in Counter-Strike history. Post-ropz Vitality are the best team at peak, the author of the greatest individual season, and already the closest challenger. This is not a lifetime award immune to new evidence. A third roster Major plus another sustained period at number one would move Vitality through the remaining Astralis advantages and should reopen—or end—the debate.',
+          'That produces a narrow but clear answer. Astralis’ Magisk roster remains the greatest team in Counter-Strike history. Vitality’s ropz-era roster is the best team at peak, the author of the greatest individual season, and already the closest challenger. This is not a lifetime award immune to new evidence. A third roster Major plus another sustained period at number one would move Vitality through the remaining Astralis advantages and should reopen—or end—the debate.',
         ],
         table: {
           caption: 'GOAT scorecard without arbitrary weights',

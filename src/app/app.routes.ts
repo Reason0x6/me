@@ -32,6 +32,11 @@ export const routes: Routes = [
       import('./working-theory/counter-strike-hub.component').then((module) => module.CounterStrikeHubComponent),
   },
   {
+    path: 'counter-strike/editorials/how-post-ropz-vitality-rebuilt-the-superteam',
+    redirectTo: 'counter-strike/editorials/how-ropz-era-vitality-rebuilt-the-superteam',
+    pathMatch: 'full',
+  },
+  {
     path: 'counter-strike/editorials/:slug',
     loadComponent: () =>
       import('./working-theory/counter-strike-editorial.component').then((module) => module.CounterStrikeEditorialComponent),
