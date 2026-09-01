@@ -20,10 +20,10 @@ describe('CounterStrikeHubComponent', () => {
 
     expect(page.querySelector('h1')?.textContent).toContain('The server');
     expect(page.querySelector('h1')?.textContent).toContain('room.');
-    expect(page.textContent).toContain('Vitality, Astralis, and the Greatest Team of All Time');
+    expect(page.textContent).toContain('Astralis Are Still the Greatest Counter-Strike Team of All Time');
     expect(page.textContent).toContain('VRS Is Not a Leaderboard');
-    expect(page.textContent).toContain('Forecasting the Rest of 2026');
-    expect(page.textContent).toContain('The ropz Playoff Effect—and the Friday Dip');
+    expect(page.textContent).toContain('Spirit Lead the Rest-of-2026 S-Tier Forecast');
+    expect(page.textContent).toContain('ropz Plays Better on Weekends');
     expect(editorialLinks.length).toBe(10);
   });
 

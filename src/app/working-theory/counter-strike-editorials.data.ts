@@ -60,11 +60,11 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
   {
     slug: 'is-team-spirit-the-best-team-in-the-world',
     number: '026',
-    title: 'Is Team Spirit Actually the Best Team in the World?',
-    shortTitle: 'The case for Spirit',
-    dek: 'The rankings say yes. The recent form says yes. The trophy cabinet says “not quite an era.” A measured verdict on what best should mean in an unstable field.',
-    verdict: 'Yes—for now.',
-    verdictDetail: 'Spirit have the strongest current claim, but “best today” is not the same proposition as “dominant across the season.” The former is supported; the latter still needs another elite title or a Major.',
+    title: 'Team Spirit Are the Best Team in the World',
+    shortTitle: 'Spirit are number one',
+    dek: 'Spirit lead every current measure that matters: ranking, recent series form, opponent quality, map breadth and championship conversion.',
+    verdict: 'Spirit are the best team in the world.',
+    verdictDetail: 'They rank first, win 85.7% of recent series, reached four of five finals and converted the deepest available field at EWC. That makes them the current number one. It does not make their 2026 run a historical era.',
     readingMinutes: 13,
     publishedAt: '2026-08-28',
     dataCutoff: '28 August 2026',
@@ -78,19 +78,19 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
     sections: [
       {
         number: '01',
-        eyebrow: 'Define the claim',
-        title: '“Best” is a current estimate, not a lifetime achievement award.',
+        eyebrow: 'The standard',
+        title: 'Current strength crowns Spirit number one.',
         paragraphs: [
           'A world ranking, a trophy count and a head-to-head result answer different questions. Rankings estimate strength over a weighted history. Trophies measure conversion at specific events. Head-to-heads expose stylistic matchups. Treating any one of them as the definition of “best” guarantees a confident answer built on a partial sample.',
-          'The cleanest operational definition is this: if the elite field played a serious event tomorrow, which team would deserve the shortest pre-tournament price before the bracket was known? On 28 August, Spirit are the answer. They are ranked first, have won 85.7% of their series over the previous three months, and have just completed the hardest available act of validation: winning a 32-team event while eliminating Vitality and then surviving a best-of-five final.',
-          'That conclusion is deliberately temporary. Counter-Strike lineups, map pools and tournament formats move too quickly for “best” to behave like a permanent title. A useful verdict should be capable of changing after Porto rather than pretending EWC ended the argument forever.',
+          'The operational definition is direct: the best team is the one that deserves the shortest pre-tournament price against the elite field. On 28 August, that team is Spirit. They rank first, won 85.7% of their series over the previous three months, and completed the hardest available validation by winning a 32-team event through Vitality and a best-of-five final.',
+          '“Best” is a current competitive title, not a permanent historical honour. Counter-Strike lineups, maps and form move constantly. At this cut-off, every major current indicator points to Spirit.',
         ],
         stats: [
           { value: '6–0', label: 'Series after the opening upset', detail: 'Spirit did not lose another series in Paris' },
           { value: '13–3', label: 'Maps in those six series', detail: '81.3% after the 10–13 BO1 loss to JiJieHao' },
-          { value: '4 / 5', label: 'Recent finals reached', detail: 'Reported before the EWC final; conversion remains the question' },
+          { value: '4 / 5', label: 'Recent finals reached', detail: 'Elite consistency across the current event cycle' },
         ],
-        callout: 'The strongest claim is not “Spirit cannot lose.” It is “no rival currently combines ranking, recent win rate, bracket quality and map breadth as well.”',
+        callout: 'No rival combines ranking, recent win rate, bracket quality and map breadth as well as Spirit.',
       },
       {
         number: '02',
@@ -123,8 +123,8 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         title: 'Spirit are not balanced—and that is not the same as being fragile.',
         paragraphs: [
           'The three-month player sample describes a steeply shaped roster. donk posted a 1.43 Rating 3.0 with 0.93 kills and 0.67 deaths per round. sh1ro supplied the second positive engine at 1.16, 0.74 KPR and 0.55 DPR. The remaining three players sat near or just below 1.00. This is not five equal sources of output; it is a superstar, an unusually efficient AWPer, and a support structure built to preserve their leverage.',
-          'Concentration creates a valid concern: if the top pair regress, does the entire team collapse? The EWC final is evidence against the strongest version of that criticism. zont1x produced a 1.19 rating and tN1R 1.10 across four maps; Spirit won despite sh1ro posting only 60.6 ADR and magixx finishing negative. Their ceiling still came from donk, but the championship did not require every veteran to peak at once.',
-          'The correct statistical description is therefore “star-dependent but not single-point dependent.” donk raises the expected round value more than any teammate. Yet the supporting cast can redistribute output across a long series, which is precisely what a title contender needs when a best-of-five exposes every weak map and every quiet player.',
+          'The EWC final proves that the roster survives an uneven night from the top pair. zont1x produced a 1.19 rating and tN1R 1.10 across four maps; Spirit won despite sh1ro posting only 60.6 ADR and magixx finishing negative. Their ceiling comes from donk, but the championship did not require every veteran to peak at once.',
+          'Spirit are star-dependent but not single-point dependent. donk raises the expected round value more than any teammate, while the supporting cast redistributes output across long series. That shape wins best-of-fives without pretending all five players contribute equally.',
         ],
         bars: [
           { label: 'donk', value: 100, display: '1.43', detail: '0.93 KPR / 0.67 DPR' },
@@ -133,7 +133,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
           { label: 'zont1x', value: 70, display: '1.00', detail: 'three-month Rating 3.0' },
           { label: 'magixx', value: 68, display: '0.97', detail: 'three-month Rating 3.0' },
         ],
-        callout: 'A 1.43–1.16 top-two creates a 0.27 rating gap. The roster’s shape is asymmetric by design; the test is whether the lower three keep supplying situational impact.',
+        callout: 'A 1.43–1.16 top two creates a 0.27 rating gap. Spirit’s asymmetric roster turns that concentration into championships.',
       },
       {
         number: '04',
@@ -156,14 +156,14 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       },
       {
         number: '05',
-        eyebrow: 'The limit of the claim',
+        eyebrow: 'The boundary',
         title: 'The numbers crown a current number one, not an era.',
         paragraphs: [
           'The counter-case is straightforward. Spirit have two titles in 2026, but they lost the IEM Rio final to Vitality, lost the BLAST Bounty final 1–3 to MOUZ only three weeks before EWC, and exited the Cologne Major in the semi-final. One win over Vitality ends a streak; it does not erase the six defeats that created it. A 7–0 current match streak can vanish in one bad weekend.',
-          'That history does not disqualify Spirit from being best. It prevents a stronger, less supportable claim: that their superiority is settled across formats and opponents. An era requires repeated title conversion, a durable positive record against the closest rivals, and preferably a Major. Spirit currently own the predictive crown. They do not yet own historical closure.',
-          'So the verdict is yes, with a deliberately short expiry date. Ranking first, winning 85.7% of recent series, reaching four of five recent finals and converting EWC is enough to place Spirit at the front. The next question is not whether the Paris trophy was real. It is whether the same statistical shape survives when every opponent begins the next event by preparing specifically for it.',
+          'That history separates current supremacy from an era. An era requires repeated title conversion, a durable positive record against the closest rivals and a Major. Spirit own the current crown; their two-title 2026 season remains below that historical threshold.',
+          'Ranking first, winning 85.7% of recent series, reaching four of five recent finals and converting EWC places Spirit at the front. The Paris trophy completed the current number-one case.',
         ],
-        callout: 'Best team now: supported. Best team of 2026: arguable. A Spirit era: not yet demonstrated.',
+        callout: 'Spirit are the best team now. Their current run is not yet an era.',
       },
     ],
     sources: [
@@ -179,8 +179,8 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
     title: 'How Spirit Finally Solved Vitality',
     shortTitle: 'Spirit vs Vitality',
     dek: 'A six-series curse ended 2–1, but the aggregate score hides the mechanism: two maps at parity, one decider blown apart, and an extraordinary concentration of output.',
-    verdict: 'They solved the match, not yet the matchup.',
-    verdictDetail: 'Spirit’s resilience carried the series to Mirage; donk and tN1R then made the decider non-competitive. That is a convincing win and a plausible tactical breakthrough, but one series cannot establish a stable reversal.',
+    verdict: 'Spirit solved Vitality by surviving to Mirage and unleashing donk.',
+    verdictDetail: 'Anubis and Nuke finished 27–27 in aggregate. donk and tN1R then turned the Mirage decider into a 13–3 rupture. Spirit ended six consecutive losses through resistance on the first two maps and overwhelming star power on the third.',
     readingMinutes: 14,
     publishedAt: '2026-08-28',
     dataCutoff: '28 August 2026',
@@ -198,7 +198,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         title: 'Six losses create a story. They do not create a permanent law.',
         paragraphs: [
           'Vitality had beaten Spirit in six consecutive series stretching back to October 2024. The run included the 2025 Katowice final, where Vitality won 3–0, and repeated close-series confirmations afterward. By EWC, “Vitality own Spirit” was no longer only fan shorthand; it was the most relevant prior in the matchup.',
-          'But a streak is a sequence, not a causal explanation. Rosters change, form changes, maps rotate, and the same pairing can contain both blowouts and coin-flip endings. The analytical question is not whether the seventh result contradicted the first six. It is which parts of the new series looked structurally different enough to be repeatable.',
+          'A streak is a sequence, not a causal explanation. Rosters change, form changes, maps rotate, and the same pairing contains both blowouts and coin-flip endings. The seventh result broke the pattern through two structural changes: Spirit held parity across the teams’ picks and created a neutral decider for donk.',
           'The answer begins with a negative finding: Spirit did not suddenly dominate the whole match. Anubis finished 13–11, Nuke 14–16, and the combined score after two maps was exactly 27–27. The entire ten-round series margin was created on Mirage. “Solved” therefore means Spirit remained alive long enough to force the matchup onto the one map where their highest-variance weapon could decide it.',
         ],
         table: {
@@ -258,7 +258,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         title: 'One half turned a close series into a historical correction.',
         paragraphs: [
           'donk went 20–5 in the first half of Mirage: four kills for every death, across only 12 rounds. Spirit reached the break 9–3 and closed 13–3, including the final round from a 3v5 disadvantage. The decider accounted for 25% of the series’ rounds but 100% of Spirit’s net round differential.',
-          'That concentration is why the map should be interpreted in two ways at once. It is decisive evidence that Spirit can break Vitality on a neutral map under elimination pressure. It is also high-variance evidence: a 20–5 half from the best rifler in the world is not a baseline that a tactical model can simply schedule for the next meeting.',
+          'That concentration gives the map two simultaneous meanings. It is decisive evidence that Spirit can break Vitality on a neutral map under elimination pressure. It is also high-variance evidence: a 20–5 half from the best rifler in the world is not a repeatable tactical baseline.',
           'The repeatable layer sits beneath the superstar performance. Spirit reached Mirage without tilting after losing Nuke in overtime, gave donk repeated opportunities to take initiative, and had tN1R sustaining pressure across the full series. Individual brilliance was the visible result; the structure’s job was to keep the game state receptive to it.',
         ],
         bars: [
@@ -270,14 +270,14 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       },
       {
         number: '05',
-        eyebrow: 'What “solved” should mean',
-        title: 'A matchup is solved only when the answer survives the rematch.',
+        eyebrow: 'What Spirit solved',
+        title: 'Spirit broke the matchup by reaching the decider at parity.',
         paragraphs: [
-          'There are three plausible interpretations. The weakest is pure variance: donk produced an outlier half and Spirit happened to win the close map. The middle interpretation is matchup progress: Spirit’s resilience, T-side Anubis and willingness to reach Mirage created a better distribution of possible outcomes. The strongest is a durable solution: Spirit have found a repeatable veto and game-plan edge that will remain after Vitality reviews the demos.',
-          'The evidence strongly rejects the idea that nothing changed, but it cannot yet distinguish the middle from the strongest interpretation. The sample contains one new series and three maps. A rough binomial view makes the limitation obvious: moving from 0–6 to 1–6 changes the observed Spirit series rate from 0% to 14.3%, but the interval around seven trials remains enormous and is not a useful estimate of the next match.',
-          'The most honest verdict is therefore narrower than the title. Spirit solved the EWC quarter-final by reaching the decider at parity and then weaponising the largest individual gap in the server. To prove they solved Vitality, they must reproduce the conditions after Vitality has had time to remove them.',
+          'Spirit’s solution had three parts: survive Vitality’s strongest stretches, keep the teams’ map picks level, and reach Mirage with donk free to dictate the pace. That sequence replaced six straight losses with a 40–30 round victory and the EWC title path.',
+          'The sample contains one new series and three maps, so it establishes the mechanism of this reversal rather than a permanent head-to-head law. Moving from 0–6 to 1–6 changes the historical ledger; the 13–3 decider explains how the change happened.',
+          'Spirit solved the EWC quarter-final by reaching the decider at parity and weaponising the largest individual gap in the server. That is the finding: resilience created the opportunity, and donk converted it into a rout.',
         ],
-        callout: 'The next series is not merely another result. It is the first out-of-sample test of the proposed solution.',
+        callout: 'Spirit’s solution was parity on the picks and destruction on the decider.',
       },
     ],
     sources: [
@@ -289,11 +289,11 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
   {
     slug: 'fut-esports-cinderella-run-or-tier-one-arrival',
     number: '028',
-    title: 'FUT Esports: Cinderella Run or the Arrival of a Tier-One Team?',
-    shortTitle: 'The FUT arrival test',
-    dek: 'A first Big Event final can be variance. Beating the same elite opponent three times, winning a LAN title and surviving pressure in different ways looks more like a team changing tiers.',
-    verdict: 'Arrival—with conditions.',
-    verdictDetail: 'FUT are already a legitimate tier-one participant. They are not yet a permanent title favourite. The difference will be decided by repeat deep runs and whether their map pool survives targeted preparation.',
+    title: 'FUT Esports Have Arrived in Tier One',
+    shortTitle: 'FUT have arrived',
+    dek: 'FUT beat MOUZ three times, won PGL Bucharest, finished fourth at EPL and reached the EWC final. That is a tier-one résumé, not a Cinderella run.',
+    verdict: 'FUT are a tier-one Counter-Strike team.',
+    verdictDetail: 'Their Bucharest title, EPL fourth place, EWC final and three consecutive series wins over MOUZ establish repeatable elite resistance. They enter events as a legitimate playoff team rather than a novelty underdog.',
     readingMinutes: 15,
     publishedAt: '2026-08-28',
     dataCutoff: '28 August 2026',
@@ -384,11 +384,11 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       {
         number: '05',
         eyebrow: 'Map pool and regression risk',
-        title: 'The next tier is defended through the veto, not declared on stage.',
+        title: 'FUT’s veto supports tier one but leaves two attackable maps.',
         paragraphs: [
-          'FUT’s long-run team page shows a powerful historical Mirage record—53–18, or 74.6%—and Ancient at 34–22, or 60.7%. Dust2 and Nuke sit near 50%, while Inferno and Anubis are below 45%. Those samples span more than the exact current roster and should not be mistaken for a clean five-player forecast, but they describe the organisation’s inherited map tendencies.',
-          'Paris showed both map-pool imagination and risk. FUT picked Cache in the final despite never having played it officially and won 13–10. That is excellent anti-preparation value. They then came within overtime margins on Anubis and Ancient before Nuke collapsed 5–13. Surprise can buy one map; remaining tier one requires enough stable maps that opponents cannot remove the entire comfort zone in two bans.',
-          'Regression is now the central threat. Before EWC, teams prepared for FUT as an emerging #14. After EWC, every elite opponent has a current demo library and a reason to treat them seriously. Their future win rate may fall even if their underlying level improves, simply because schedule strength and opponent preparation rise. That is why top-eight placements over the next three events are more informative than demanding another immediate final.',
+          'FUT’s long-run team page shows a powerful historical Mirage record—53–18, or 74.6%—and Ancient at 34–22, or 60.7%. Dust2 and Nuke sit near 50%, while Inferno and Anubis are below 45%. Those samples span more than the exact current roster, but they establish the organisation’s inherited map tendencies.',
+          'Paris showed both map-pool imagination and risk. FUT picked Cache in the final despite never having played it officially and won 13–10. That supplied excellent anti-preparation value. They then came within overtime margins on Anubis and Ancient before Nuke collapsed 5–13. Surprise bought one map; Inferno and Anubis remain stable targets for a two-ban veto.',
+          'Opponent preparation is now FUT’s central pressure. Before EWC, teams prepared for an emerging #14. After EWC, every elite opponent has a current demo library and treats FUT as a playoff threat. Their tier-one status is already established; their exposed maps explain why that status does not yet make them a tournament favourite.',
         ],
         table: {
           caption: 'FUT team-history map profile',
@@ -406,14 +406,14 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       },
       {
         number: '06',
-        eyebrow: 'The arrival test',
-        title: 'Tier one is a schedule you can survive repeatedly.',
+        eyebrow: 'The conclusion',
+        title: 'FUT’s results already meet the tier-one standard.',
         paragraphs: [
           'FUT do not need to win the argument by semantics. They already beat MOUZ three times in succession, won PGL Bucharest, finished fourth at EPL and second at EWC. Calling all of that a Cinderella run requires ignoring the repeated evidence because the organisation’s name is newer than its results.',
-          'Nor should one final make them an automatic championship favourite. The EWC elite subset was separated by only four aggregate rounds across 12 fully scored maps. The FURIA win depended on multiple disadvantage conversions. The Spirit final showed a widening player floor and a decisive Nuke failure. These are not reasons to dismiss FUT; they are exactly the margins a newly arrived tier-one team still has to stabilise.',
-          'The prospective test is simple and falsifiable. Over the next three comparable LANs, reach at least two playoffs, maintain competitive series against top-ten opposition, and avoid becoming a one- or two-map veto. If that happens, Paris will look like the moment the public caught up. If it does not, EWC remains an extraordinary peak. Based on the evidence available now, arrival is the better prior.',
+          'The EWC elite subset was separated by only four aggregate rounds across 12 fully scored maps. The FURIA win depended on multiple disadvantage conversions, and the Spirit final exposed a widening player floor and a decisive Nuke failure. Those are the weaknesses of a new tier-one team, not evidence against its status.',
+          'FUT have crossed the line through repeated results against prepared elite opposition. Bucharest supplied the trophy, EPL supplied the floor, and EWC supplied the deepest bracket. Paris is the point at which the public result finally matched the team’s competitive level.',
         ],
-        callout: 'Cinderella explains surprise. It does not explain repeat wins after adaptation. FUT have crossed the participation threshold; consistency will decide whether they remain there.',
+        callout: 'Cinderella explains one surprise. FUT’s repeated elite wins establish a tier-one team.',
       },
     ],
     sources: [
@@ -427,10 +427,10 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
   {
     slug: 'vitality-astralis-greatest-team-of-all-time',
     number: '029',
-    title: 'Vitality, Astralis, and the Greatest Team of All Time',
+    title: 'Astralis Are Still the Greatest Counter-Strike Team of All Time',
     shortTitle: 'Vitality vs Astralis',
-    dek: 'Vitality own the stronger peak and the finest single season. Astralis still own the longer reign, the deeper Major run and the game’s most consequential dynasty. Which evidence should decide “greatest”?',
-    verdict: 'Astralis—by the narrowest defensible margin.',
+    dek: 'Vitality own the stronger peak and finest single season. Astralis own the longer reign, the deeper Major run and the game’s most consequential dynasty. Dynasty wins the argument.',
+    verdict: 'Astralis are the greatest team in Counter-Strike history.',
     verdictDetail: 'Vitality’s ropz-era roster is the best peak team Counter-Strike has measured and produced the strongest single year. Astralis remain the greatest complete team because three consecutive Majors, 58 weeks at number one, greater same-roster volume and strategic influence still outweigh Vitality’s statistical peak.',
     readingMinutes: 19,
     publishedAt: '2026-08-28',
@@ -446,7 +446,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       {
         number: '01',
         eyebrow: 'Rules before rankings',
-        title: '“Greatest” contains at least three different questions.',
+        title: 'Greatness is peak, season and dynasty—and dynasty decides it.',
         paragraphs: [
           'The greatest-team debate usually begins with evidence and only later reveals its definition. One person means the five players who reached the highest level for three months. Another means the roster with the largest collection of championships. A third means the team that changed how elite Counter-Strike was played. All three can use accurate statistics and still argue past one another.',
           'This analysis separates peak, season and dynasty. Peak asks which team produced the strongest concentrated run. Season asks which roster assembled the best calendar-year résumé. Dynasty asks which team combined dominance, championship conversion, longevity, Major performance and influence for long enough that opponents had to reorganise around it.',
@@ -462,7 +462,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
       {
         number: '02',
         eyebrow: 'Era boundaries',
-        title: 'Compare equal windows, then show the whole roster life.',
+        title: 'Equal windows preserve Astralis’ trophy and Major advantage.',
         paragraphs: [
           'Vitality’s relevant roster begins in January 2025, when ropz replaced Spinx alongside apEX, ZywOo, flameZ and mezii. By the cut-off it had won nine trophies in 2025 and five in 2026: 14 across roughly 20 months. The collection includes the Austin and Budapest Majors, two ESL Grand Slams and an uninterrupted run of seven tournament victories in the first half of 2025.',
           'Astralis’ Magisk five begins in February 2018. Its clean dynasty window runs from the first title at DreamHack Masters Marseille in April 2018 through the dominant end of 2019: 10 trophies in 2018 and six in 2019. The roster won the London, Katowice and Berlin Majors consecutively and completed the first Intel Grand Slam. It also remained together beyond that window, interrupted by player leave and the online era, until 2021.',
@@ -574,7 +574,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         paragraphs: [
           'Vitality’s Austin and Budapest titles are back-to-back Majors and establish a genuine dynasty. Astralis won London 2018, Katowice 2019 and Berlin 2019 consecutively with the Magisk roster. Three straight Majors mean the same core survived two off-seasons, multiple map cycles, months of anti-stratting and three different championship fields without surrendering the most important trophy.',
           'The 58-week uninterrupted run at number one captures the same property at higher frequency. Astralis did not merely peak at each Major; they remained the default benchmark between them. Vitality were unquestionably first in 2025 and began 2026 with five trophies, but entered this cut-off ranked fourth after quarter-final exits and Spirit’s resurgence. Their fall does not invalidate the era. It does make the uninterrupted Astralis reign longer.',
-          'Major count should not become a magical statistic that overrides everything else. Majors are sparse and bracket-sensitive. Yet three consecutive wins are precisely the kind of repeated, high-stakes evidence a GOAT model should value most: same roster, maximum preparation, changing opponents and no opportunity to select the event.',
+          'Major count does not override everything else; Majors are sparse and bracket-sensitive. Three consecutive wins still supply the strongest repeated, high-stakes evidence in the comparison: same roster, maximum preparation, changing opponents and no opportunity to select the event.',
         ],
         bars: [
           { label: 'Vitality Majors', value: 67, display: '2', detail: 'Austin 2025 · Budapest 2025' },
@@ -591,35 +591,35 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         paragraphs: [
           'CS2’s MR12 economy gives a favourite fewer rounds in which superior decision-making can overwhelm pistol variance and a slow start. The international 2025 field also contained mature coaching staffs, broad data access and lineups assembled across national boundaries. Vitality winning 37 consecutive long-form series in that environment is an argument for era-adjusted difficulty.',
           'Astralis faced MR15 and more best-of-one group games, but they were not merely exploiting a softer statistical environment. Their utility damage, coordinated grenade usage, role discipline and systematic conversion of opening advantages changed elite practice. In August 2018 they converted 81.2% of rounds after the opening kill, recovered nearly one third of 4v5s and produced 29.0 utility ADR as a team. Rivals did not just need better aim; they had to learn a new operating model.',
-          'Difficulty and influence should remain separate. Vitality may be producing its results in the more variance-heavy, analytically mature version. Astralis deserves credit for helping create that maturity. There is no principled coefficient that turns an MR12 title into 1.13 MR15 titles or converts tactical influence into maps. The honest adjustment is qualitative and symmetric.',
+          'Difficulty and influence are separate advantages. Vitality produced its results in the more variance-heavy, analytically mature version. Astralis helped create that maturity. No principled coefficient turns an MR12 title into 1.13 MR15 titles or converts tactical influence into maps, so the adjustment remains qualitative and symmetric.',
         ],
         callout: 'Vitality receive the difficulty adjustment. Astralis receive the innovation adjustment. Neither is large or measurable enough to erase the championship ledger.',
       },
       {
         number: '09',
         eyebrow: 'The decision matrix',
-        title: 'The verdict depends on which question is allowed to break the tie.',
+        title: 'Astralis win the tie on Majors, longevity and influence.',
         paragraphs: [
           'Vitality win peak event conversion, peak map rate, long-form series streak, challenger control, Grand Slams and the single-season résumé. Astralis win total trophies in the comparable dynasty window, Major count, consecutive Major count, number-one longevity, full-roster sample, top-three volume, five-player ranking depth and strategic influence.',
           'Counting category wins would be arbitrary because one Major should not equal one percentage point of map rate, and “influence” has no natural unit. The better decision rule is lexicographic. First require an all-time peak: both qualify. Then require sustained championship dominance: both qualify. Then use repeated performance at the highest-stakes common event and duration at number one as tie-breakers. Astralis win both.',
-          'That produces a narrow but clear answer. Astralis’ Magisk roster remains the greatest team in Counter-Strike history. Vitality’s ropz-era roster is the best team at peak, the author of the greatest individual season, and already the closest challenger. This is not a lifetime award immune to new evidence. A third roster Major plus another sustained period at number one would move Vitality through the remaining Astralis advantages and should reopen—or end—the debate.',
+          'That produces a narrow and clear answer. Astralis’ Magisk roster is the greatest team in Counter-Strike history. Vitality’s ropz-era roster owns the best peak and the greatest individual season, but Astralis’ third consecutive Major and 58-week reign decide the complete comparison.',
         ],
         table: {
           caption: 'GOAT scorecard without arbitrary weights',
-          headers: ['Question', 'Winner', 'Reason'],
+          headers: ['Category', 'Winner', 'Evidence'],
           rows: [
-            ['Highest measured peak?', 'Vitality', '7/8 LANs, 80.8% maps, 37-series long-form streak'],
-            ['Best calendar year?', 'Vitality', 'Nine titles, two Majors, playoffs at all 16 events'],
-            ['Best control of direct challengers?', 'Vitality', '14–0 in series during the peak comparison'],
-            ['Best Major dynasty?', 'Astralis', 'Three consecutive Majors with the same five'],
-            ['Longest uninterrupted reign?', 'Astralis', '58 weeks at HLTV #1'],
-            ['Deepest five-player distribution?', 'Astralis', 'All five in the 2018 Top 20; four in the top 8'],
-            ['Most strategically influential?', 'Astralis', 'Utility and protocol model reset elite expectations'],
-            ['Greatest complete team?', 'Astralis', 'Peak threshold met; longevity and Major tie-breakers'],
+            ['Highest measured peak', 'Vitality', '7/8 LANs, 80.8% maps, 37-series long-form streak'],
+            ['Best calendar year', 'Vitality', 'Nine titles, two Majors, playoffs at all 16 events'],
+            ['Best control of direct challengers', 'Vitality', '14–0 in series during the peak comparison'],
+            ['Best Major dynasty', 'Astralis', 'Three consecutive Majors with the same five'],
+            ['Longest uninterrupted reign', 'Astralis', '58 weeks at HLTV #1'],
+            ['Deepest five-player distribution', 'Astralis', 'All five in the 2018 Top 20; four in the top 8'],
+            ['Greatest strategic influence', 'Astralis', 'Utility and protocol model reset elite expectations'],
+            ['Greatest complete team', 'Astralis', 'Peak threshold met; longevity and Major tie-breakers'],
           ],
-          note: 'No composite score is reported because defensible weights are preference-dependent. The ordering rule is stated explicitly so readers can substitute their own definition.',
+          note: 'No composite score is reported because one Major, one percentage point and tactical influence do not share a meaningful unit. Dynasty performance breaks the tie.',
         },
-        callout: 'Final answer: Astralis are still the GOAT. Vitality are the best peak—and one more championship phase away from making that distinction impossible to maintain.',
+        callout: 'Final answer: Astralis are the GOAT. Vitality own the best peak; Astralis own the greatest complete body of work.',
       },
     ],
     sources: [

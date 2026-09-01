@@ -19,8 +19,8 @@ describe('COUNTER_STRIKE_EDITORIALS', () => {
     expect(ropz?.heroStats.some((stat) => stat.value === '0.995')).toBeTrue();
     expect(ropz?.heroStats.some((stat) => stat.value === '1.014')).toBeTrue();
     expect(ropz?.sections.length).toBe(7);
-    expect(ropz?.sections.some((section) => section.eyebrow === 'The correction')).toBeTrue();
-    expect(ropz?.sections.some((section) => section.title.includes('Friday is the stronger warning'))).toBeTrue();
+    expect(ropz?.sections.some((section) => section.eyebrow === 'The finding')).toBeTrue();
+    expect(ropz?.sections.some((section) => section.title.includes('only sub-1.00 day'))).toBeTrue();
     expect(findCounterStrikeEditorial('the-weekend-ropz-anomaly')).toBe(ropz);
   });
 
