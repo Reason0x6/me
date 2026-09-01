@@ -1,15 +1,25 @@
 import { COUNTER_STRIKE_EDITORIALS, findCounterStrikeEditorial } from './counter-strike-editorials.data';
 
 describe('COUNTER_STRIKE_EDITORIALS', () => {
-  it('publishes nine distinct, fully sourced editorials', () => {
-    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(9);
-    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(9);
+  it('publishes ten distinct, fully sourced editorials', () => {
+    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(10);
+    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(10);
 
     for (const editorial of COUNTER_STRIKE_EDITORIALS) {
       expect(editorial.sections.length).toBeGreaterThanOrEqual(5);
       expect(editorial.sources.length).toBeGreaterThanOrEqual(3);
       expect(editorial.heroStats.length).toBe(4);
     }
+  });
+
+  it('publishes the weekend ropz anomaly with the exploratory limits intact', () => {
+    const ropz = findCounterStrikeEditorial('the-weekend-ropz-anomaly');
+
+    expect(ropz?.heroStats.some((stat) => stat.value === '+0.185')).toBeTrue();
+    expect(ropz?.heroStats.some((stat) => stat.value === '121')).toBeTrue();
+    expect(ropz?.sections.length).toBe(7);
+    expect(ropz?.sections.some((section) => section.title.includes('strictest model'))).toBeTrue();
+    expect(ropz?.sections.some((section) => section.eyebrow === 'The out-of-sample test')).toBeTrue();
   });
 
   it('publishes a probabilistic forecast for every remaining 2026 S-tier event', () => {

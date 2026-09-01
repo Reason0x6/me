@@ -12,7 +12,7 @@ describe('CounterStrikeHubComponent', () => {
     }).compileComponents();
   });
 
-  it('publishes all nine editorials in a dedicated analysis index', () => {
+  it('publishes all ten editorials in a dedicated analysis index', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
@@ -23,7 +23,8 @@ describe('CounterStrikeHubComponent', () => {
     expect(page.textContent).toContain('Vitality, Astralis, and the Greatest Team of All Time');
     expect(page.textContent).toContain('VRS Is Not a Leaderboard');
     expect(page.textContent).toContain('Forecasting the Rest of 2026');
-    expect(editorialLinks.length).toBe(9);
+    expect(page.textContent).toContain('The Weekend ropz Anomaly');
+    expect(editorialLinks.length).toBe(10);
   });
 
   it('sets a descriptive document title', () => {
