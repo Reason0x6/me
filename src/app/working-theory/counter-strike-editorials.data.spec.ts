@@ -1,15 +1,25 @@
 import { COUNTER_STRIKE_EDITORIALS, findCounterStrikeEditorial } from './counter-strike-editorials.data';
 
 describe('COUNTER_STRIKE_EDITORIALS', () => {
-  it('publishes eight distinct, fully sourced editorials', () => {
-    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(8);
-    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(8);
+  it('publishes nine distinct, fully sourced editorials', () => {
+    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(9);
+    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(9);
 
     for (const editorial of COUNTER_STRIKE_EDITORIALS) {
       expect(editorial.sections.length).toBeGreaterThanOrEqual(5);
       expect(editorial.sources.length).toBeGreaterThanOrEqual(3);
       expect(editorial.heroStats.length).toBe(4);
     }
+  });
+
+  it('publishes a probabilistic forecast for every remaining 2026 S-tier event', () => {
+    const forecast = findCounterStrikeEditorial('predicting-every-remaining-s-tier-counter-strike-event-2026');
+
+    expect(forecast?.heroStats.some((stat) => stat.value === '9')).toBeTrue();
+    expect(forecast?.heroStats.some((stat) => stat.value === '2.56')).toBeTrue();
+    expect(forecast?.sections.length).toBe(11);
+    expect(forecast?.sources.length).toBeGreaterThanOrEqual(20);
+    expect(forecast?.sections.some((section) => section.title.includes('Nine picks'))).toBeTrue();
   });
 
   it('publishes the jL stress test and the technical VRS explainer', () => {

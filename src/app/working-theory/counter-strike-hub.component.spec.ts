@@ -12,7 +12,7 @@ describe('CounterStrikeHubComponent', () => {
     }).compileComponents();
   });
 
-  it('publishes all eight editorials in a dedicated analysis index', () => {
+  it('publishes all nine editorials in a dedicated analysis index', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
@@ -22,7 +22,8 @@ describe('CounterStrikeHubComponent', () => {
     expect(page.querySelector('h1')?.textContent).toContain('room.');
     expect(page.textContent).toContain('Vitality, Astralis, and the Greatest Team of All Time');
     expect(page.textContent).toContain('VRS Is Not a Leaderboard');
-    expect(editorialLinks.length).toBe(8);
+    expect(page.textContent).toContain('Forecasting the Rest of 2026');
+    expect(editorialLinks.length).toBe(9);
   });
 
   it('sets a descriptive document title', () => {
