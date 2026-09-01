@@ -1,9 +1,9 @@
 @if (editorial; as piece) {
   <div class="cs-editorial">
     <header class="cs-nav">
-      <a routerLink="/counter-strike" class="cs-wordmark" aria-label="Counter-Strike analysis desk home">
-        <span>WT</span>
-        <div><strong>Working Theory</strong><small>Match analysis desk</small></div>
+      <a routerLink="/" class="cs-wordmark" aria-label="The Server Room home">
+        <span>SR</span>
+        <div><strong>The Server Room</strong><small>Counter-Strike analysis</small></div>
       </a>
       <div class="cs-nav-actions">
         <button type="button" (click)="copyLink()">{{ copied() ? 'Copied' : 'Copy link' }}</button>
@@ -119,7 +119,7 @@
         <div class="cs-notes-heading">
           <span>Evidence ledger</span>
           <h2 id="sources-title">Sources & calculation notes</h2>
-          <p>All calculations are arithmetic derived from the linked match scores unless otherwise stated. Ratings are HLTV Rating 3.0. Percentages are descriptive of the named sample; they are not betting probabilities.</p>
+          <p>Calculations are derived from the linked match scores, published datasets or source implementation identified in each note. Where player ratings appear, they are HLTV Rating 3.0. Percentages describe the named sample; they are not betting probabilities.</p>
         </div>
         <ol>
           @for (source of piece.sources; track source.url; let index = $index) {
@@ -135,7 +135,7 @@
         <p>Continue the series</p>
         <div>
           @for (other of otherEditorials; track other.slug) {
-            <a [routerLink]="'/counter-strike/editorials/' + other.slug">
+            <a [routerLink]="'/editorials/' + other.slug">
               <span>No. {{ other.number }}</span>
               <strong>{{ other.shortTitle }}</strong>
               <b aria-hidden="true">↗</b>
@@ -146,8 +146,8 @@
     </main>
 
     <footer class="cs-footer">
-      <a routerLink="/counter-strike">← Back to the Counter-Strike index</a>
-      <span>Working Theory / Counter-Strike desk / {{ piece.dataCutoff }}</span>
+      <a routerLink="/">← Back to the analysis index</a>
+      <span>The Server Room / {{ piece.dataCutoff }}</span>
     </footer>
   </div>
 }

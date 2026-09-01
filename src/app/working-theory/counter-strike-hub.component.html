@@ -1,15 +1,15 @@
 <div class="cs-hub">
   <header class="csh-nav">
-    <a routerLink="/" class="csh-parent"><span>WT</span><strong>Working Theory</strong></a>
-    <a routerLink="/counter-strike" class="csh-desk"><i></i> Counter-Strike analysis desk</a>
-    <a routerLink="/">Main publication ↗</a>
+    <a routerLink="/" class="csh-parent"><span>SR</span><strong>The Server Room</strong></a>
+    <a routerLink="/" class="csh-desk"><i></i> Counter-Strike analysis</a>
+    <a href="#analysis-index">Analysis index ↓</a>
   </header>
 
   <main>
-    <section class="csh-hero">
+    <section class="csh-hero" id="top">
       <div class="csh-grid" aria-hidden="true"></div>
       <div class="csh-issue">
-        <span>Desk 01</span><span>Current professional Counter-Strike</span><time datetime="2026-08-29">29 August 2026</time>
+        <span>Issue 01</span><span>Current professional Counter-Strike</span><time datetime="2026-09-01">1 September 2026</time>
       </div>
       <div class="csh-title">
         <p>Teams / tactics / form / history</p>
@@ -22,7 +22,7 @@
       <div class="csh-ticker" aria-label="Desk summary">
         <div><strong>{{ editorials.length }}</strong><span>Published analyses</span></div>
         <div><strong>{{ totalMinutes }}</strong><span>Minutes of reading</span></div>
-        <div><strong>2026.08.29</strong><span>Latest data cut-off</span></div>
+        <div><strong>2026.09.01</strong><span>Latest data cut-off</span></div>
         <div><strong>MR12</strong><span>Current ruleset</span></div>
       </div>
     </section>
@@ -34,7 +34,7 @@
           <p>{{ lead.verdict }}</p>
           <h2 id="csh-feature-title">{{ lead.title }}</h2>
           <span>{{ lead.dek }}</span>
-          <a [routerLink]="'/counter-strike/editorials/' + lead.slug">Read the complete analysis <b>↗</b></a>
+          <a [routerLink]="'/editorials/' + lead.slug">Read the complete analysis <b>↗</b></a>
         </div>
         <div class="csh-feature-data">
           @for (stat of lead.heroStats; track stat.label) {
@@ -44,7 +44,7 @@
       </section>
     }
 
-    <section class="csh-index" aria-labelledby="csh-index-title">
+    <section class="csh-index" id="analysis-index" aria-labelledby="csh-index-title">
       <header>
         <div><span>01 / Analysis index</span><h2 id="csh-index-title">The current file</h2></div>
         <p>Each piece states its sample, data cut-off and decision rule. Results can change; the method should remain inspectable.</p>
@@ -52,7 +52,7 @@
       <div class="csh-cards">
         @for (editorial of archive; track editorial.slug) {
           <article>
-            <a [routerLink]="'/counter-strike/editorials/' + editorial.slug">
+            <a [routerLink]="'/editorials/' + editorial.slug">
               <div class="csh-card-top"><span>No. {{ editorial.number }}</span><span>{{ editorial.readingMinutes }} min</span></div>
               <p>{{ editorial.verdict }}</p>
               <h3>{{ editorial.title }}</h3>
@@ -81,7 +81,7 @@
   </main>
 
   <footer class="csh-footer">
-    <div><strong>Counter-Strike analysis desk</strong><span>A separate publication area within Working Theory.</span></div>
-    <a routerLink="/">Return to Working Theory ↗</a>
+    <div><strong>The Server Room</strong><span>Independent Counter-Strike analysis.</span></div>
+    <a href="#top">Back to top ↑</a>
   </footer>
 </div>

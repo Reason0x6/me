@@ -1,43 +1,18 @@
-# Working Theory
+# The Server Room
 
-A personal publication for ideas in motion: notes, essays, models, and open questions about software, systems, institutions, and the connections between them.
+An independent, Counter-Strike-only publication for long-form analysis of professional teams, tactics, rankings, form and history.
 
-This is intentionally not a portfolio. The home page is an evolving index, themes form cross-cutting threads, and every piece carries a maturity state so unfinished thoughts can be published honestly.
+The homepage is the complete article index. Every piece declares its sample, data cut-off and evidence sources; the current editorial format supports statistical summaries, tables, comparison bars and explicit falsification tests.
 
-## Publish a thought
+## Publish an analysis
 
-Thoughts live in [`src/app/working-theory/thoughts.data.ts`](src/app/working-theory/thoughts.data.ts). Add one object to `THOUGHTS` using the shape in [`thought.ts`](src/app/working-theory/thought.ts):
+Articles implement the `CounterStrikeEditorial` interface in [`src/app/working-theory/counter-strike-editorials.data.ts`](src/app/working-theory/counter-strike-editorials.data.ts). Content is split into focused files and combined into `COUNTER_STRIKE_EDITORIALS`:
 
-```ts
-{
-  number: '009',
-  slug: 'a-stable-url-for-the-idea',
-  title: 'The title',
-  dek: 'A one-sentence introduction.',
-  kind: 'Note',
-  state: 'Spark',
-  publishedAt: '2026-08-28',
-  updatedAt: '2026-08-28',
-  readingMinutes: 3,
-  themes: ['Systems', 'Design'],
-  thesis: 'The compact form of the argument.',
-  body: ['Each item is rendered as a paragraph.'],
-  related: ['another-thought-slug'],
-}
-```
+- `counter-strike-editorials.data.ts` — current teams, tournaments and historical comparisons
+- `counter-strike-meta-editorials.data.ts` — tactical legacy pieces
+- `counter-strike-systems-editorials.data.ts` — current-system analysis, including VRS
 
-The note is automatically searchable, appears in every matching thread, and gets a permalink at `/notes/<slug>`.
-
-Available formats are `Note`, `Essay`, `Model`, `Question`, `Standard`, and `White paper`.
-
-Maturity states communicate editorial intent:
-
-- `Spark` — an early idea with room to change.
-- `Working` — a live argument still being developed.
-- `Developed` — a formed position, open to revision.
-- `Revisited` — an idea returned to after further thought.
-
-The included pieces are editable working drafts. Revise them as the real body of writing grows.
+Each article needs a unique slug and number, four hero statistics, at least five sections, and a linked evidence ledger. It is published automatically at `/editorials/<slug>` and appears on the homepage in reverse publication order.
 
 ## Run locally
 
@@ -57,12 +32,11 @@ The production build is written to `dist/g-austin/browser`.
 
 ## Structure
 
-- `src/app/working-theory/` — publication components, data, and content types
-- `src/working-theory.css` — shared editorial design system
-- `src/internet-shape-paper.css` — print-aware design for the Internet geometry white paper
-- `src/world-rank-paper.css` — print-aware design for the World Rank white paper
-- `src/zero-trust-voice-paper.css` — print-aware design for the voice-verification discussion paper
-- `src/app/features/` — earlier experiments retained in source but no longer routed
+- `src/app/working-theory/counter-strike-hub.*` — homepage and article index
+- `src/app/working-theory/counter-strike-editorial.*` — reusable long-form article renderer
+- `src/app/working-theory/*editorials.data.ts` — published content and sources
+- `src/counter-strike-hub.css` — homepage design system
+- `src/counter-strike-editorial.css` — article and print design system
 - `public/` — static assets
 
-Dedicated papers are published at `/papers/what-shape-is-the-internet`, `/papers/how-many-facts-does-reality-contain`, and `/papers/zero-trust-voice-verification`. Each includes browser print styles for saving an A4 PDF.
+Legacy `/counter-strike` and `/counter-strike/editorials/<slug>` URLs redirect to the current routes.

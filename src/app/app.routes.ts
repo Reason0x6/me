@@ -4,47 +4,32 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./working-theory/working-theory.component').then((module) => module.WorkingTheoryComponent),
-  },
-  {
-    path: 'notes/:slug',
-    loadComponent: () =>
-      import('./working-theory/thought-detail.component').then((module) => module.ThoughtDetailComponent),
-  },
-  {
-    path: 'papers/what-shape-is-the-internet',
-    loadComponent: () =>
-      import('./working-theory/internet-shape-paper.component').then((module) => module.InternetShapePaperComponent),
-  },
-  {
-    path: 'papers/how-many-facts-does-reality-contain',
-    loadComponent: () =>
-      import('./working-theory/world-rank-paper.component').then((module) => module.WorldRankPaperComponent),
-  },
-  {
-    path: 'papers/zero-trust-voice-verification',
-    loadComponent: () =>
-      import('./working-theory/zero-trust-voice-paper.component').then((module) => module.ZeroTrustVoicePaperComponent),
-  },
-  {
-    path: 'counter-strike',
-    loadComponent: () =>
       import('./working-theory/counter-strike-hub.component').then((module) => module.CounterStrikeHubComponent),
   },
   {
+    path: 'counter-strike',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
+  {
     path: 'counter-strike/editorials/how-post-ropz-vitality-rebuilt-the-superteam',
-    redirectTo: 'counter-strike/editorials/how-ropz-era-vitality-rebuilt-the-superteam',
+    redirectTo: 'editorials/how-ropz-era-vitality-rebuilt-the-superteam',
     pathMatch: 'full',
   },
   {
     path: 'counter-strike/editorials/:slug',
-    loadComponent: () =>
-      import('./working-theory/counter-strike-editorial.component').then((module) => module.CounterStrikeEditorialComponent),
+    redirectTo: 'editorials/:slug',
+    pathMatch: 'full',
+  },
+  {
+    path: 'editorials/how-post-ropz-vitality-rebuilt-the-superteam',
+    redirectTo: 'editorials/how-ropz-era-vitality-rebuilt-the-superteam',
+    pathMatch: 'full',
   },
   {
     path: 'editorials/:slug',
-    redirectTo: 'counter-strike/editorials/:slug',
-    pathMatch: 'full',
+    loadComponent: () =>
+      import('./working-theory/counter-strike-editorial.component').then((module) => module.CounterStrikeEditorialComponent),
   },
   { path: '**', redirectTo: '' },
 ];

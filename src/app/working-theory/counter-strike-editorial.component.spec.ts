@@ -38,6 +38,6 @@ describe('CounterStrikeEditorialComponent', () => {
     const fixture = TestBed.createComponent(CounterStrikeEditorialComponent);
     fixture.detectChanges();
 
-    expect(TestBed.inject(Title).getTitle()).toBe('How Spirit Finally Solved Vitality — Working Theory');
+    expect(TestBed.inject(Title).getTitle()).toBe('How Spirit Finally Solved Vitality — The Server Room');
   });
 });

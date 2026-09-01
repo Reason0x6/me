@@ -12,22 +12,23 @@ describe('CounterStrikeHubComponent', () => {
     }).compileComponents();
   });
 
-  it('publishes all six editorials in a dedicated analysis index', () => {
+  it('publishes all eight editorials in a dedicated analysis index', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
-    const editorialLinks = page.querySelectorAll('a[href^="/counter-strike/editorials/"]');
+    const editorialLinks = page.querySelectorAll('a[href^="/editorials/"]');
 
     expect(page.querySelector('h1')?.textContent).toContain('The server');
     expect(page.querySelector('h1')?.textContent).toContain('room.');
     expect(page.textContent).toContain('Vitality, Astralis, and the Greatest Team of All Time');
-    expect(editorialLinks.length).toBe(6);
+    expect(page.textContent).toContain('VRS Is Not a Leaderboard');
+    expect(editorialLinks.length).toBe(8);
   });
 
   it('sets a descriptive document title', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
 
-    expect(TestBed.inject(Title).getTitle()).toBe('Counter-Strike Analysis — Working Theory');
+    expect(TestBed.inject(Title).getTitle()).toBe('The Server Room — Counter-Strike Analysis');
   });
 });

@@ -24,19 +24,10 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "optic-grid-transfer",
-                "output": "/optic-grid-transfer"
               }
             ],
             "styles": [
               "src/styles.css",
-              "src/working-theory.css",
-              "src/internet-shape-paper.css",
-              "src/world-rank-paper.css",
-              "src/zero-trust-voice-paper.css",
               "src/counter-strike-editorial.css",
               "src/counter-strike-hub.css"
             ],
@@ -93,19 +84,10 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "optic-grid-transfer",
-                "output": "/optic-grid-transfer"
               }
             ],
             "styles": [
               "src/styles.css",
-              "src/working-theory.css",
-              "src/internet-shape-paper.css",
-              "src/world-rank-paper.css",
-              "src/zero-trust-voice-paper.css",
               "src/counter-strike-editorial.css",
               "src/counter-strike-hub.css"
             ],

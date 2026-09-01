@@ -2,16 +2,16 @@
 @import "tailwindcss";
 
 html {
-  background: #e9e4dc;
-  color: #1f1d1a;
+  background: #11120f;
+  color: #f1eee5;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: #e9e4dc;
-  color: #1f1d1a;
+  background: #11120f;
+  color: #f1eee5;
   font-family: Aptos, "Segoe UI Variable", "Segoe UI", sans-serif;
 }
 

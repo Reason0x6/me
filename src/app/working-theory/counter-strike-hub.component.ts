@@ -23,7 +23,7 @@ export class CounterStrikeHubComponent {
   readonly totalMinutes = this.editorials.reduce((total, editorial) => total + editorial.readingMinutes, 0);
 
   constructor() {
-    this.title.setTitle('Counter-Strike Analysis — Working Theory');
+    this.title.setTitle('The Server Room — Counter-Strike Analysis');
     this.document.defaultView?.scrollTo({ top: 0 });
   }
 }

@@ -13,7 +13,7 @@ import { COUNTER_STRIKE_EDITORIALS, findCounterStrikeEditorial } from './counter
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CounterStrikeEditorialComponent {
-  private readonly document = inject(DOCUMENT);
+  readonly document = inject(DOCUMENT);
   private readonly title = inject(Title);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -28,7 +28,7 @@ export class CounterStrikeEditorialComponent {
       return;
     }
 
-    this.title.setTitle(`${this.editorial.title} — Working Theory`);
+    this.title.setTitle(`${this.editorial.title} — The Server Room`);
     afterNextRender(() => {
       const sectionId = decodeURIComponent(this.document.location.hash.slice(1));
       if (sectionId) {
