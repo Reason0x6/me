@@ -12,14 +12,16 @@ describe('COUNTER_STRIKE_EDITORIALS', () => {
     }
   });
 
-  it('publishes the weekend ropz anomaly with the exploratory limits intact', () => {
-    const ropz = findCounterStrikeEditorial('the-weekend-ropz-anomaly');
+  it('publishes the corrected ropz stage effect and weak-day analysis', () => {
+    const ropz = findCounterStrikeEditorial('ropz-playoff-effect-and-the-friday-dip');
 
     expect(ropz?.heroStats.some((stat) => stat.value === '+0.185')).toBeTrue();
-    expect(ropz?.heroStats.some((stat) => stat.value === '121')).toBeTrue();
+    expect(ropz?.heroStats.some((stat) => stat.value === '0.995')).toBeTrue();
+    expect(ropz?.heroStats.some((stat) => stat.value === '1.014')).toBeTrue();
     expect(ropz?.sections.length).toBe(7);
-    expect(ropz?.sections.some((section) => section.title.includes('strictest model'))).toBeTrue();
-    expect(ropz?.sections.some((section) => section.eyebrow === 'The out-of-sample test')).toBeTrue();
+    expect(ropz?.sections.some((section) => section.eyebrow === 'The correction')).toBeTrue();
+    expect(ropz?.sections.some((section) => section.title.includes('Friday is the stronger warning'))).toBeTrue();
+    expect(findCounterStrikeEditorial('the-weekend-ropz-anomaly')).toBe(ropz);
   });
 
   it('publishes a probabilistic forecast for every remaining 2026 S-tier event', () => {

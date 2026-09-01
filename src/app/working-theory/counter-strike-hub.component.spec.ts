@@ -23,7 +23,7 @@ describe('CounterStrikeHubComponent', () => {
     expect(page.textContent).toContain('Vitality, Astralis, and the Greatest Team of All Time');
     expect(page.textContent).toContain('VRS Is Not a Leaderboard');
     expect(page.textContent).toContain('Forecasting the Rest of 2026');
-    expect(page.textContent).toContain('The Weekend ropz Anomaly');
+    expect(page.textContent).toContain('The ropz Playoff Effect—and the Friday Dip');
     expect(editorialLinks.length).toBe(10);
   });
 

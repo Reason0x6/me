@@ -643,5 +643,9 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
 ];
 
 export function findCounterStrikeEditorial(slug: string): CounterStrikeEditorial | undefined {
+  if (slug === 'the-weekend-ropz-anomaly') {
+    return COUNTER_STRIKE_EDITORIALS.find((editorial) => editorial.slug === 'ropz-playoff-effect-and-the-friday-dip');
+  }
+
   return COUNTER_STRIKE_EDITORIALS.find((editorial) => editorial.slug === slug);
 }
