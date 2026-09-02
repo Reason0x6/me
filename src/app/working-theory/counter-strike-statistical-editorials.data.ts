@@ -344,13 +344,13 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
       {
         number: '09',
         eyebrow: 'Communication and temperament',
-        title: 'The team speaks English, but its tactical language must stay small.',
+        title: 'Four players share Russian. The IGL does not.',
         paragraphs: [
-          'm0NESY and kyousuke already operate inside Falcons’ English-language system, while b1t has years in international NAVI. donk carries the only major language transition, moving from Spirit’s Russian structure into an English team. His role limits the damage: prepared opening packages require clear triggers and utility timing, not long improvised explanations before the first duel.',
-          'The more serious communication problem is volume. NiKo, m0NESY and donk all read the game proactively. A team with three correct ideas still loses when they arrive as three competing calls. The protocol is therefore hierarchical: m0NESY reports rotation information, donk reports immediate fighting conditions, b1t reports the extremity, and NiKo alone converts those reports into the final route.',
-          'zonic becomes essential here. He owns the pre-round grammar, role review and conflict resolution that stop every loss from reopening the hierarchy. NiKo owns the live server. donk and kyousuke own execution. The separation gives a volatile collection of stars one stable chain of command.',
+          'm0NESY, donk and kyousuke are Russian, while b1t is Ukrainian and spent years inside Russian-speaking NAVI lineups. All four share functional Russian. NiKo is the linguistic minority—and because he is the proposed IGL, the team cannot use its four-player majority language for primary tactical communication.',
+          'English remains the server language. Russian can accelerate a two-player micro exchange between donk and kyousuke or clarify a detail during practice, but every contact, rotation and change of plan must reach NiKo in English. A Russian information loop would leave the final decision-maker as the last player to understand the round.',
+          'The remaining problem is voice hierarchy rather than fluency. NiKo, m0NESY and donk all read the game proactively. m0NESY reports rotation information, donk reports immediate fighting conditions, b1t reports the extremity, and NiKo converts those reports into the final route. zonic owns the pre-round grammar and role review; NiKo owns the live server.',
         ],
-        callout: 'The comms rule is simple: four players report what they know; NiKo decides what the team does.',
+        callout: 'Four players can speak Russian. All five must call in English because the IGL cannot be excluded from the fastest information loop.',
       },
       {
         number: '10',
