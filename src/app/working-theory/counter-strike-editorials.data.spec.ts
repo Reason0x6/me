@@ -1,15 +1,25 @@
 import { COUNTER_STRIKE_EDITORIALS, findCounterStrikeEditorial } from './counter-strike-editorials.data';
 
 describe('COUNTER_STRIKE_EDITORIALS', () => {
-  it('publishes ten distinct, fully sourced editorials', () => {
-    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(10);
-    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(10);
+  it('publishes eleven distinct, fully sourced editorials', () => {
+    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(11);
+    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(11);
 
     for (const editorial of COUNTER_STRIKE_EDITORIALS) {
       expect(editorial.sections.length).toBeGreaterThanOrEqual(5);
       expect(editorial.sources.length).toBeGreaterThanOrEqual(3);
       expect(editorial.heroStats.length).toBe(4);
     }
+  });
+
+  it('publishes the Super Falcons role architecture', () => {
+    const superFalcons = findCounterStrikeEditorial('falcons-final-form-niko-donk-monesy-kyousuke-b1t-superteam');
+
+    expect(superFalcons?.sections.length).toBe(10);
+    expect(superFalcons?.sources.length).toBeGreaterThanOrEqual(15);
+    expect(superFalcons?.verdict).toContain('maximum-firepower');
+    expect(superFalcons?.sections.some((section) => section.title.includes('donk must enter first'))).toBeTrue();
+    expect(superFalcons?.sections.some((section) => section.title.includes('b1t is the signing'))).toBeTrue();
   });
 
   it('publishes the corrected ropz stage effect and weak-day analysis', () => {

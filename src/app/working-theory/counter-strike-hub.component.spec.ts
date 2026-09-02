@@ -12,7 +12,7 @@ describe('CounterStrikeHubComponent', () => {
     }).compileComponents();
   });
 
-  it('publishes all ten editorials in a dedicated analysis index', () => {
+  it('publishes all eleven editorials in a dedicated analysis index', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
@@ -23,8 +23,9 @@ describe('CounterStrikeHubComponent', () => {
     expect(page.textContent).toContain('Astralis Are Still the Greatest Counter-Strike Team of All Time');
     expect(page.textContent).toContain('VRS Is Not a Leaderboard');
     expect(page.textContent).toContain('Spirit Lead the Rest-of-2026 S-Tier Forecast');
+    expect(page.textContent).toContain('Falcons’ Final Form');
     expect(page.textContent).toContain('ropz Plays Better on Weekends');
-    expect(editorialLinks.length).toBe(10);
+    expect(editorialLinks.length).toBe(11);
   });
 
   it('sets a descriptive document title', () => {
