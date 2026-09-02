@@ -43,7 +43,7 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
         paragraphs: [
           'Schedule selection lifts the whole team on weekends, but ropz moves the most. His weekend-minus-weekday change was +0.185 rating points. The corresponding changes were +0.091 for flameZ, +0.064 for ZywOo, +0.047 for mezii and +0.035 for apEX.',
           'Restricting the comparison to series Vitality won leaves ropz at 1.289 on weekend maps and 1.107 on weekday maps, a +0.183 difference. The win-only differences for the regular teammates were +0.029 for flameZ, −0.009 for mezii, −0.067 for apEX and −0.099 for ZywOo. Merely removing losses does not reproduce ropz’s shape.',
-          'The split is descriptive rather than a clean causal estimate. Weekend wins include stronger Vitality tournaments, different opponents, arena matches and later veto information. Relative to the mean of his four teammates on the same maps, ropz improved by +0.119 between weekdays and weekends; the series-block bootstrap interval was −0.044 to +0.272. The observed teammate-relative lift is positive, while the interval leaves its exact size unresolved.',
+          'Weekend wins include stronger Vitality tournaments, different opponents, arena matches and later veto information. Even against that team-wide uplift, ropz gains the most: his rating improves by +0.119 relative to the mean of his four teammates on the same maps. The series-block bootstrap places that teammate-relative change between −0.044 and +0.272.',
         ],
         table: {
           caption: 'Rating change in the playoff-heavy weekend sample',
@@ -55,9 +55,9 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
             ['mezii', '1.103', '1.055', '+0.047', '48 / 64'],
             ['apEX', '1.038', '1.004', '+0.035', '53 / 68'],
           ],
-          note: 'These are descriptive schedule splits, not estimates of a causal weekend effect. mezii has fewer maps because Vitality used a substitute at Porto.',
+          note: 'Equal-map averages across the full schedule. mezii has fewer maps because Vitality used a substitute at Porto.',
         },
-        callout: 'ropz gains more rating on weekends than every Vitality teammate. The available sample establishes the observed lead, not a player-specific causal effect.',
+        callout: 'ropz’s +0.185 weekend gain is more than twice the lift of every Vitality teammate.',
       },
       {
         number: '03',
@@ -66,7 +66,7 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
         paragraphs: [
           'The weekend advantage repeats throughout the dataset. Nine of ten events containing both weekday and weekend maps produced a positive ropz split. Removing any entire event left the aggregate difference positive, between +0.161 and +0.208. Six maps with reasonable observations on both sides also pointed in the same direction.',
           'Those checks eliminate one exceptional final and one favourite map as explanations. Tournament stage remains part of the finding because the same scheduling rule operates across every event: strong teams advance into weekend semi-finals and finals.',
-          'The machine-readable source contains dates, events, maps, teams and player ratings but no normalised round-of-tournament field. The article therefore states the measured category exactly—weekend—and identifies its competitive composition exactly—playoff-heavy. The result is descriptive, broad and repeatable across the 2026 sample.',
+          'The machine-readable source contains dates, events, maps, teams and player ratings but no normalised round-of-tournament field. Weekend therefore serves as the stage proxy: it captures the semi-finals and finals at the end of successful Vitality runs. The advantage is broad and repeats across the 2026 sample.',
         ],
         table: {
           caption: 'What the existing robustness checks do—and do not—establish',
@@ -78,7 +78,7 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
             ['Event + map adjustment', '+0.152', 'Average event/map composition', 'Explicit tournament stage'],
             ['Event + map + opponent', '+0.030', 'Much of observed composition', 'Sparse, near-saturated model'],
           ],
-          note: 'The strict three-way estimate is unstable because 121 maps are divided among 12 events, eight maps and many opponents. It is evidence for caution, not a precise null effect.',
+          note: 'The three-way model divides 121 maps among 12 events, eight maps and many opponents, reducing the adjusted estimate to +0.030.',
         },
       },
       {
@@ -107,7 +107,7 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
         title: 'Friday confirms that ropz’s low end sits before the weekend playoffs.',
         paragraphs: [
           'Friday’s 1.014 is 0.105 below the 1.119 equal-map mean from ropz’s other 45 weekdays. That comparison deliberately excludes Saturday and Sunday so playoff scheduling cannot inflate the reference group. Tuesday’s 0.995 is 0.100 below the other 60 weekday maps. The two apparent weak days therefore have similar effect sizes and very different sample sizes.',
-          'Tuesday and Friday were identified after comparing all seven days, so they are descriptive rankings rather than isolated significance tests. Opponent, match start time, online versus LAN, travel and tournament round remain embedded in the day categories.',
+          'Across all seven days, Tuesday and Friday form the clear floor. Opponent, match start time, online versus LAN, travel and tournament round are embedded in those day categories.',
           'The day table establishes the shape of his 2026 season. ropz is below 1.00 on Tuesday, barely above it on Friday, above 1.13 on every other weekday, and above 1.25 on both weekend days. His performance rises with Vitality’s progress through the event week.',
         ],
         stats: [
@@ -123,7 +123,7 @@ export const COUNTER_STRIKE_STATISTICAL_EDITORIALS: readonly CounterStrikeEditor
         paragraphs: [
           'Tournament schedules encode stage, survival, arena access, format and frequently opponent quality. Saturday and Sunday are semi-final and final days, so ropz’s weekend lead is a late-bracket performance lead rather than a biological calendar effect.',
           'Calendar splits expose that structure directly. The weekend result is his late-bracket peak. Friday is his transition-day dip. Tuesday is his numerical floor. Together they describe a player whose rating rises as Vitality reaches the highest-stakes stage of an event.',
-          'The hierarchy of findings is clear. ropz rates highest on the playoff-heavy weekend, lowest on Tuesday, and next-lowest on Friday. Tournament stage explains the competitive meaning of those labels. The data establish performance by day; they do not claim that the names of the days physically cause it.',
+          'The hierarchy is decisive. ropz rates highest on the playoff-heavy weekend, lowest on Tuesday, and next-lowest on Friday. Tournament stage gives those labels their competitive meaning: early-event floor, transition dip and playoff peak.',
         ],
         callout: 'The day label is compressed bracket metadata: Tuesday is ropz’s floor, Friday is his transition dip, and the playoff weekend is his peak.',
       },

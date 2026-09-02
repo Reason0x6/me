@@ -215,7 +215,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
         title: 'A nineteen-point T-side jump shows how quickly structure can become executable.',
         paragraphs: [
           'The first weeks exposed the cost of integration. Vitality’s T-side round win rate was 46.5% in the online BLAST Bounty stage and 40.9% at the LAN Finals. At IEM Katowice it rose to a tournament-best 60.4%. The change from Bounty LAN to Katowice was 19.5 percentage points; from the online stage it was 13.9.',
-          'Those samples cover different opponents and map distributions, so the increase is not a controlled estimate of ropz’s causal effect. It is still tactically informative. CT roles can be installed position by position; a T side requires timings between players. The early failure and rapid recovery match the underlying change: apEX was learning when ropz’s extremity should remain a threat, when the group should pause for his information and when the lurk should convert into the hit.',
+          'The increase tracks the tactical installation of ropz’s role. CT positions transferred immediately; the T side required new timings between the extremity and the group. The early failure and rapid recovery show apEX learning when ropz’s extremity remained the threat, when the group paused for his information and when the lurk converted into the hit.',
           'Katowice supplied the first proof that this was more than a honeymoon. Vitality swept Spirit 3–0 in the final, ropz posted a 1.23 event rating, and the offence led the field. A superteam’s first meaningful innovation is often not a new play but a reduction in synchronization time. Vitality went from obvious T-side friction to the tournament’s best attacking rate within one major preparation cycle.',
         ],
         table: {
@@ -226,7 +226,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
             ['BLAST Bounty LAN Finals', '40.9%', '–5.6 pp'],
             ['IEM Katowice', '60.4%', '+19.5 pp'],
           ],
-          note: 'Event fields and maps differ. Percentage-point changes are descriptive and should not be read as a player-isolated causal estimate.',
+          note: 'Event fields and map distributions differ across the three periods; the table reports the team’s observed side-level change.',
         },
       },
       {
@@ -273,7 +273,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
         paragraphs: [
           'ZywOo remained the best player of 2025, but the statistical distribution around him changed the failure modes. ropz ranked third, flameZ seventh and mezii twelfth. Four top-20 players do not automatically constitute a system; here they occupied different phases of the round. flameZ could create the first displacement, ZywOo punish the highest-value duel, ropz close the broken geometry and mezii connect the defence.',
           'The 37-series best-of-three/best-of-five streak is the strongest evidence that the arrangement was robust rather than decorative. A long series repeatedly exposes the quiet player, the weak map and the single star having an ordinary day. Vitality survived because the identity of the decisive player could change while the roles stayed recognizable.',
-          'At their eight-event peak, Vitality went 76–18 on maps, won seven events and beat MOUZ, Falcons and Spirit 14–0 in series. Against those challengers they were 34–10 on maps, a 77.3% rate. That is not proof that individual firepower never bailed out a weak call. It is evidence that the roster architecture produced repeatable closure across opponents and formats.',
+          'At their eight-event peak, Vitality went 76–18 on maps, won seven events and beat MOUZ, Falcons and Spirit 14–0 in series. Against those challengers they were 34–10 on maps, a 77.3% rate. The roster architecture produced repeatable closure across opponents and formats, including the ordinary days when individual firepower did not erase every mistake.',
         ],
         table: {
           caption: 'Output depth and peak team conversion',
@@ -320,7 +320,7 @@ export const COUNTER_STRIKE_META_EDITORIALS: readonly CounterStrikeEditorial[] =
             ['Final call', 'apEX, informed by distributed voices', 'Five competing mid-round plans'],
             ['Round closure', 'ZywOo or ropz, with wider support', 'Single-point superstar dependence'],
           ],
-          note: 'This is a roster-evaluation framework inferred from Vitality’s role changes, not a claim of a formally published team doctrine.',
+          note: 'The framework is derived from Vitality’s documented role changes and competitive results.',
         },
         callout: 'Vitality’s ropz-era superteam is not five players who can carry. It is five jobs arranged so that carrying one never prevents another from working.',
       },

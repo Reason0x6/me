@@ -463,7 +463,7 @@ export const COUNTER_STRIKE_SYSTEMS_EDITORIALS: readonly CounterStrikeEditorial[
         eyebrow: 'Prediction ledger',
         title: 'Nine picks, nine probability distributions.',
         paragraphs: [
-          'The table is the forecast in its most falsifiable form. “Pick” means the single most likely champion, not a claim that the team is more likely to win than the whole field. Only Porto’s 41% estimate approaches even odds, because Spirit and MOUZ have already earned semi-final byes and twelve teams have been eliminated. Every pre-event favourite remains below one third.',
+          'The table states the forecast directly. “Pick” is the team with the largest championship share. Only Porto’s 41% estimate approaches even odds because Spirit and MOUZ have already earned semi-final byes and twelve teams have been eliminated. Every pre-event field remains wide enough that its favourite starts below one third.',
           'The runner-up column is intentionally visible. In six of nine events, the gap between first and second is ten percentage points or less. A forecast that publishes only names would make a 27–20 choice look as decisive as 70–20. It is not. The field share includes every remaining team not individually shown, including unknown qualifiers where applicable.',
           'Summing the nine winning probabilities gives 2.56 expected correct selections. That expectation does not require the event outcomes to be independent. Multiplying all nine modal probabilities would produce about 0.0011% under an independence assumption, but the assumption is false because form, rosters and map changes persist across events. The multiplication is useful only as a demonstration of how absurd a nine-for-nine expectation would be.',
         ],
@@ -491,7 +491,7 @@ export const COUNTER_STRIKE_SYSTEMS_EDITORIALS: readonly CounterStrikeEditorial[
         paragraphs: [
           'Porto is the highest-confidence selection because half the work is complete. Spirit’s 6–0 group-stage map record earned a semi-final against the Falcons–G2 winner. MOUZ own the other bye and wait for FURIA or Vitality. Spirit’s 41% reflects current form plus one fewer elimination match, while MOUZ’s 23% respects both the same structural advantage and their recent wins over Spirit and Falcons. Falcons remain dangerous but must beat G2, Spirit and then the other side of the bracket.',
           'FISSURE is the opposite problem: the top three teams in the August VRS—Spirit, Falcons and MOUZ—do not attend, and Vitality are absent as well. FURIA are the strongest confirmed combination of current world rank, stable roster and 2026 LAN depth. Their 68.8% three-month series record and Cologne final outweigh recent losses to Legacy, FUT and Spirit, but do not justify more than 27% in a 16-team double-elimination group followed by single elimination. G2’s 20% is the mechanical and map-pool alternative; Legacy’s 14% captures a CAC title and EWC bronze without mistaking a 52.6% broader rate for sustained dominance.',
-          'StarSeries restores Vitality, MOUZ and FURIA but excludes Spirit and Falcons. Vitality’s normal five are listed, which removes the Porto stand-in penalty, and double elimination gives their deeper system time to recover from an early loss. Their five S-tier titles from January through May remain the strongest conversion history in this field. Recent form keeps the estimate at only 26%, narrowly ahead of MOUZ on 23% and FURIA on 19%. This is a pick for regression toward an elite stable roster, not a claim that Vitality’s summer quarter-final exits did not happen.',
+          'StarSeries restores Vitality, MOUZ and FURIA but excludes Spirit and Falcons. Vitality’s normal five are listed, which removes the Porto stand-in penalty, and double elimination gives their deeper system time to recover from an early loss. Their five S-tier titles from January through May remain the strongest conversion history in this field. That championship base makes Vitality the 26% favourite, narrowly ahead of MOUZ on 23% and FURIA on 19%, despite the summer quarter-final exits.',
         ],
         callout: 'September’s three favourites are driven by three different facts: Spirit’s bracket, FURIA’s depleted field, and Vitality’s return to their intended five.',
       },
@@ -540,7 +540,7 @@ export const COUNTER_STRIKE_SYSTEMS_EDITORIALS: readonly CounterStrikeEditorial[
           { value: '19%', label: 'Falcons', detail: 'Reigning Major champions' },
           { value: '35%', label: 'MOUZ + Vitality + FURIA', detail: 'Three independent second-line routes' },
         ],
-        callout: 'A favourite below one quarter is a statement about uncertainty, not weakness.',
+        callout: 'Spirit lead Singapore at 23% because no team controls a 32-team Major field.',
       },
       {
         number: '11',

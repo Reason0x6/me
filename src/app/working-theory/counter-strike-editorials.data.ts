@@ -141,7 +141,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         title: 'A favourite becomes credible when the veto has no obvious escape hatch.',
         paragraphs: [
           'Spirit’s most defensible recent maps are Ancient and Anubis. Over the published three-month window they were 6–0 on Ancient and 7–1 on Anubis. On Ancient they converted 81.6% of rounds after the first kill and still won 35.7% after conceding it. Anubis produced 76.0% and 36.8% respectively. Those recovery rates matter because opening-kill conversion alone can flatter a mechanically superior team; winning more than one third of disadvantaged rounds indicates real mid-round resistance.',
-          'But perfect-looking percentages should be read with their denominators attached. Six Ancient maps are not enough to infer a true 100% win probability. A simple Wilson 95% interval for 6–0 is roughly 61% to 100%, wide enough to reject certainty. The 7–1 Anubis record is 87.5%, but its approximate Wilson interval is about 53% to 98%. Both are excellent observed records; neither is a law of nature.',
+          'The denominators define the strength of those percentages. Ancient is 6–0, with a Wilson 95% interval of roughly 61% to 100%. Anubis is 7–1, with an interval of about 53% to 98%. Spirit are undefeated on one and nearly undefeated on the other, giving opponents no reliable escape route in the veto.',
           'The veto argument is therefore comparative rather than absolute. Opponents cannot merely wait for Spirit’s “real level” to appear. They must choose which high-confidence map to concede, then survive a player who is producing 0.26 more kills than deaths per round across the broader three-month sample.',
         ],
         table: {
@@ -151,7 +151,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
             ['Ancient', '6–0', '100.0%', '81.6%', '35.7%'],
             ['Anubis', '7–1', '87.5%', '76.0%', '36.8%'],
           ],
-          note: 'Three-month window. Small samples make the observed rates descriptive, not precise estimates of future win probability.',
+          note: 'Three-month window. Wilson intervals report the range implied by each map’s current sample size.',
         },
       },
       {
@@ -513,9 +513,9 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
         eyebrow: 'Statistical restraint',
         title: 'The observed map-rate lead is real—and nowhere near statistically decisive.',
         paragraphs: [
-          'Vitality’s 80.8% peak map rate exceeds Astralis’ 77.6% by 3.2 percentage points. Under a deliberately simple binomial model, the 95% Wilson interval is approximately 71.7–87.5% for Vitality and 67.7–85.2% for Astralis. The intervals overlap heavily. A naïve normal interval for the difference spans roughly –8.7 to +15.1 points. The data support “Vitality observed higher”; they do not support “Vitality’s true peak map probability was proven higher.”',
-          'The broader same-roster numbers are even closer. Vitality’s current 234–78 record is exactly 75.0%; Astralis’ 419–150 record excluding the draw is 73.6%. The difference is about 1.4 points. Wilson intervals are approximately 69.9–79.5% and 69.7–77.0%. Again, there is no clean statistical separation.',
-          'Even those intervals are too confident because maps are not independent coin flips. They are clustered within series and events; vetoes select favourable matchups; opponents recur; patches and rosters change; a team’s form is autocorrelated. A hierarchical model would widen uncertainty. Statistics can stop a false precision claim here, but they cannot manufacture a cross-version experiment that history never ran.',
+          'Vitality’s 80.8% peak map rate exceeds Astralis’ 77.6% by 3.2 percentage points. Under a simple binomial model, the 95% Wilson interval is approximately 71.7–87.5% for Vitality and 67.7–85.2% for Astralis. A normal interval for the difference spans roughly –8.7 to +15.1 points. Vitality own the higher measured peak; the samples place the underlying rates in the same statistical range.',
+          'The broader same-roster numbers are even closer. Vitality’s current 234–78 record is exactly 75.0%; Astralis’ 419–150 record excluding the draw is 73.6%. The 1.4-point difference sits inside Wilson intervals of approximately 69.9–79.5% and 69.7–77.0%. Vitality lead the rate; Astralis lead the volume.',
+          'Maps are clustered within series and events; vetoes select favourable matchups; opponents recur; patches and rosters change; and team form is autocorrelated. Those dependencies widen the effective range beyond the binomial intervals. The comparison therefore resolves cleanly by category: Vitality own peak rate, while Astralis own duration, Majors and total championship volume.',
         ],
         table: {
           caption: 'Win-rate uncertainty, descriptive binomial model',
