@@ -1,15 +1,25 @@
 import { COUNTER_STRIKE_EDITORIALS, findCounterStrikeEditorial } from './counter-strike-editorials.data';
 
 describe('COUNTER_STRIKE_EDITORIALS', () => {
-  it('publishes eleven distinct, fully sourced editorials', () => {
-    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(11);
-    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(11);
+  it('publishes twelve distinct, fully sourced editorials', () => {
+    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(12);
+    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(12);
 
     for (const editorial of COUNTER_STRIKE_EDITORIALS) {
       expect(editorial.sections.length).toBeGreaterThanOrEqual(5);
       expect(editorial.sources.length).toBeGreaterThanOrEqual(3);
       expect(editorial.heroStats.length).toBe(4);
     }
+  });
+
+  it('publishes the era-team comparison with graphs and tactical layouts', () => {
+    const comparison = findCounterStrikeEditorial('super-falcons-vs-navi-astralis-faze-vitality-role-comparison');
+
+    expect(comparison?.sections.length).toBe(12);
+    expect(comparison?.sources.length).toBeGreaterThanOrEqual(20);
+    expect(comparison?.sections.some((section) => section.radar?.series.length === 5)).toBeTrue();
+    expect(comparison?.sections.some((section) => section.mapLayouts?.length === 5)).toBeTrue();
+    expect(comparison?.verdict).toContain('most talented five');
   });
 
   it('publishes the Super Falcons role architecture', () => {

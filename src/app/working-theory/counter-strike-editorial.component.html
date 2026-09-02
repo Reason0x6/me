@@ -108,6 +108,76 @@
               </figure>
             }
 
+            @if (section.radar; as radar) {
+              <figure class="cs-radar">
+                <figcaption>{{ radar.caption }}</figcaption>
+                <div class="cs-radar-layout">
+                  <svg viewBox="0 0 100 100" role="img" [attr.aria-label]="radar.caption">
+                    @for (level of [25, 50, 75, 100]; track level) {
+                      <polygon class="cs-radar-grid" [attr.points]="radarGridPoints(level, radar.axes.length)"></polygon>
+                    }
+                    @for (axis of radar.axes; track axis; let index = $index) {
+                      <line class="cs-radar-axis" x1="50" y1="50" [attr.x2]="radarAxisPoint(index, radar.axes.length).x" [attr.y2]="radarAxisPoint(index, radar.axes.length).y"></line>
+                    }
+                    @for (series of radar.series; track series.label) {
+                      <polygon class="cs-radar-series" [attr.points]="radarPoints(series.values)" [style.stroke]="series.color" [style.fill]="series.color"></polygon>
+                    }
+                    <circle cx="50" cy="50" r="1.2"></circle>
+                  </svg>
+                  <div class="cs-radar-key">
+                    <div class="cs-radar-series-key">
+                      @for (series of radar.series; track series.label) {
+                        <span><i [style.background]="series.color"></i>{{ series.label }}</span>
+                      }
+                    </div>
+                    <ol>
+                      @for (axis of radar.axes; track axis; let index = $index) {
+                        <li><span>{{ (index + 1).toString().padStart(2, '0') }}</span><strong>{{ axis }}</strong></li>
+                      }
+                    </ol>
+                  </div>
+                </div>
+                @if (radar.note) { <p>{{ radar.note }}</p> }
+              </figure>
+            }
+
+            @if (section.mapLayouts; as layouts) {
+              <div class="cs-map-grid">
+                @for (layout of layouts; track layout.caption) {
+                  <figure class="cs-map-layout">
+                    <figcaption><span>{{ layout.map }} / {{ layout.side }}</span><strong>{{ layout.caption }}</strong></figcaption>
+                    <div class="cs-map-board">
+                      <div class="cs-map-site cs-map-site-a">A</div>
+                      <div class="cs-map-site cs-map-site-b">B</div>
+                      @for (zone of layout.zones; track zone.label) {
+                        <div class="cs-map-zone" [style.left.%]="zone.x" [style.top.%]="zone.y" [style.width.%]="zone.width" [style.height.%]="zone.height"><span>{{ zone.label }}</span></div>
+                      }
+                      @if (layout.routes; as routes) {
+                        <svg class="cs-map-routes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                          @for (route of routes; track $index) {
+                            <line [attr.x1]="route.x1" [attr.y1]="route.y1" [attr.x2]="route.x2" [attr.y2]="route.y2" [attr.class]="'cs-route-' + route.tone"></line>
+                          }
+                        </svg>
+                      }
+                      @for (marker of layout.markers; track marker.player) {
+                        <div class="cs-map-marker" [attr.data-tone]="marker.tone" [style.left.%]="marker.x" [style.top.%]="marker.y">
+                          <strong>{{ marker.player }}</strong><span>{{ marker.role }}</span>
+                        </div>
+                      }
+                    </div>
+                    @if (layout.routes) {
+                      <div class="cs-map-legend" aria-label="Relationship legend">
+                        <span><i class="cs-route-primary"></i>Primary pressure</span>
+                        <span><i class="cs-route-secondary"></i>Second wave</span>
+                        <span><i class="cs-route-support"></i>Support link</span>
+                      </div>
+                    }
+                    @if (layout.note) { <p>{{ layout.note }}</p> }
+                  </figure>
+                }
+              </div>
+            }
+
             @if (section.callout) {
               <blockquote>{{ section.callout }}</blockquote>
             }

@@ -1,4 +1,5 @@
 import { COUNTER_STRIKE_META_EDITORIALS } from './counter-strike-meta-editorials.data';
+import { COUNTER_STRIKE_COMPARISON_EDITORIALS } from './counter-strike-comparison-editorials.data';
 import { COUNTER_STRIKE_STATISTICAL_EDITORIALS } from './counter-strike-statistical-editorials.data';
 import { COUNTER_STRIKE_SYSTEMS_EDITORIALS } from './counter-strike-systems-editorials.data';
 
@@ -22,6 +23,53 @@ export interface EditorialBar {
   readonly detail?: string;
 }
 
+export interface EditorialRadarSeries {
+  readonly label: string;
+  readonly color: string;
+  readonly values: readonly number[];
+}
+
+export interface EditorialRadar {
+  readonly caption: string;
+  readonly axes: readonly string[];
+  readonly series: readonly EditorialRadarSeries[];
+  readonly note?: string;
+}
+
+export interface EditorialMapZone {
+  readonly label: string;
+  readonly x: number;
+  readonly y: number;
+  readonly width: number;
+  readonly height: number;
+}
+
+export interface EditorialMapMarker {
+  readonly player: string;
+  readonly role: string;
+  readonly x: number;
+  readonly y: number;
+  readonly tone: 'igl' | 'awp' | 'entry' | 'rifle' | 'anchor';
+}
+
+export interface EditorialMapRoute {
+  readonly x1: number;
+  readonly y1: number;
+  readonly x2: number;
+  readonly y2: number;
+  readonly tone: 'primary' | 'secondary' | 'support';
+}
+
+export interface EditorialMapLayout {
+  readonly caption: string;
+  readonly map: string;
+  readonly side: 'T' | 'CT';
+  readonly zones: readonly EditorialMapZone[];
+  readonly markers: readonly EditorialMapMarker[];
+  readonly routes?: readonly EditorialMapRoute[];
+  readonly note?: string;
+}
+
 export interface EditorialSection {
   readonly number: string;
   readonly eyebrow: string;
@@ -30,6 +78,8 @@ export interface EditorialSection {
   readonly stats?: readonly EditorialStat[];
   readonly table?: EditorialTable;
   readonly bars?: readonly EditorialBar[];
+  readonly radar?: EditorialRadar;
+  readonly mapLayouts?: readonly EditorialMapLayout[];
   readonly callout?: string;
 }
 
@@ -640,6 +690,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
   ...COUNTER_STRIKE_META_EDITORIALS,
   ...COUNTER_STRIKE_SYSTEMS_EDITORIALS,
   ...COUNTER_STRIKE_STATISTICAL_EDITORIALS,
+  ...COUNTER_STRIKE_COMPARISON_EDITORIALS,
 ];
 
 export function findCounterStrikeEditorial(slug: string): CounterStrikeEditorial | undefined {

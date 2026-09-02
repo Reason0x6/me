@@ -52,4 +52,31 @@ export class CounterStrikeEditorialComponent {
       this.copied.set(false);
     }
   }
+
+  radarPoints(values: readonly number[]): string {
+    return values.map((value, index) => {
+      const point = this.radarPoint(value, index, values.length);
+      return `${point.x},${point.y}`;
+    }).join(' ');
+  }
+
+  radarGridPoints(level: number, count: number): string {
+    return Array.from({ length: count }, (_, index) => {
+      const point = this.radarPoint(level, index, count);
+      return `${point.x},${point.y}`;
+    }).join(' ');
+  }
+
+  radarAxisPoint(index: number, count: number): { x: number; y: number } {
+    return this.radarPoint(100, index, count);
+  }
+
+  private radarPoint(value: number, index: number, count: number): { x: number; y: number } {
+    const angle = -Math.PI / 2 + (index * Math.PI * 2) / count;
+    const radius = 42 * Math.max(0, Math.min(100, value)) / 100;
+    return {
+      x: Number((50 + Math.cos(angle) * radius).toFixed(2)),
+      y: Number((50 + Math.sin(angle) * radius).toFixed(2)),
+    };
+  }
 }
