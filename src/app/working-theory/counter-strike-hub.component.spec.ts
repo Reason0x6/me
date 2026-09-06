@@ -12,7 +12,7 @@ describe('CounterStrikeHubComponent', () => {
     }).compileComponents();
   });
 
-  it('publishes all twelve editorials in a dedicated analysis index', () => {
+  it('publishes all thirteen editorials in a dedicated analysis index', () => {
     const fixture = TestBed.createComponent(CounterStrikeHubComponent);
     fixture.detectChanges();
     const page = fixture.nativeElement as HTMLElement;
@@ -24,9 +24,10 @@ describe('CounterStrikeHubComponent', () => {
     expect(page.textContent).toContain('VRS Is Not a Leaderboard');
     expect(page.textContent).toContain('Spirit Lead the Rest-of-2026 S-Tier Forecast');
     expect(page.textContent).toContain('Super Falcons Against Every Era-Defining Five');
+    expect(page.textContent).toContain('Spirit Took Control of Counter-Strike in Porto');
     expect(page.textContent).toContain('Falcons’ Final Form');
     expect(page.textContent).toContain('ropz Plays Better on Weekends');
-    expect(editorialLinks.length).toBe(12);
+    expect(editorialLinks.length).toBe(13);
   });
 
   it('sets a descriptive document title', () => {

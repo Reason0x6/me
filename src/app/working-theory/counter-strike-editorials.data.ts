@@ -1,5 +1,6 @@
 import { COUNTER_STRIKE_META_EDITORIALS } from './counter-strike-meta-editorials.data';
 import { COUNTER_STRIKE_COMPARISON_EDITORIALS } from './counter-strike-comparison-editorials.data';
+import { COUNTER_STRIKE_EVENT_EDITORIALS } from './counter-strike-event-editorials.data';
 import { COUNTER_STRIKE_STATISTICAL_EDITORIALS } from './counter-strike-statistical-editorials.data';
 import { COUNTER_STRIKE_SYSTEMS_EDITORIALS } from './counter-strike-systems-editorials.data';
 
@@ -691,6 +692,7 @@ export const COUNTER_STRIKE_EDITORIALS: readonly CounterStrikeEditorial[] = [
   ...COUNTER_STRIKE_SYSTEMS_EDITORIALS,
   ...COUNTER_STRIKE_STATISTICAL_EDITORIALS,
   ...COUNTER_STRIKE_COMPARISON_EDITORIALS,
+  ...COUNTER_STRIKE_EVENT_EDITORIALS,
 ];
 
 export function findCounterStrikeEditorial(slug: string): CounterStrikeEditorial | undefined {

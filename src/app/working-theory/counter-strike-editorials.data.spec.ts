@@ -1,15 +1,26 @@
 import { COUNTER_STRIKE_EDITORIALS, findCounterStrikeEditorial } from './counter-strike-editorials.data';
 
 describe('COUNTER_STRIKE_EDITORIALS', () => {
-  it('publishes twelve distinct, fully sourced editorials', () => {
-    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(12);
-    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(12);
+  it('publishes thirteen distinct, fully sourced editorials', () => {
+    expect(COUNTER_STRIKE_EDITORIALS.length).toBe(13);
+    expect(new Set(COUNTER_STRIKE_EDITORIALS.map((item) => item.slug)).size).toBe(13);
 
     for (const editorial of COUNTER_STRIKE_EDITORIALS) {
       expect(editorial.sections.length).toBeGreaterThanOrEqual(5);
       expect(editorial.sources.length).toBeGreaterThanOrEqual(3);
       expect(editorial.heroStats.length).toBe(4);
     }
+  });
+
+  it('publishes the complete Porto tournament wrap and forecast audit', () => {
+    const porto = findCounterStrikeEditorial('blast-open-porto-2026-spirit-tournament-wrap');
+
+    expect(porto?.sections.length).toBe(11);
+    expect(porto?.sources.length).toBeGreaterThanOrEqual(20);
+    expect(porto?.heroStats.some((stat) => stat.value === '11–1')).toBeTrue();
+    expect(porto?.heroStats.some((stat) => stat.value === 'ρ .971')).toBeTrue();
+    expect(porto?.sections.some((section) => section.table?.rows.length === 29)).toBeTrue();
+    expect(porto?.verdict).toContain('clear best team');
   });
 
   it('publishes the era-team comparison with graphs and tactical layouts', () => {
