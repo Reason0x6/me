@@ -1,0 +1,229 @@
+[
+  {
+    "name": "Compact3x2",
+    "cols": 3,
+    "rows": 2,
+    "height": 24,
+    "vents": "paired",
+    "modules": [
+      {
+        "id": "FireBeetle",
+        "kind": "c6",
+        "x": 0,
+        "y": 0,
+        "nx": 1,
+        "ny": 2
+      },
+      {
+        "id": "Wago413",
+        "kind": "wago413",
+        "x": 1,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Wago415",
+        "kind": "wago415",
+        "x": 2,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Universal",
+        "kind": "universal",
+        "x": 1,
+        "y": 1,
+        "nx": 2,
+        "ny": 1
+      }
+    ]
+  },
+  {
+    "name": "Grid4x4",
+    "cols": 4,
+    "rows": 4,
+    "height": 24,
+    "vents": "curved",
+    "modules": [
+      {
+        "id": "Large2x2",
+        "kind": "universal",
+        "x": 0,
+        "y": 0,
+        "nx": 2,
+        "ny": 2
+      },
+      {
+        "id": "Cell_2_0",
+        "kind": "blank",
+        "x": 2,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_3_0",
+        "kind": "blank",
+        "x": 3,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_2_1",
+        "kind": "blank",
+        "x": 2,
+        "y": 1,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_3_1",
+        "kind": "blank",
+        "x": 3,
+        "y": 1,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_0_2",
+        "kind": "blank",
+        "x": 0,
+        "y": 2,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_1_2",
+        "kind": "blank",
+        "x": 1,
+        "y": 2,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_2_2",
+        "kind": "blank",
+        "x": 2,
+        "y": 2,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_3_2",
+        "kind": "blank",
+        "x": 3,
+        "y": 2,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_0_3",
+        "kind": "blank",
+        "x": 0,
+        "y": 3,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_1_3",
+        "kind": "blank",
+        "x": 1,
+        "y": 3,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_2_3",
+        "kind": "blank",
+        "x": 2,
+        "y": 3,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Cell_3_3",
+        "kind": "blank",
+        "x": 3,
+        "y": 3,
+        "nx": 1,
+        "ny": 1
+      }
+    ]
+  },
+  {
+    "name": "Workshop4x3",
+    "cols": 4,
+    "rows": 3,
+    "height": 28,
+    "vents": "curved",
+    "modules": [
+      {
+        "id": "FireBeetle",
+        "kind": "c6",
+        "x": 0,
+        "y": 0,
+        "nx": 1,
+        "ny": 2
+      },
+      {
+        "id": "Wago412",
+        "kind": "wago412",
+        "x": 1,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Wago413",
+        "kind": "wago413",
+        "x": 2,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Wago415",
+        "kind": "wago415",
+        "x": 3,
+        "y": 0,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "Large2x2",
+        "kind": "universal",
+        "x": 1,
+        "y": 1,
+        "nx": 2,
+        "ny": 2
+      },
+      {
+        "id": "Cable",
+        "kind": "cable",
+        "x": 0,
+        "y": 2,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "BlankA",
+        "kind": "blank",
+        "x": 3,
+        "y": 1,
+        "nx": 1,
+        "ny": 1
+      },
+      {
+        "id": "BlankB",
+        "kind": "blank",
+        "x": 3,
+        "y": 2,
+        "nx": 1,
+        "ny": 1
+      }
+    ]
+  }
+]

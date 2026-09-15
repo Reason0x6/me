@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 interface ProjectCard {
   readonly title: string;
   readonly tag: string;
+  readonly route?: string;
   readonly description: string;
 }
 
@@ -41,6 +42,7 @@ export class HeroComponent {
   private readonly viewportScroller = inject(ViewportScroller);
 
   readonly projects: readonly ProjectCard[] = [
+    { title: 'SnapGrid Electronics Enclosure', tag: 'Making', route: '/projects/snapgrid', description: 'Parametric FreeCAD cases, snap-in electronics carriers and four mounting systems. Explore the build guides and download the project files.' },
     {
       title: 'Platform Engineering',
       tag: 'Systems',

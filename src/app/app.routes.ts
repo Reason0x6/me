@@ -2,6 +2,11 @@ import { Routes } from '@angular/router';
 import { HeroComponent } from './hero/hero.component';
 
 export const routes: Routes = [
+  {
+    path: 'projects/snapgrid',
+    title: 'SnapGrid — parametric electronics enclosure | Gavin Austin',
+    loadComponent: () => import('./features/snapgrid/snapgrid.component').then(m => m.SnapgridComponent),
+  },
   { path: '', component: HeroComponent },
   {
     path: 'jazz-device',

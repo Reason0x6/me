@@ -131,11 +131,11 @@
               <div>
                 <p class="text-[10px] uppercase tracking-[0.25em] text-black/45">Selected work</p>
                 <h3 id="selected-work-title" class="mt-2 text-2xl font-medium tracking-tight">
-                  Three active channels
+                  Projects &amp; active channels
                 </h3>
               </div>
               <div class="rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs text-black/55">
-                03 items
+                {{ projects.length }} items
               </div>
             </div>
 
@@ -149,7 +149,7 @@
                     <p class="text-[10px] uppercase tracking-[0.25em] text-black/45">
                       0{{ index + 1 }} &middot; {{ project.tag }}
                     </p>
-                    <h4 class="mt-2 text-lg font-medium">{{ project.title }}</h4>
+                    <h4 class="mt-2 text-lg font-medium">@if (project.route) {<a [routerLink]="project.route" class="underline underline-offset-4">{{ project.title }}</a>} @else { {{ project.title }} }</h4>
                   </div>
                   <div class="text-xl text-black/35" aria-hidden="true">&#8599;</div>
                 </div>
