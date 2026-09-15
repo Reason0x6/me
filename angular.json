@@ -24,15 +24,12 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "optic-grid-transfer",
-                "output": "/optic-grid-transfer"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/counter-strike-editorial.css",
+              "src/counter-strike-hub.css"
             ],
             "scripts": []
           },
@@ -87,20 +84,21 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "optic-grid-transfer",
-                "output": "/optic-grid-transfer"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/counter-strike-editorial.css",
+              "src/counter-strike-hub.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

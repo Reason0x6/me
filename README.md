@@ -1,59 +1,42 @@
-# GAustin
+# The Server Room
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+An independent, Counter-Strike-only publication for long-form analysis of professional teams, tactics, rankings, form and history.
 
-## Development server
+The homepage is the complete article index. Every piece declares its sample, data cut-off and evidence sources; the current editorial format supports statistical summaries, tables, comparison bars and explicit falsification tests.
 
-To start a local development server, run:
+## Publish an analysis
 
-```bash
-ng serve
-```
+Articles implement the `CounterStrikeEditorial` interface in [`src/app/working-theory/counter-strike-editorials.data.ts`](src/app/working-theory/counter-strike-editorials.data.ts). Content is split into focused files and combined into `COUNTER_STRIKE_EDITORIALS`:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- `counter-strike-editorials.data.ts` — current teams, tournaments and historical comparisons
+- `counter-strike-meta-editorials.data.ts` — tactical legacy pieces
+- `counter-strike-systems-editorials.data.ts` — current-system analysis, including VRS
 
-## Code scaffolding
+Each article needs a unique slug and number, four hero statistics, at least five sections, and a linked evidence ledger. It is published automatically at `/editorials/<slug>` and appears on the homepage in reverse publication order.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Run locally
 
 ```bash
-ng generate --help
+npm install
+npm start
 ```
 
-## Building
-
-To build the project run:
+Open `http://localhost:4200`.
 
 ```bash
-ng build
+npm run build
+npm test -- --watch=false
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The production build is written to `dist/g-austin/browser`.
 
-## Running unit tests
+## Structure
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- `src/app/working-theory/counter-strike-hub.*` — homepage and article index
+- `src/app/working-theory/counter-strike-editorial.*` — reusable long-form article renderer
+- `src/app/working-theory/*editorials.data.ts` — published content and sources
+- `src/counter-strike-hub.css` — homepage design system
+- `src/counter-strike-editorial.css` — article and print design system
+- `public/` — static assets
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Legacy `/counter-strike` and `/counter-strike/editorials/<slug>` URLs redirect to the current routes.

@@ -1,6 +1,6 @@
 # SnapGrid project page
 
-Route: `/projects/snapgrid`. The home page links to it under Selected work.
+Route: `/projects/snapgrid`. The Server Room home page links to it from its footer.
 
 The standalone component is lazy loaded. Its project data and mounting selection live in `snapgrid.component.ts`; long-form how-tos live in the HTML template. The diagram is a labelled orientation schematic, not a dimensioned drawing.
 
