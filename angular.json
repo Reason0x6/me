@@ -27,9 +27,7 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "src/counter-strike-editorial.css",
-              "src/counter-strike-hub.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -87,9 +85,7 @@
               }
             ],
             "styles": [
-              "src/styles.css",
-              "src/counter-strike-editorial.css",
-              "src/counter-strike-hub.css"
+              "src/styles.css"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"

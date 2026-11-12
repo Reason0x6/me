@@ -1,42 +1,22 @@
-# The Server Room
+# Reason6
 
-An independent, Counter-Strike-only publication for long-form analysis of professional teams, tactics, rankings, form and history.
+A minimal personal calling card with a cryptographic trail to [Reason0x6 on GitHub](https://github.com/Reason0x6). The hexadecimal footer encodes the GitHub handle; the HTML source contains the complete URL in hex.
 
-The homepage is the complete article index. Every piece declares its sample, data cut-off and evidence sources; the current editorial format supports statistical summaries, tables, comparison bars and explicit falsification tests.
+## Develop
 
-## Publish an analysis
-
-Articles implement the `CounterStrikeEditorial` interface in [`src/app/working-theory/counter-strike-editorials.data.ts`](src/app/working-theory/counter-strike-editorials.data.ts). Content is split into focused files and combined into `COUNTER_STRIKE_EDITORIALS`:
-
-- `counter-strike-editorials.data.ts` — current teams, tournaments and historical comparisons
-- `counter-strike-meta-editorials.data.ts` — tactical legacy pieces
-- `counter-strike-systems-editorials.data.ts` — current-system analysis, including VRS
-
-Each article needs a unique slug and number, four hero statistics, at least five sections, and a linked evidence ledger. It is published automatically at `/editorials/<slug>` and appears on the homepage in reverse publication order.
-
-## Run locally
-
-```bash
-npm install
+```sh
+npm ci
 npm start
 ```
 
-Open `http://localhost:4200`.
+## Verify and build
 
-```bash
+```sh
 npm run build
-npm test -- --watch=false
 ```
 
-The production build is written to `dist/g-austin/browser`.
+Production output: `dist/g-austin/browser`. The established Angular build target is retained for existing hosting integrations.
 
-## Structure
+## Archive
 
-- `src/app/working-theory/counter-strike-hub.*` — homepage and article index
-- `src/app/working-theory/counter-strike-editorial.*` — reusable long-form article renderer
-- `src/app/working-theory/*editorials.data.ts` — published content and sources
-- `src/counter-strike-hub.css` — homepage design system
-- `src/counter-strike-editorial.css` — article and print design system
-- `public/` — static assets
-
-Legacy `/counter-strike` and `/counter-strike/editorials/<slug>` URLs redirect to the current routes.
+The previous Counter-Strike publication, The Server Room, and the SnapGrid project page is preserved in [`archive/server-room`](archive/server-room/ARCHIVE.md), including its source, assets, original documentation and build configuration. Archived files are not included in the production build.
