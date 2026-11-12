@@ -6,17 +6,26 @@
 
   <main id="signal">
     <div class="card">
-      <div class="artifact" aria-hidden="true">
-        <svg viewBox="0 0 120 136" fill="none">
+      <button class="artifact" type="button" (click)="toggleHint()"
+        [class.acknowledged]="acknowledged()"
+        [attr.aria-label]="acknowledged() ? 'Signal acknowledged. Inspect signal' : 'Inspect signal'"
+        [attr.aria-expanded]="hintVisible()" aria-controls="source-hint">
+
+        <svg viewBox="0 0 120 136" fill="none" aria-hidden="true">
           <g class="outer" stroke="currentColor" stroke-width="1">
             <path d="M60 7 108 35V54 M108 82V101L75 120 M45 120 12 101V82 M12 54V35L45 16"/>
             <path d="M60 23 94 43V63 M94 79V93L60 113 26 93V73 M26 57V43L46 31" opacity=".4"/>
           </g>
           <path class="core" d="m60 44 21 12v24L60 92 39 80V56l21-12Zm0 0v24m0 0 21 12M60 68 39 80" stroke="currentColor" stroke-width="1.2"/>
           <path d="M60 0v14M60 122v14M0 68h14M106 68h14" stroke="currentColor" opacity=".3"/>
-          <circle cx="108" cy="68" r="2" fill="currentColor"/>
+          <g class="marks" stroke="currentColor" stroke-width="1">
+            <circle cx="60" cy="7" r="2"/><circle cx="108" cy="35" r="2"/>
+            <circle cx="108" cy="101" r="2"/><circle cx="60" cy="129" r="2"/>
+            <circle cx="12" cy="101" r="2"/><circle cx="12" cy="35" r="2"/>
+          </g>
         </svg>
-      </div>
+      </button>
+      <p class="source-hint" id="source-hint" [hidden]="!hintVisible()" role="status">You have the name. Follow the source.</p>
       <p class="eyebrow">YOU FOUND THE SIGNAL.</p>
       <h1>Reason<span>6</span><span class="period" aria-hidden="true">.</span></h1>
       <p class="intro">Some things are meant to be found.</p>

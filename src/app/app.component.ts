@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +6,19 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {}
+export class AppComponent {
+  readonly hintVisible = signal(false);
+  readonly acknowledged = signal(this.readAcknowledgement());
+
+  toggleHint(): void {
+    this.hintVisible.update((visible) => !visible);
+  }
+
+  private readAcknowledgement(): boolean {
+    try {
+      return localStorage.getItem('reason6.signal.acknowledged') === '006';
+    } catch {
+      return false;
+    }
+  }
+}

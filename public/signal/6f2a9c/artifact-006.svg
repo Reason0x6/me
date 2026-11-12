@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Reason6 — Artifact 006</title>
+  <desc id="desc">A six-sided seal, an open line, and the fragment: The sixth mark is an open door.</desc>
+  <rect width="900" height="1200" fill="#0c0e0b"/>
+  <g fill="none" stroke="#c7f99b" stroke-width="2">
+    <path d="m450 280 156 90v180l-156 90-156-90V370l156-90Z"/>
+    <path d="m450 370 78 45v90l-78 45-78-45v-90l78-45ZM450 550v150"/>
+    <circle cx="450" cy="700" r="5" fill="#c7f99b"/>
+    <path d="M90 90h40M90 90v40M810 90h-40M810 90v40M90 1110h40M90 1110v-40M810 1110h-40M810 1110v-40" opacity=".4"/>
+  </g>
+  <g font-family="monospace" font-size="14" letter-spacing="3" text-anchor="middle">
+    <text x="450" y="160" fill="#c7f99b">REASON6 / ARTIFACT 006</text>
+    <text x="450" y="845" fill="#e9ece4">THE SIXTH MARK</text>
+    <text x="450" y="875" fill="#e9ece4">IS AN OPEN DOOR.</text>
+    <text x="450" y="1040" fill="#7b8175" font-size="11">SIGNAL ACKNOWLEDGED.</text>
+  </g>
+</svg>
