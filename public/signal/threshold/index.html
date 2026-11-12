@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0c0e0b">
+<meta name="transmission" content="6">
+<title>Reason6 — THE OPEN DOOR.</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../transmission.css">
+<script src="../transmission.js" defer>
+</script>
+</head>
+<body data-received="5">
+<main>
+<svg class="symbol" viewBox="0 0 72 84" fill="none" aria-hidden="true">
+<path d="m36 4 31 18v36L36 76 5 58V22L36 4Z" stroke="currentColor"/>
+<path d="M36 22 51 31v18L36 58 21 49V31l15-9ZM36 58v22" stroke="currentColor"/>
+<circle cx="36" cy="80" r="2" fill="currentColor"/>
+</svg>
+<p class="label">TRANSMISSION 06 / OPEN</p>
+<h1>THE OPEN DOOR.</h1>
+<aside class="collection">
+<p class="label">TRANSMISSION 05 / RECEIVED</p>
+<a class="download" href="../artifacts/artifact-005.svg" download="reason6-artifact-005.svg">COLLECT ARTIFACT 005 <span aria-hidden="true">↓</span>
+</a>
+<p class="muted small">Keep what you find. The fragments belong together.</p>
+</aside>
+<p class="message">You carried the key here.</p>
+<p class="muted">Five fragments travelled with you. The sixth stayed where the signal began. Inspect the original mark.</p>
+<form id="decrypt-form">
+<label for="fragments">SIX FRAGMENTS / IN NUMBERED ORDER</label>
+<input id="fragments" name="fragments" required autocomplete="off" spellcheck="false" placeholder="Six words, separated by spaces" aria-describedby="decrypt-status">
+<button class="decrypt" type="submit">OPEN THE TRANSMISSION <span aria-hidden="true">↗</span>
+</button>
+<p class="status" id="decrypt-status" role="status" aria-live="polite">
+</p>
+</form>
+<a class="envelope" href="envelope.json" download>DOWNLOAD ENCRYPTED TRANSMISSION ↓</a>
+<details class="hint">
+<summary>REQUEST A HINT</summary>
+<p>Artifacts 001–005 each carry a labelled fragment. Fragment 06 is embedded inside the homepage sigil SVG. Join all six in numbered order, uppercase, with one space between words. SHA-256 derives the AES-256-GCM key; the envelope supplies the IV and ciphertext, with its 16-byte authentication tag appended.</p>
+</details>
+<section id="unsealed" hidden aria-live="polite">
+<p class="label">TRANSMISSION 06 / RECEIVED</p>
+<h2>
+</h2>
+<a class="download" id="final-artifact" download="reason6-artifact-006.svg">COLLECT ARTIFACT 006 <span aria-hidden="true">↓</span>
+</a>
+<p class="muted small">Six marks. One signal. Thank you for looking.</p>
+</section>
+<footer>
+<a href="../../">RETURN TO THE SIGNAL <span aria-hidden="true">↗</span>
+</a>
+<span class="progress" aria-label="Transmission progress">
+</span>
+</footer>
+</main>
+</body>
+</html>

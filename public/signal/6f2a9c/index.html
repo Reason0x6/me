@@ -1,42 +1,38 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0c0e0b">
-  <title>Reason6 — Signal acknowledged.</title>
-  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-  <style>
-    :root { color-scheme: dark; --accent: #c7f99b; }
-    * { box-sizing: border-box; }
-    body { margin: 0; padding: 40px 24px; min-height: 100svh; background: #0c0e0b; color: #e9ece4; display: grid; place-items: center; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-    main { width: min(100%, 540px); }
-    .symbol { width: 62px; height: 72px; color: var(--accent); margin-bottom: 44px; }
-    .label, a, footer { font: 10px/1.6 "SFMono-Regular", Consolas, "Liberation Mono", monospace; letter-spacing: .12em; }
-    .label { color: var(--accent); margin: 0 0 20px; }
-    h1 { margin: 0; font-size: clamp(36px, 7vw, 60px); font-weight: 400; line-height: 1.05; letter-spacing: -.055em; }
-    .message { margin: 24px 0 52px; font-size: 15px; color: #969d8f; }
-    a { color: #e9ece4; text-decoration: none; display: flex; justify-content: space-between; align-items: center; min-height: 64px; border-block: 1px solid #2b3026; }
-    a:hover { color: var(--accent); border-color: #69755c; }
-    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
-    .arrow { color: var(--accent); font-size: 18px; }
-    footer { margin-top: 26px; color: #7b8175; }
-    footer a { display: inline-block; min-height: 44px; padding-top: 12px; border: 0; font-size: 9px; }
-    ::selection { background: var(--accent); color: #0c0e0b; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0c0e0b">
+<meta name="transmission" content="1">
+<title>Reason6 — SIGNAL<br>ACKNOWLEDGED.</title>
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../transmission.css">
+<script src="../transmission.js" defer>
+</script>
 </head>
-<body>
-  <main>
-    <svg class="symbol" viewBox="0 0 72 84" fill="none" aria-hidden="true"><path d="m36 4 31 18v36L36 76 5 58V22L36 4Z" stroke="currentColor"/><path d="M36 22 51 31v18L36 58 21 49V31l15-9ZM36 58v22" stroke="currentColor"/><circle cx="36" cy="80" r="2" fill="currentColor"/></svg>
-    <p class="label">TRANSMISSION 006 / RECEIVED</p>
-    <h1>SIGNAL<br>ACKNOWLEDGED.</h1>
-    <p class="message">You were expected.</p>
-    <a href="artifact-006.svg" download="reason6-artifact-006.svg"><span>COLLECT ARTIFACT 006</span><span class="arrow" aria-hidden="true">↓</span></a>
-    <footer><a href="../../">RETURN TO THE SIGNAL <span aria-hidden="true">↗</span></a></footer>
-  </main>
-  <script>
-    try { localStorage.setItem('reason6.signal.acknowledged', '006'); } catch { /* The artifact remains available when storage is disabled. */ }
-  </script>
+<body data-received="1">
+<main>
+<svg class="symbol" viewBox="0 0 72 84" fill="none" aria-hidden="true">
+<path d="m36 4 31 18v36L36 76 5 58V22L36 4Z" stroke="currentColor"/>
+<path d="M36 22 51 31v18L36 58 21 49V31l15-9ZM36 58v22" stroke="currentColor"/>
+<circle cx="36" cy="80" r="2" fill="currentColor"/>
+</svg>
+<p class="label">TRANSMISSION 01 / RECEIVED</p>
+<h1>SIGNAL<br>ACKNOWLEDGED.</h1>
+<p class="message">You were expected.</p>
+<a class="download" href="../artifacts/artifact-001.svg" download="reason6-artifact-001.svg">COLLECT ARTIFACT 001 <span aria-hidden="true">↓</span>
+</a>
+<p class="muted small">Keep what you find. The fragments belong together.</p>
+<a class="continue" href="../interference/">FOLLOW THE INTERFERENCE <span aria-hidden="true">↗</span>
+</a>
+<footer>
+<a href="../../">RETURN TO THE SIGNAL <span aria-hidden="true">↗</span>
+</a>
+<span class="progress" aria-label="Transmission progress">
+</span>
+</footer>
+</main>
 </body>
 </html>

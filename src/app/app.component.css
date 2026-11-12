@@ -31,7 +31,7 @@ footer { font-size: 9px; letter-spacing: .1em; }
 .artifact:focus-visible { outline: 1px solid var(--accent); outline-offset: 8px; }
 .artifact .core { transition: opacity .2s; }
 .artifact:hover .core { opacity: .5; }
-.marks { fill: var(--bg); opacity: .28; transition: opacity .3s; }
-.acknowledged .marks { fill: var(--accent); opacity: 1; filter: drop-shadow(0 0 3px #c7f99b66); }
+.marks circle { fill: var(--bg); opacity: .28; transition: opacity .3s; }
+.marks circle.lit { fill: var(--accent); opacity: 1; filter: drop-shadow(0 0 3px #c7f99b66); }
 .source-hint { position: absolute; top: 94px; left: 0; margin: 0; color: var(--accent); font: 10px/1.6 var(--mono); letter-spacing: .02em; }
 @media (max-width: 600px) { .source-hint { top: 78px; font-size: 9px; } }
