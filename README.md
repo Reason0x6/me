@@ -12,8 +12,10 @@ npm start
 ## Verify and build
 
 ```sh
-npm run build
+npm test
 ```
+
+This builds the production site and runs the clue-chain tests. Use `npm run build` for a build alone.
 
 Production output: `dist/g-austin/browser`. The established Angular build target is retained for existing hosting integrations.
 
